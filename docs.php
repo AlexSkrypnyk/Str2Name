@@ -20,6 +20,7 @@ if (empty($tokens)) {
 
 $generic_conversions = [
   'camel',
+  'cobol',
   'flat',
   'kebab',
   'pascal',

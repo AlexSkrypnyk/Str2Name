@@ -89,17 +89,36 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to i_am_a__string_with_spces_14_and__unicode_eleve
    */
   public static function machine(string $string): string {
+    $string = static::strict($string);
     return static::snake(str_replace(['-'], ' ', $string));
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   */
+  public static function machineRaw(string $string): string {
+    return static::snake(str_replace(['-'], ' ', $string));
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE
+   */
+  public static function constant(string $string): string {
+    $string = static::strict($string);
+
+    return mb_strtoupper(static::snake($string));
   }
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to I_AM_A__STRING_WITH_SP@CE¥S_14_AND_😀_UNICODE_ÉLÈVE
    */
-  public static function constant(string $string): string {
+  public static function constantRaw(string $string): string {
     return mb_strtoupper(static::snake($string));
   }
 
@@ -207,9 +226,10 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @to I-Am-A--String-With-Spces-14-And--Unicode-Eleve
    */
   public static function httpHeader(string $string): string {
+    $string = static::strict($string);
     return static::train($string);
   }
 
@@ -272,17 +292,37 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to iamastringwithsp@ce¥s14and😀unicodeélève
+   * @to iamastringwithspces14andunicodeeleve
    */
   public static function id(string $string): string {
+    $string = static::strict($string);
+
     return static::flat($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to iamastringwithsp@ce¥s14and😀unicodeélève
+   */
+  public static function idRaw(string $string): string {
+    return static::flat($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to IAMASTRINGWITHSPCES14ANDUNICODEELEVE
+   */
+  public static function idUpper(string $string): string {
+    $string = static::strict($string);
+
+    return mb_strtoupper(static::flat($string));
   }
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to IAMASTRINGWITHSP@CE¥S14AND😀UNICODEÉLÈVE
    */
-  public static function idUpper(string $string): string {
+  public static function idUpperRaw(string $string): string {
     return mb_strtoupper(static::flat($string));
   }
 

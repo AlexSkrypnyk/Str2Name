@@ -29,23 +29,27 @@
 | `kebab` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève` |
 | `train` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève` |
 | `flat` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithsp@ce¥s14and😀unicodeélève` |
+| `cobol` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE` |
 
 ## Named conversions
 
 | Method | Conversion|
 | --- | --- |
-| `cobol` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE` |
-| `constant` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I_AM_A__STRING_WITH_SP@CE¥S_14_AND_😀_UNICODE_ÉLÈVE` |
+| `constant` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE` |
+| `constantRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I_AM_A__STRING_WITH_SP@CE¥S_14_AND_😀_UNICODE_ÉLÈVE` |
 | `cssClass` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-with-spces-14-and--unicode-eleve` |
 | `cssClassRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-am-a__string-With-spce¥s-14-and--unicode-élève` |
 | `cssId` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a-string-with-spces-14-and-unicode-eleve` |
 | `cssIdRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a-string-with-spces-14-and-unicode-lve` |
 | `domain` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__stringwith_sp@ce¥s_14_and_😀_unicode_élève` |
-| `httpHeader` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève` |
-| `id` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithsp@ce¥s14and😀unicodeélève` |
-| `idUpper` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAMASTRINGWITHSP@CE¥S14AND😀UNICODEÉLÈVE` |
+| `httpHeader` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-Am-A--String-With-Spces-14-And--Unicode-Eleve` |
+| `id` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithspces14andunicodeeleve` |
+| `idRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithsp@ce¥s14and😀unicodeélève` |
+| `idUpper` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAMASTRINGWITHSPCES14ANDUNICODEELEVE` |
+| `idUpperRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAMASTRINGWITHSP@CE¥S14AND😀UNICODEÉLÈVE` |
 | `label` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I am a string With sp@ce¥s 14 and 😀 unicode élève` |
-| `machine` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève` |
+| `machine` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_spces_14_and__unicode_eleve` |
+| `machineRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève` |
 | `phpClass` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IamAStringWithSpces14AndUnicodeEleve` |
 | `phpClassRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
 | `phpFunction` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_spces_14_and__unicode_eleve` |
