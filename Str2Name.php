@@ -113,17 +113,9 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   */
-  public static function phpFunction(string $string): string {
-    return static::snake($string);
-  }
-
-  /**
-   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to i_am_a__string_with_spces_14_and__unicode_eleve
    */
-  public static function phpFunctionStrict(string $string): string {
+  public static function phpFunction(string $string): string {
     $string = static::strict($string);
 
     return static::snake($string);
@@ -131,18 +123,19 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
-  public static function phpNamespace(string $string): string {
-    return static::pascal($string);
+  public static function phpFunctionRaw(string $string): string {
+    return static::snake($string);
   }
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to IAmAStringWithSpces14AndUnicodeEleve
    */
-  public static function phpNamespaceStrict(string $string): string {
+  public static function phpNamespace(string $string): string {
     $string = static::strict($string);
+
     return static::pascal($string);
   }
 
@@ -150,7 +143,7 @@ class Str2Name {
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
-  public static function phpClass(string $string): string {
+  public static function phpNamespaceRaw(string $string): string {
     return static::pascal($string);
   }
 
@@ -158,7 +151,7 @@ class Str2Name {
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to IamAStringWithSpces14AndUnicodeEleve
    */
-  public static function phpClassStrict(string $string): string {
+  public static function phpClass(string $string): string {
     $string = static::strict($string);
 
     $string = str_replace(['-', '_'], ' ', $string);
@@ -180,19 +173,27 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
-  public static function phpMethod(string $string): string {
-    return static::camel($string);
+  public static function phpClassRaw(string $string): string {
+    return static::pascal($string);
   }
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to iAmAStringWithSpces14AndUnicodeEleve
    */
-  public static function phpMethodStrict(string $string): string {
+  public static function phpMethod(string $string): string {
     $string = static::strict($string);
 
+    return static::camel($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   */
+  public static function phpMethodRaw(string $string): string {
     return static::camel($string);
   }
 
@@ -214,12 +215,23 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i-am-a__string-with-spces-14-and--unicode-eleve
+   */
+  public static function cssClass(string $string): string {
+    $string = static::strict($string);
+    $string = mb_strtolower(static::cssClassRaw($string));
+
+    return static::mbRemove($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to I-am-a__string-With-spce¥s-14-and--unicode-élève
    *
    * @see http://www.w3.org/TR/CSS21/syndata.html#characters
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AcleanCssIdentifier/10
    */
-  public static function cssClass(string $string): string {
+  public static function cssClassRaw(string $string): string {
     $tmp_replacements = 0;
     $string = str_replace('__', '##', $string, $tmp_replacements);
     $string = str_replace([' ', '_', '/', '[', ']'], ['-', '-', '', '', ''], $string);
@@ -231,13 +243,17 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to i-am-a__string-with-spces-14-and--unicode-eleve
+   * @to i-am-a-string-with-spces-14-and-unicode-eleve
+   *
+   * @see http://www.w3.org/TR/html4/types.html#type-name
+   * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AgetId/10
    */
-  public static function cssClassStrict(string $string): string {
+  public static function cssId(string $string): string {
     $string = static::strict($string);
-    $string = mb_strtolower(static::cssClass($string));
+    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], mb_strtolower($string));
+    $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
 
-    return static::mbRemove($string);
+    return (string) preg_replace('/-+/', '-', $string);
   }
 
   /**
@@ -247,22 +263,7 @@ class Str2Name {
    * @see http://www.w3.org/TR/html4/types.html#type-name
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AgetId/10
    */
-  public static function cssId(string $string): string {
-    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], mb_strtolower($string));
-    $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
-
-    return (string) preg_replace('/-+/', '-', $string);
-  }
-
-  /**
-   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to i-am-a-string-with-spces-14-and-unicode-eleve
-   *
-   * @see http://www.w3.org/TR/html4/types.html#type-name
-   * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AgetId/10
-   */
-  public static function cssIdStrict(string $string): string {
-    $string = static::strict($string);
+  public static function cssIdRaw(string $string): string {
     $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], mb_strtolower($string));
     $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
 
