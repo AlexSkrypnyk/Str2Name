@@ -97,7 +97,7 @@ class MyClass {
  composer require alexskrypnyk/str2name
 ```
 
-2Use it in your project:
+2. Use it in your project:
 
 ```php
 <php
