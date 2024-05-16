@@ -30,7 +30,7 @@ class Str2Name {
    * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function camel(string $string): string {
-    return self::mbLcfirst(self::pascal($string));
+    return static::mbLcfirst(static::pascal($string));
   }
 
   /**
@@ -39,7 +39,7 @@ class Str2Name {
    */
   public static function pascal(string $string): string {
     $string = str_replace(['-', '_'], ' ', $string);
-    $string = self::mbUcwords($string);
+    $string = static::mbUcwords($string);
 
     return str_replace(' ', '', $string);
   }
@@ -57,7 +57,7 @@ class Str2Name {
    * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
    */
   public static function train(string $string): string {
-    return self::mbUcwords(self::kebab($string), '-');
+    return static::mbUcwords(static::kebab($string), '-');
   }
 
   /**
@@ -65,7 +65,7 @@ class Str2Name {
    * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function flat(string $string): string {
-    return str_replace('_', '', mb_strtolower(self::snake($string)));
+    return str_replace('_', '', mb_strtolower(static::snake($string)));
   }
 
   /**
@@ -76,7 +76,7 @@ class Str2Name {
     $string = str_replace(['_'], ' ', $string);
     $string = (string) preg_replace('/[\s]{2,}/', ' ', $string);
 
-    return self::mbUcfirst(mb_strtolower($string));
+    return static::mbUcfirst(mb_strtolower($string));
   }
 
   /**
@@ -92,7 +92,7 @@ class Str2Name {
    * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function machine(string $string): string {
-    return self::snake(str_replace(['-'], ' ', $string));
+    return static::snake(str_replace(['-'], ' ', $string));
   }
 
   /**
@@ -100,7 +100,7 @@ class Str2Name {
    * @to I_AM_A__STRING_WITH_SP@CE¥S_14_AND_😀_UNICODE_ÉLÈVE
    */
   public static function constant(string $string): string {
-    return mb_strtoupper(self::snake($string));
+    return mb_strtoupper(static::snake($string));
   }
 
   /**
@@ -108,7 +108,7 @@ class Str2Name {
    * @to I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
    */
   public static function cobol(string $string): string {
-    return mb_strtoupper(self::kebab($string));
+    return mb_strtoupper(static::kebab($string));
   }
 
   /**
@@ -116,7 +116,7 @@ class Str2Name {
    * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function phpFunction(string $string): string {
-    return self::snake($string);
+    return static::snake($string);
   }
 
   /**
@@ -124,9 +124,9 @@ class Str2Name {
    * @to i_am_a__string_with_spces_14_and__unicode_eleve
    */
   public static function phpFunctionStrict(string $string): string {
-    $string = self::strict($string);
+    $string = static::strict($string);
 
-    return self::snake($string);
+    return static::snake($string);
   }
 
   /**
@@ -134,7 +134,7 @@ class Str2Name {
    * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function phpNamespace(string $string): string {
-    return self::pascal($string);
+    return static::pascal($string);
   }
 
   /**
@@ -142,8 +142,8 @@ class Str2Name {
    * @to IAmAStringWithSpces14AndUnicodeEleve
    */
   public static function phpNamespaceStrict(string $string): string {
-    $string = self::strict($string);
-    return self::pascal($string);
+    $string = static::strict($string);
+    return static::pascal($string);
   }
 
   /**
@@ -151,7 +151,7 @@ class Str2Name {
    * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function phpClass(string $string): string {
-    return self::pascal($string);
+    return static::pascal($string);
   }
 
   /**
@@ -159,7 +159,7 @@ class Str2Name {
    * @to IamAStringWithSpces14AndUnicodeEleve
    */
   public static function phpClassStrict(string $string): string {
-    $string = self::strict($string);
+    $string = static::strict($string);
 
     $string = str_replace(['-', '_'], ' ', $string);
 
@@ -168,14 +168,14 @@ class Str2Name {
     $prev = '';
 
     foreach ($words as $word) {
-      $word = strlen($prev) === 1 && ctype_upper($prev) ? self::mbLcfirst(self::mbUcfirst(mb_strtolower($word))) : self::mbUcfirst(mb_strtolower($word));
+      $word = strlen($prev) === 1 && ctype_upper($prev) ? static::mbLcfirst(static::mbUcfirst(mb_strtolower($word))) : static::mbUcfirst(mb_strtolower($word));
       $result .= $word;
       $prev = $word;
     }
 
     $string = str_replace(' ', '', $result);
 
-    return self::emojiRemove($string);
+    return static::emojiRemove($string);
   }
 
   /**
@@ -183,7 +183,7 @@ class Str2Name {
    * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function phpMethod(string $string): string {
-    return self::camel($string);
+    return static::camel($string);
   }
 
   /**
@@ -191,9 +191,9 @@ class Str2Name {
    * @to iAmAStringWithSpces14AndUnicodeEleve
    */
   public static function phpMethodStrict(string $string): string {
-    $string = self::strict($string);
+    $string = static::strict($string);
 
-    return self::camel($string);
+    return static::camel($string);
   }
 
   /**
@@ -201,7 +201,7 @@ class Str2Name {
    * @to i_am_a__stringwith_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function domain(string $string): string {
-    return self::snake(str_replace('-', '', $string));
+    return static::snake(str_replace('-', '', $string));
   }
 
   /**
@@ -209,7 +209,7 @@ class Str2Name {
    * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
    */
   public static function httpHeader(string $string): string {
-    return self::train($string);
+    return static::train($string);
   }
 
   /**
@@ -234,10 +234,10 @@ class Str2Name {
    * @to i-am-a__string-with-spces-14-and--unicode-eleve
    */
   public static function cssClassStrict(string $string): string {
-    $string = self::strict($string);
-    $string = mb_strtolower(self::cssClass($string));
+    $string = static::strict($string);
+    $string = mb_strtolower(static::cssClass($string));
 
-    return self::mbRemove($string);
+    return static::mbRemove($string);
   }
 
   /**
@@ -262,7 +262,7 @@ class Str2Name {
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AgetId/10
    */
   public static function cssIdStrict(string $string): string {
-    $string = self::strict($string);
+    $string = static::strict($string);
     $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], mb_strtolower($string));
     $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
 
@@ -274,7 +274,7 @@ class Str2Name {
    * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function id(string $string): string {
-    return self::flat($string);
+    return static::flat($string);
   }
 
   /**
@@ -282,7 +282,7 @@ class Str2Name {
    * @to IAMASTRINGWITHSP@CE¥S14AND😀UNICODEÉLÈVE
    */
   public static function idUpper(string $string): string {
-    return mb_strtoupper(self::flat($string));
+    return mb_strtoupper(static::flat($string));
   }
 
   /**
@@ -324,7 +324,7 @@ class Str2Name {
    * Remove multibyte characters.
    */
   protected static function mbRemove(string $string): string {
-    return str_replace(array_keys(self::MB_MAP), array_values(self::MB_MAP), $string);
+    return str_replace(array_keys(static::MB_MAP), array_values(static::MB_MAP), $string);
   }
 
   /**
@@ -338,7 +338,7 @@ class Str2Name {
    * Restrict a string to a specific set of characters used in Strict methods.
    */
   protected static function strict(string $string): string {
-    $string = self::mbRemove($string);
+    $string = static::mbRemove($string);
 
     return (string) preg_replace('/[^a-zA-Z0-9_\- ]/', '', $string);
   }
