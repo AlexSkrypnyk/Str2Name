@@ -121,3 +121,7 @@ class MyClass {
     composer lint
     composer test
     composer docs
+
+
+---
+Repository created using https://getscaffold.dev/
