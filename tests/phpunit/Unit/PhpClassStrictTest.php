@@ -7,7 +7,7 @@ namespace AlexSkrypnyk\Str2Name\Tests\Unit;
 use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
 
-#[CoversMethod(Str2Name::class, 'machineStrict')]
-class MachineStrictTest extends Str2NameTestCase {
+#[CoversMethod(Str2Name::class, 'phpClass')]
+class PhpClassStrictTest extends Str2NameTestCase {
 
 }
