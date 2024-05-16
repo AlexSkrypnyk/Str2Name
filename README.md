@@ -65,7 +65,7 @@ There are two ways to include `Str2Name` in your project:
 {
     "autoload": {
         "psr-4": {
-            "AlexSkrypnyk\\Str2Name\\": "path/to/src/Src2Name.php"
+            "AlexSkrypnyk\\Str2Name\\": "path/to/src/Str2Name.php"
         }
     }
 }
