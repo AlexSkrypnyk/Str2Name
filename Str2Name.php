@@ -171,15 +171,39 @@ class Str2Name {
 
   /**
    * @from I am a_string-With spaces 14
-   * @to i_am_a_string-with_spaces_14
+   * @to I-am-a-string-With-spaces-14
+   *
+   * @from I am a__string-With spaces 14
+   * @to I-am-a__string-With-spaces-14
+   *
+   * @see http://www.w3.org/TR/CSS21/syndata.html#characters
+   * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AcleanCssIdentifier/10
    */
   public static function cssClass(string $string): string {
-    return strtolower(str_replace([' '], '_', $string));
+    $tmp_replacements = 0;
+    $string = str_replace('__', '##', $string, $tmp_replacements);
+    $string = str_replace([' ', '_', '/', '[', ']'], ['-', '-', '', '', ''], $string);
+    $string = $tmp_replacements > 0 ? str_replace('##', '__', $string) : $string;
+    $string = (string) preg_replace('/[^\x{002D}\x{0030}-\x{0039}\x{0041}-\x{005A}\x{005F}\x{0061}-\x{007A}\x{00A1}-\x{FFFF}]/u', '', $string);
+
+    return (string) preg_replace(['/^\d/', '/^(-\d)|^(--)/'], ['_', '__'], $string);
   }
 
   /**
    * @from I am a_string-With spaces 14
    * @to i-am-a-string-with-spaces-14
+   *
+   * @from I am a__string-With spaces 14
+   * @to i-am-a__string-with-spaces-14
+   */
+  public static function cssClassStrict(string $string): string {
+    return strtolower(self::cssClass($string));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to i-am-a-string-with-spaces-14
+   *
    * @see http://www.w3.org/TR/html4/types.html#type-name
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AgetId/10
    */

@@ -26,7 +26,8 @@
 | `camel` | `I am a_string-With spaces 14` | `iAmAStringWithSpaces14` |
 | `cobol` | `I am a_string-With spaces 14` | `I-AM-A-STRING-WITH-SPACES-14` |
 | `constant` | `I am a_string-With spaces 14` | `I_AM_A_STRING_WITH_SPACES_14` |
-| `cssClass` | `I am a_string-With spaces 14` | `i_am_a_string-with_spaces_14` |
+| `cssClass` | `I am a_string-With spaces 14` | `I-am-a-string-With-spaces-14` |
+| `cssClassStrict` | `I am a_string-With spaces 14` | `i-am-a-string-with-spaces-14` |
 | `cssId` | `I am a_string-With spaces 14` | `i-am-a-string-with-spaces-14` |
 | `domain` | `I am a_string-With spaces 14` | `i_am_a_stringwith_spaces_14` |
 | `flat` | `I am a_string-With spaces 14` | `iamastringwithspaces14` |
