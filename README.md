@@ -23,9 +23,16 @@
 
 | Method | From | To |
 | --- | --- | --- |
+| `camel` | `I am a_string-With spaces 14` | `iAmAStringWithSpaces14` |
+| `kebab` | `I am a_string-With spaces 14` | `I-am-a-string-With-spaces-14` |
 | `label` | `I am a_string-With spaces 14` | `I am a string With spaces 14` |
-| `machine` | `I am a_string-With spaces 14` | `i_am_a_string-with_spaces_14` |
-| `machineStrict` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
+| `machine` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
+| `pascal` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
+| `phpClass` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
+| `phpClassStrict` | `I am a_string-With spaces 14` | `IamAstringWithSpaces14` |
+| `phpFunction` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
+| `phpMethod` | `I am a_string-With spaces 14` | `iAmAStringWithSpaces14` |
+| `phpNamespace` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
 | `snake` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
 
 ## Installation and usage
