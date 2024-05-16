@@ -31,6 +31,8 @@ abstract class MethodTestCase extends TestCase {
     $this->assertSame($expected, Str2Name::{$method}($input), sprintf('> %s: %s', $test_class, $input));
   }
 
-  abstract public static function dataProvider(): array;
+  public static function dataProvider(): array {
+    return static::$cases;
+  }
 
 }

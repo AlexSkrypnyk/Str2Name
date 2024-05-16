@@ -179,10 +179,15 @@ class Str2Name {
 
   /**
    * @from I am a_string-With spaces 14
-   * @to i_am_a_string-with_spaces_14
+   * @to i-am-a-string-with-spaces-14
+   * @see http://www.w3.org/TR/html4/types.html#type-name
+   * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AgetId/10
    */
   public static function cssId(string $string): string {
-    return strtolower(str_replace([' '], '_', $string));
+    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], strtolower($string));
+    $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
+
+    return (string) preg_replace('/-+/', '-', $string);
   }
 
   /**
