@@ -18,10 +18,28 @@ if (empty($tokens)) {
   exit(1);
 }
 
-ksort($tokens);
+$generic_conversions = [
+  'camel',
+  'flat',
+  'kebab',
+  'pascal',
+  'snake',
+  'train',
+];
+
+$generic_conversions_tokens = array_intersect_key($tokens, array_flip($generic_conversions));
 
 $markdown = "\n";
-$markdown .= tokens_to_markdown_table($tokens);
+$markdown .= tokens_to_markdown_table($generic_conversions_tokens);
+$markdown .= "\n";
+
+$named_conversions_tokens = array_diff_key($tokens, array_flip($generic_conversions));
+ksort($named_conversions_tokens);
+
+$markdown .= "\n";
+$markdown .= "## Named conversions\n";
+$markdown .= "\n";
+$markdown .= tokens_to_markdown_table($named_conversions_tokens);
 $markdown .= "\n";
 
 $readme = file_get_contents(__DIR__ . '/README.md');
@@ -31,7 +49,7 @@ if ($readme === FALSE) {
   exit(1);
 }
 
-$readme_replaced = replace_content($readme, '## Supported conversions', '## Installation and usage', $markdown);
+$readme_replaced = replace_content($readme, '## Generic conversions', '## Installation and usage', $markdown);
 
 if ($readme_replaced === $readme) {
   echo "Documentation is up to date. No changes were made.\n";
@@ -103,11 +121,11 @@ function parse_tokens(string $class_name): array {
  *   Markdown table.
  */
 function tokens_to_markdown_table(array $tokens): string {
-  $markdown = "| Method | From | To |\n";
-  $markdown .= "| --- | --- | --- |\n";
+  $markdown = "| Method | Conversion|\n";
+  $markdown .= "| --- | --- |\n";
 
   foreach ($tokens as $token) {
-    $markdown .= "| `" . $token['method'] . "` | `" . $token['from'] . "` | `" . $token['to'] . "` |\n";
+    $markdown .= "| `" . $token['method'] . "` | `" . $token['from'] . "` <br/> `" . $token['to'] . "` |\n";
   }
 
   return trim($markdown);

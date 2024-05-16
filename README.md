@@ -19,33 +19,42 @@
 
 ---
 
-## Supported conversions
+## Generic conversions
 
-| Method | From | To |
-| --- | --- | --- |
-| `camel` | `I am a_string-With spaces 14` | `iAmAStringWithSpaces14` |
-| `cobol` | `I am a_string-With spaces 14` | `I-AM-A-STRING-WITH-SPACES-14` |
-| `constant` | `I am a_string-With spaces 14` | `I_AM_A_STRING_WITH_SPACES_14` |
-| `cssClass` | `I am a_string-With spaces 14` | `I-am-a-string-With-spaces-14` |
-| `cssClassStrict` | `I am a_string-With spaces 14` | `i-am-a-string-with-spaces-14` |
-| `cssId` | `I am a_string-With spaces 14` | `i-am-a-string-with-spaces-14` |
-| `domain` | `I am a_string-With spaces 14` | `i_am_a_stringwith_spaces_14` |
-| `flat` | `I am a_string-With spaces 14` | `iamastringwithspaces14` |
-| `httpHeader` | `I am a_string-With spaces 14` | `I-Am-A-String-With-Spaces-14` |
-| `id` | `I am a_string-With spaces 14` | `iamastringwithspaces14` |
-| `idUpper` | `I am a_string-With spaces 14` | `IAMASTRINGWITHSPACES14` |
-| `kebab` | `I am a_string-With spaces 14` | `i-am-a-string-with-spaces-14` |
-| `label` | `I am a_string-With spaces 14` | `I am a string With spaces 14` |
-| `machine` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
-| `pascal` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
-| `phpClass` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
-| `phpClassStrict` | `I am a_string-With spaces 14` | `IamAstringWithSpaces14` |
-| `phpFunction` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
-| `phpMethod` | `I am a_string-With spaces 14` | `iAmAStringWithSpaces14` |
-| `phpNamespace` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
-| `sentence` | `I am a_string-With spaces 14` | `I am a string-with spaces 14` |
-| `snake` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
-| `train` | `I am a_string-With spaces 14` | `I-Am-A-String-With-Spaces-14` |
+| Method | Conversion|
+| --- | --- |
+| `snake` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève` |
+| `camel` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
+| `pascal` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
+| `kebab` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève` |
+| `train` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève` |
+| `flat` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithsp@ce¥s14and😀unicodeélève` |
+
+## Named conversions
+
+| Method | Conversion|
+| --- | --- |
+| `cobol` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE` |
+| `constant` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I_AM_A__STRING_WITH_SP@CE¥S_14_AND_😀_UNICODE_ÉLÈVE` |
+| `cssClass` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-am-a__string-With-spce¥s-14-and--unicode-élève` |
+| `cssClassStrict` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-with-spces-14-and--unicode-eleve` |
+| `cssId` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a-string-with-spces-14-and-unicode-lve` |
+| `cssIdStrict` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a-string-with-spces-14-and-unicode-eleve` |
+| `domain` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__stringwith_sp@ce¥s_14_and_😀_unicode_élève` |
+| `httpHeader` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève` |
+| `id` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithsp@ce¥s14and😀unicodeélève` |
+| `idUpper` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAMASTRINGWITHSP@CE¥S14AND😀UNICODEÉLÈVE` |
+| `label` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I am a string With sp@ce¥s 14 and 😀 unicode élève` |
+| `machine` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève` |
+| `phpClass` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
+| `phpClassStrict` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IamAStringWithSpces14AndUnicodeEleve` |
+| `phpFunction` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève` |
+| `phpFunctionStrict` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_spces_14_and__unicode_eleve` |
+| `phpMethod` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
+| `phpMethodStrict` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iAmAStringWithSpces14AndUnicodeEleve` |
+| `phpNamespace` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
+| `phpNamespaceStrict` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSpces14AndUnicodeEleve` |
+| `sentence` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I am a string-with sp@ce¥s 14 and 😀 unicode élève` |
 
 ## Installation and usage
 
