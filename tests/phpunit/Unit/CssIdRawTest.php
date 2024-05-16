@@ -7,8 +7,8 @@ namespace AlexSkrypnyk\Str2Name\Tests\Unit;
 use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
 
-#[CoversMethod(Str2Name::class, 'cssId')]
-class CssIdTest extends MethodTestCase {
+#[CoversMethod(Str2Name::class, 'cssIdRaw')]
+class CssIdRawTest extends MethodTestCase {
 
   protected static array $cases = [
     ['abcdefghijklmnopqrstuvwxyz-0123456789', 'abcdefghijklmnopqrstuvwxyz-0123456789'],
