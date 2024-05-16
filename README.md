@@ -24,7 +24,16 @@
 | Method | From | To |
 | --- | --- | --- |
 | `camel` | `I am a_string-With spaces 14` | `iAmAStringWithSpaces14` |
-| `kebab` | `I am a_string-With spaces 14` | `I-am-a-string-With-spaces-14` |
+| `cobol` | `I am a_string-With spaces 14` | `I-AM-A-STRING-WITH-SPACES-14` |
+| `constant` | `I am a_string-With spaces 14` | `I_AM_A_STRING_WITH_SPACES_14` |
+| `cssClass` | `I am a_string-With spaces 14` | `i_am_a_string-with_spaces_14` |
+| `cssId` | `I am a_string-With spaces 14` | `i_am_a_string-with_spaces_14` |
+| `domain` | `I am a_string-With spaces 14` | `i_am_a_stringwith_spaces_14` |
+| `flat` | `I am a_string-With spaces 14` | `iamastringwithspaces14` |
+| `httpHeader` | `I am a_string-With spaces 14` | `I-Am-A-String-With-Spaces-14` |
+| `id` | `I am a_string-With spaces 14` | `iamastringwithspaces14` |
+| `idUpper` | `I am a_string-With spaces 14` | `IAMASTRINGWITHSPACES14` |
+| `kebab` | `I am a_string-With spaces 14` | `i-am-a-string-with-spaces-14` |
 | `label` | `I am a_string-With spaces 14` | `I am a string With spaces 14` |
 | `machine` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
 | `pascal` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
@@ -33,7 +42,9 @@
 | `phpFunction` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
 | `phpMethod` | `I am a_string-With spaces 14` | `iAmAStringWithSpaces14` |
 | `phpNamespace` | `I am a_string-With spaces 14` | `IAmAStringWithSpaces14` |
+| `sentence` | `I am a_string-With spaces 14` | `I am a string-with spaces 14` |
 | `snake` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
+| `train` | `I am a_string-With spaces 14` | `I-Am-A-String-With-Spaces-14` |
 
 ## Installation and usage
 

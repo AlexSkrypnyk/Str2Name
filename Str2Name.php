@@ -40,10 +40,34 @@ class Str2Name {
 
   /**
    * @from I am a_string-With spaces 14
-   * @to I-am-a-string-With-spaces-14
+   * @to i-am-a-string-with-spaces-14
    */
   public static function kebab(string $string): string {
-    return str_replace([' ', '_'], '-', $string);
+    return strtolower(str_replace([' ', '_'], '-', $string));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to I-Am-A-String-With-Spaces-14
+   */
+  public static function train(string $string): string {
+    return ucwords(self::kebab($string), '-');
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to iamastringwithspaces14
+   */
+  public static function flat(string $string): string {
+    return str_replace('_', '', strtolower(self::snake($string)));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to I am a string-with spaces 14
+   */
+  public static function sentence(string $string): string {
+    return ucfirst(strtolower(str_replace(['_'], ' ', $string)));
   }
 
   /**
@@ -60,6 +84,22 @@ class Str2Name {
    */
   public static function machine(string $string): string {
     return self::snake(str_replace(['-'], ' ', $string));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to I_AM_A_STRING_WITH_SPACES_14
+   */
+  public static function constant(string $string): string {
+    return strtoupper(self::snake($string));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to I-AM-A-STRING-WITH-SPACES-14
+   */
+  public static function cobol(string $string): string {
+    return strtoupper(self::kebab($string));
   }
 
   /**
@@ -111,6 +151,54 @@ class Str2Name {
    */
   public static function phpMethod(string $string): string {
     return self::camel($string);
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to i_am_a_stringwith_spaces_14
+   */
+  public static function domain(string $string): string {
+    return self::snake(str_replace('-', '', $string));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to I-Am-A-String-With-Spaces-14
+   */
+  public static function httpHeader(string $string): string {
+    return self::train($string);
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to i_am_a_string-with_spaces_14
+   */
+  public static function cssClass(string $string): string {
+    return strtolower(str_replace([' '], '_', $string));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to i_am_a_string-with_spaces_14
+   */
+  public static function cssId(string $string): string {
+    return strtolower(str_replace([' '], '_', $string));
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to iamastringwithspaces14
+   */
+  public static function id(string $string): string {
+    return self::flat($string);
+  }
+
+  /**
+   * @from I am a_string-With spaces 14
+   * @to IAMASTRINGWITHSPACES14
+   */
+  public static function idUpper(string $string): string {
+    return strtoupper(self::flat($string));
   }
 
 }

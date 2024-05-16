@@ -5,21 +5,11 @@ declare(strict_types=1);
 namespace AlexSkrypnyk\Str2Name\Tests\Unit;
 
 use AlexSkrypnyk\Str2Name\Str2Name;
-use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversMethod(Str2Name::class, 'snake')]
-#[CoversMethod(Str2Name::class, 'camel')]
-#[CoversMethod(Str2Name::class, 'pascal')]
-#[CoversMethod(Str2Name::class, 'kebab')]
-#[CoversMethod(Str2Name::class, 'label')]
-#[CoversMethod(Str2Name::class, 'machine')]
-#[CoversMethod(Str2Name::class, 'phpFunction')]
-#[CoversMethod(Str2Name::class, 'phpNamespace')]
-#[CoversMethod(Str2Name::class, 'phpClass')]
-#[CoversMethod(Str2Name::class, 'phpClassStrict')]
-#[CoversMethod(Str2Name::class, 'phpMethod')]
+#[CoversClass(Str2Name::class)]
 class CommentsTest extends TestCase {
 
   #[DataProvider('dataProvider')]
@@ -35,9 +25,15 @@ class CommentsTest extends TestCase {
       $method_name = $method->getName();
       $comment = $reflection->getMethod($method_name)->getDocComment();
       if ($comment === FALSE) {
-        throw new \RuntimeException(sprintf('Method %s does not have a comment', $method));
+        throw new \RuntimeException(sprintf('Method %s does not have a comment', $method_name));
       }
+
       $tokens = static::extractTokens($comment);
+
+      if (empty($tokens)) {
+        throw new \RuntimeException(sprintf('Method %s does not have @from and @to annotations', $method_name));
+      }
+
       $method_cases = array_map(static function (array $token) use ($method_name): array {
         return [$method_name, $token['from'], $token['to']];
       }, $tokens);
