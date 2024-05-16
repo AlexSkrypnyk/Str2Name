@@ -11,9 +11,11 @@ use PHPUnit\Framework\TestCase;
 abstract class Str2NameTestCase extends TestCase {
 
   /**
-   * The test cases.
+   * Additional test cases.
+   *
+   * By default, the test cases are taken from the comments of the class method.
    */
-  protected static array $cases;
+  protected static array $cases = [];
 
   #[DataProvider('dataProvider')]
   public function testMethod(string $input, string $expected): void {
@@ -26,7 +28,48 @@ abstract class Str2NameTestCase extends TestCase {
   }
 
   public static function dataProvider(): array {
-    return static::$cases;
+    $test_class = basename(str_replace('\\', '/', static::class));
+    $method = lcfirst(str_replace('Test', '', $test_class));
+    $reflection = new \ReflectionClass(Str2Name::class);
+    $comment = $reflection->getMethod($method)->getDocComment();
+    if ($comment === FALSE) {
+      throw new \RuntimeException(sprintf('Method %s does not have a comment', $method));
+    }
+    $tokens = static::extractTokens($comment);
+    $cases = array_map(static fn($token): array => [$token['from'], $token['to']], $tokens);
+
+    return array_merge($cases, static::$cases);
+  }
+
+  protected static function extractTokens(string $comment): array {
+    $result = [];
+
+    $froms = [];
+    $tos = [];
+
+    if (preg_match_all('/@from (.*)/', $comment, $matches1)) {
+      $froms = $matches1[1];
+    }
+
+    if (preg_match_all('/@to (.*)/', $comment, $matches2)) {
+      $tos = $matches2[1];
+    }
+
+    $froms = array_filter(array_map('trim', $froms));
+    $tos = array_filter(array_map('trim', $tos));
+
+    if (count($froms) !== count($tos)) {
+      throw new \RuntimeException('The number of @from and @to annotations must be equal');
+    }
+
+    foreach ($froms as $i => $from) {
+      $result[] = [
+        'from' => $from,
+        'to' => $tos[$i],
+      ];
+    }
+
+    return $result;
   }
 
 }

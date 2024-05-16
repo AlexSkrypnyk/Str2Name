@@ -10,8 +10,4 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 #[CoversMethod(Str2Name::class, 'machineStrict')]
 class MachineStrictTest extends Str2NameTestCase {
 
-  protected static array $cases = [
-    ['I am a_string-With spaces 14', 'i_am_a_string_with_spaces_14'],
-  ];
-
 }
