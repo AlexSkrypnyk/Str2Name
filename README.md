@@ -23,6 +23,7 @@
 
 | Method | From | To |
 | --- | --- | --- |
+| `label` | `I am a_string-With spaces 14` | `I am a string With spaces 14` |
 | `machine` | `I am a_string-With spaces 14` | `i_am_a_string-with_spaces_14` |
 | `machineStrict` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
 | `snake` | `I am a_string-With spaces 14` | `i_am_a_string_with_spaces_14` |
