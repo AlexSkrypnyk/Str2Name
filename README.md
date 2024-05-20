@@ -58,6 +58,9 @@
 | `phpMethodRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
 | `phpNamespace` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSpces14AndUnicodeEleve` |
 | `phpNamespaceRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
+| `phpPackage` | `I am a__string-W/ith sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-w/ith-sp-ce-s-14-and-unicode-l-ve` |
+| `phpPackageName` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve` |
+| `phpPackageNamespace` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve` |
 | `sentence` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I am a string-with sp@ce¥s 14 and 😀 unicode élève` |
 
 ## Installation and usage

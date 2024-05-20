@@ -9,6 +9,7 @@ namespace AlexSkrypnyk\Str2Name;
  *
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class Str2Name {
 
@@ -93,6 +94,7 @@ class Str2Name {
    */
   public static function machine(string $string): string {
     $string = static::strict($string);
+
     return static::snake(str_replace(['-'], ' ', $string));
   }
 
@@ -217,6 +219,43 @@ class Str2Name {
   }
 
   /**
+   * @from I am a__string-W/ith sp@ce¥s 14 and 😀 unicode élève
+   * @to i-am-a__string-w/ith-sp-ce-s-14-and-unicode-l-ve
+   */
+  public static function phpPackage(string $string): string {
+    $parts = explode('/', $string);
+
+    if (count($parts) !== 2) {
+      return '';
+    }
+
+    $namespace = (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($parts[0]));
+    $name = (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($parts[1]));
+
+    if ($namespace === '-' || $name === '-') {
+      return '';
+    }
+
+    return $namespace . '/' . $name;
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
+   */
+  public static function phpPackageNamespace(string $string): string {
+    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($string));
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
+   */
+  public static function phpPackageName(string $string): string {
+    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($string));
+  }
+
+  /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to i_am_a__stringwith_sp@ce¥s_14_and_😀_unicode_élève
    */
@@ -230,6 +269,7 @@ class Str2Name {
    */
   public static function httpHeader(string $string): string {
     $string = static::strict($string);
+
     return static::train($string);
   }
 
