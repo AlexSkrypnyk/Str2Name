@@ -3,9 +3,7 @@
     <description>Custom PHPCS standard.</description>
 
     <!-- Using Drupal coding standard as a base-fix. -->
-    <rule ref="Drupal">
-        <exclude name="Drupal.Commenting.DocComment.MissingShort"/>
-    </rule>
+    <rule ref="Drupal" />
     <!-- Checks that the strict_types has been declared. -->
     <rule ref="Generic.PHP.RequireStrictTypes" />
 

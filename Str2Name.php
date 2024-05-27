@@ -10,6 +10,7 @@ namespace AlexSkrypnyk\Str2Name;
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * phpcs:disable Drupal.Commenting.DocComment.MissingShort
  */
 class Str2Name {
 
