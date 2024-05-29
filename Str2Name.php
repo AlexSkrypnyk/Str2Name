@@ -367,8 +367,8 @@ class Str2Name {
   }
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function snake2pascal(string $string): string {
     return static::pascal($string);
