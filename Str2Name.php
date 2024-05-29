@@ -359,8 +359,8 @@ class Str2Name {
   // ===========================================================================
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function snake2camel(string $string): string {
     return static::camel($string);
