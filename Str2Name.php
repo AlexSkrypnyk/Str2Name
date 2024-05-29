@@ -371,7 +371,7 @@ class Str2Name {
    * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function snake2pascal(string $string): string {
-    return $string;
+    return static::pascal($string);
   }
 
   /**
