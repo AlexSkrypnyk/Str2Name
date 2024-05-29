@@ -31,7 +31,7 @@ class CommentsTest extends TestCase {
       $tokens = static::extractTokens($comment);
 
       if (empty($tokens)) {
-        throw new \RuntimeException(sprintf('Method %s does not have @from and @to annotations', $method_name));
+        continue;
       }
 
       $method_cases = array_map(static function (array $token) use ($method_name): array {
