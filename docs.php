@@ -18,7 +18,7 @@ if (empty($tokens)) {
   exit(1);
 }
 
-$generic_conversions = [
+$generic_formatters = [
   'camel',
   'cobol',
   'flat',
@@ -28,19 +28,30 @@ $generic_conversions = [
   'train',
 ];
 
-$generic_conversions_tokens = array_intersect_key($tokens, array_flip($generic_conversions));
+$generic_formatter_tokens = array_intersect_key($tokens, array_flip($generic_formatters));
 
 $markdown = "\n";
-$markdown .= tokens_to_markdown_table($generic_conversions_tokens);
+$markdown .= tokens_to_markdown_table($generic_formatter_tokens);
 $markdown .= "\n";
 
-$named_conversions_tokens = array_diff_key($tokens, array_flip($generic_conversions));
-ksort($named_conversions_tokens);
+$generic_converters_tokens = array_diff_key($tokens, array_flip($generic_formatters));
+$generic_converters_tokens = array_filter($generic_converters_tokens, static function (string $token): bool {
+  return str_contains($token, '2');
+}, ARRAY_FILTER_USE_KEY);
 
 $markdown .= "\n";
-$markdown .= "## Named conversions\n";
+$markdown .= "## Converters between generic formats\n";
 $markdown .= "\n";
-$markdown .= tokens_to_markdown_table($named_conversions_tokens);
+$markdown .= tokens_to_markdown_table($generic_converters_tokens);
+$markdown .= "\n";
+
+$named_formatters_tokens = array_diff_key($tokens, array_flip($generic_formatters), $generic_converters_tokens);
+ksort($named_formatters_tokens);
+
+$markdown .= "\n";
+$markdown .= "## Named formatters\n";
+$markdown .= "\n";
+$markdown .= tokens_to_markdown_table($named_formatters_tokens);
 $markdown .= "\n";
 
 $readme = file_get_contents(__DIR__ . '/README.md');
@@ -50,7 +61,7 @@ if ($readme === FALSE) {
   exit(1);
 }
 
-$readme_replaced = replace_content($readme, '## Generic conversions', '## Installation and usage', $markdown);
+$readme_replaced = replace_content($readme, '## Generic formatters', '## Installation and usage', $markdown);
 
 if ($readme_replaced === $readme) {
   echo "Documentation is up to date. No changes were made.\n";
