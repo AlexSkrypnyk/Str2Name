@@ -359,339 +359,309 @@ class Str2Name {
   // ===========================================================================
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function snake2camel(string $string): string {
-    return $string;
+    return static::camel($string);
   }
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function snake2pascal(string $string): string {
-    return $string;
+    return static::pascal($string);
   }
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
    */
   public static function snake2kebab(string $string): string {
-    return $string;
+    return static::kebab($string);
   }
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
    */
   public static function snake2train(string $string): string {
-    return $string;
+    return static::train($string);
   }
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled iamastringwithsp@ce¥s14and😀unicodeélève
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function snake2flat(string $string): string {
-    return $string;
+    return static::flat($string);
   }
 
   /**
-   * @fromdisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   * @todisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @from i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @to I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
    */
   public static function snake2cobol(string $string): string {
-    return $string;
+    return static::cobol($string);
   }
 
   /**
-   * @fromdisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @from iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to i_am_a_string_with_sp@ce¥s_14_and😀_unicode_élève
    */
   public static function camel2snake(string $string): string {
-    return $string;
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string);
+
+    return mb_strtolower($string);
   }
 
   /**
-   * @fromdisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function camel2pascal(string $string): string {
-    return $string;
+    return static::mbUcfirst($string);
   }
 
   /**
-   * @fromdisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @from iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to i-am-a-string-with-sp@ce¥s-14-and😀-unicode-élève
    */
   public static function camel2kebab(string $string): string {
-    return $string;
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
+
+    return mb_strtolower($string);
   }
 
   /**
-   * @fromdisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @from iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to I-Am-A-String-With-Sp@ce¥s-14-And😀-Unicode-Élève
    */
   public static function camel2train(string $string): string {
-    return $string;
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
+
+    return static::mbUcfirst($string);
   }
 
   /**
-   * @fromdisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled iamastringwithsp@ce¥s14and😀unicodeélève
+   * @from iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function camel2flat(string $string): string {
-    return $string;
+    return static::flat($string);
   }
 
   /**
-   * @fromdisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @from iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to I-AM-A-STRING-WITH-SP@CE¥S-14-AND😀-UNICODE-ÉLÈVE
    */
   public static function camel2cobol(string $string): string {
-    return $string;
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
+
+    return mb_strtoupper($string);
   }
 
   /**
-   * @fromdisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @from IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to i_am_a_string_with_sp@ce¥s_14_and😀_unicode_élève
    */
   public static function pascal2snake(string $string): string {
-    return $string;
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '_');
+
+    return mb_strtolower($string);
   }
 
   /**
-   * @fromdisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function pascal2camel(string $string): string {
-    return $string;
+    return self::mbLcfirst($string);
   }
 
   /**
-   * @fromdisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @from IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to i-am-a-string-with-sp@ce¥s-14-and😀-unicode-élève
    */
   public static function pascal2kebab(string $string): string {
-    return $string;
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
+
+    return mb_strtolower($string);
   }
 
   /**
-   * @fromdisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @from IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to I-Am-A-String-With-Sp@ce¥s-14-And😀-Unicode-Élève
    */
   public static function pascal2train(string $string): string {
-    return $string;
+    return static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
   }
 
   /**
-   * @fromdisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled iamastringwithsp@ce¥s14and😀unicodeélève
+   * @from IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function pascal2flat(string $string): string {
-    return $string;
+    return static::flat($string);
   }
 
   /**
-   * @fromdisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   * @todisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @from IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @to I-AM-A-STRING-WITH-SP@CE¥S-14-AND😀-UNICODE-ÉLÈVE
    */
   public static function pascal2cobol(string $string): string {
-    return $string;
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
+
+    return mb_strtoupper($string);
   }
 
   /**
-   * @fromdisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
-   * @todisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @from i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function kebab2snake(string $string): string {
-    return $string;
+    return static::snake($string);
   }
 
   /**
-   * @fromdisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
-   * @todisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function kebab2camel(string $string): string {
-    return $string;
+    return static::camel($string);
   }
 
   /**
-   * @fromdisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
-   * @todisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function kebab2pascal(string $string): string {
-    return $string;
+    return static::pascal($string);
   }
 
   /**
-   * @fromdisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
-   * @todisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @from i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
    */
   public static function kebab2train(string $string): string {
-    return $string;
+    return static::train($string);
   }
 
   /**
-   * @fromdisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
-   * @todisabled iamastringwithsp@ce¥s14and😀unicodeélève
+   * @from i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function kebab2flat(string $string): string {
-    return $string;
+    return static::flat($string);
   }
 
   /**
-   * @fromdisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
-   * @todisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @from i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @to I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
    */
   public static function kebab2cobol(string $string): string {
-    return $string;
+    return static::cobol($string);
   }
 
   /**
-   * @fromdisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
-   * @todisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @from I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function train2snake(string $string): string {
-    return $string;
+    return static::snake($string);
   }
 
   /**
-   * @fromdisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
-   * @todisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function train2camel(string $string): string {
-    return $string;
+    return static::camel($string);
   }
 
   /**
-   * @fromdisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
-   * @todisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function train2pascal(string $string): string {
-    return $string;
+    return static::pascal($string);
   }
 
   /**
-   * @fromdisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
-   * @todisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @from I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @to i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
    */
   public static function train2kebab(string $string): string {
-    return $string;
+    return static::kebab($string);
   }
 
   /**
-   * @fromdisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
-   * @todisabled iamastringwithsp@ce¥s14and😀unicodeélève
+   * @from I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function train2flat(string $string): string {
-    return $string;
+    return static::flat($string);
   }
 
   /**
-   * @fromdisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
-   * @todisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @from I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @to I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
    */
   public static function train2cobol(string $string): string {
-    return $string;
+    return static::cobol($string);
   }
 
   /**
-   * @fromdisabled iamastringwithsp@ce¥s14and😀unicodeélève
-   * @todisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
-   */
-  public static function flat2snake(string $string): string {
-    return $string;
-  }
-
-  /**
-   * @fromdisabled iamastringwithsp@ce¥s14and😀unicodeélève
-   * @todisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   */
-  public static function flat2camel(string $string): string {
-    return $string;
-  }
-
-  /**
-   * @fromdisabled iamastringwithsp@ce¥s14and😀unicodeélève
-   * @todisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
-   */
-  public static function flat2pascal(string $string): string {
-    return $string;
-  }
-
-  /**
-   * @fromdisabled iamastringwithsp@ce¥s14and😀unicodeélève
-   * @todisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
-   */
-  public static function flat2kebab(string $string): string {
-    return $string;
-  }
-
-  /**
-   * @fromdisabled iamastringwithsp@ce¥s14and😀unicodeélève
-   * @todisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
-   */
-  public static function flat2train(string $string): string {
-    return $string;
-  }
-
-  /**
-   * @fromdisabled iamastringwithsp@ce¥s14and😀unicodeélève
-   * @todisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   */
-  public static function flat2cobol(string $string): string {
-    return $string;
-  }
-
-  /**
-   * @fromdisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   * @todisabled i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   * @from I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function cobol2snake(string $string): string {
-    return $string;
+    return static::snake($string);
   }
 
   /**
-   * @fromdisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   * @todisabled iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function cobol2camel(string $string): string {
-    return $string;
+    $string = static::kebab($string);
+
+    return static::camel($string);
   }
 
   /**
-   * @fromdisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   * @todisabled IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
+   * @from I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @to IAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function cobol2pascal(string $string): string {
-    return $string;
+    $string = static::kebab($string);
+
+    return static::pascal($string);
   }
 
   /**
-   * @fromdisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   * @todisabled i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
+   * @from I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @to i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
    */
   public static function cobol2kebab(string $string): string {
-    return $string;
+    return static::kebab($string);
   }
 
   /**
-   * @fromdisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   * @todisabled I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   * @from I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
    */
   public static function cobol2train(string $string): string {
-    return $string;
+    return static::train($string);
   }
 
   /**
-   * @fromdisabled I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   * @todisabled iamastringwithsp@ce¥s14and😀unicodeélève
+   * @from I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function cobol2flat(string $string): string {
-    return $string;
+    return static::flat($string);
   }
 
   // ===========================================================================
@@ -776,6 +746,25 @@ class Str2Name {
     $string = static::mbRemove($string);
 
     return (string) preg_replace('/[^a-zA-Z0-9_\- ]/', '', $string);
+  }
+
+  /**
+   * Add separator before an upper case char in string.
+   */
+  protected static function mbAddSeparatorBeforeUpperCaseChar(string $string, string $separator = '_'): string {
+    $string = preg_replace_callback('/([^0-9])(\d+)/', static function (array $matches) use ($separator) : string {
+        return $matches[1] . $separator . $matches[2];
+    }, $string);
+    $replacements = [];
+    foreach (mb_str_split((string) $string) as $key => $char) {
+      $lower_case_char = mb_strtolower($char);
+      if ($lower_case_char !== $char && $key !== 0) {
+        $replacements[$char] = $separator . $char;
+      }
+    }
+    $string = str_replace(array_keys($replacements), array_values($replacements), (string) $string);
+
+    return trim($string, $separator);
   }
 
 }
