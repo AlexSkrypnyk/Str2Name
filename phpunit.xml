@@ -27,8 +27,7 @@
         </exclude>
     </source>
 
-    <coverage includeUncoveredFiles="true"
-              pathCoverage="false"
+    <coverage pathCoverage="false"
               ignoreDeprecatedCodeUnits="true"
               disableCodeCoverageIgnore="false">
         <report>
