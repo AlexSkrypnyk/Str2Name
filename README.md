@@ -19,6 +19,77 @@
 
 ---
 
+## Installation and usage
+
+`Str2Name` is a self-contained class that can be included in any PHP
+project directly or via Composer. It does not have any dependencies.
+
+There are two ways to include `Str2Name` in your project:
+
+- [Direct download](#direct-download)
+- [Composer](#composer)
+
+### Direct download
+
+1. Download the file from
+   the [releases page](https://github.com/AlexSkrypnyk/str2name/releases)
+
+2. Register the namespace in `composer.json` of your project:
+
+```composer.json
+{
+    "autoload": {
+        "psr-4": {
+            "AlexSkrypnyk\\Str2Name\\": "path/to/src/Str2Name.php"
+        }
+    }
+}
+```
+
+3. Use it in your project:
+
+```php
+<php
+
+use AlexSkrypnyk\Str2Name\Str2Name;
+
+class MyClass {
+
+    public function myMethod() {
+        $string = 'string to convert';
+        // Convert string to machine name.
+        $string = Str2Name::machine($string);
+    }
+
+}
+```
+
+### Composer
+
+1. Require the package via Composer:
+
+```bash
+ composer require alexskrypnyk/str2name
+```
+
+2. Use it in your project:
+
+```php
+<php
+
+use AlexSkrypnyk\Str2Name\Str2Name;
+
+class MyClass {
+
+    public function myMethod() {
+        $string = 'string to convert';
+        // Convert string to machine name.
+        $string = Str2Name::machine($string);
+    }
+
+}
+```
+
 ## Generic formatters
 
 | Method | Conversion|
@@ -103,77 +174,6 @@
 | `phpPackageName` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve` |
 | `phpPackageNamespace` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve` |
 | `sentence` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I am a string-with sp@ce¥s 14 and 😀 unicode élève` |
-
-## Installation and usage
-
-`Str2Name` is a self-contained class that can be included in any PHP
-project directly or via Composer. It does not have any dependencies.
-
-There are two ways to include `Str2Name` in your project:
-
-- [Direct download](#direct-download)
-- [Composer](#composer)
-
-### Direct download
-
-1. Download the file from
-   the [releases page](https://github.com/AlexSkrypnyk/str2name/releases)
-
-2. Register the namespace in `composer.json` of your project:
-
-```composer.json
-{
-    "autoload": {
-        "psr-4": {
-            "AlexSkrypnyk\\Str2Name\\": "path/to/src/Str2Name.php"
-        }
-    }
-}
-```
-
-3. Use it in your project:
-
-```php
-<php
-
-use AlexSkrypnyk\Str2Name\Str2Name;
-
-class MyClass {
-
-    public function myMethod() {
-        $string = 'string to convert';
-        // Convert string to machine name.
-        $string = Str2Name::machine($string);
-    }
-
-}
-```
-
-### Composer
-
-1. Require the package via Composer:
-
-```bash
- composer require alexskrypnyk/str2name
-```
-
-2. Use it in your project:
-
-```php
-<php
-
-use AlexSkrypnyk\Str2Name\Str2Name;
-
-class MyClass {
-
-    public function myMethod() {
-        $string = 'string to convert';
-        // Convert string to machine name.
-        $string = Str2Name::machine($string);
-    }
-
-}
-```
 
 ## Maintenance
 
