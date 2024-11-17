@@ -61,7 +61,7 @@ if ($readme === FALSE) {
   exit(1);
 }
 
-$readme_replaced = replace_content($readme, '## Generic formatters', '## Installation and usage', $markdown);
+$readme_replaced = replace_content($readme, '## Generic formatters', '## Maintenance', $markdown);
 
 if ($readme_replaced === $readme) {
   echo "Documentation is up to date. No changes were made.\n";
