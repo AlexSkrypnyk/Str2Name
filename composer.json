@@ -1,8 +1,8 @@
 {
     "name": "alexskrypnyk/str2name",
-    "type": "library",
     "description": "Convert strings to named formats",
     "license": "GPL-2.0-or-later",
+    "type": "library",
     "authors": [
         {
             "name": "Alex Skrypnyk",
@@ -22,10 +22,10 @@
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1",
         "drupal/coder": "^8.3",
-        "phpmd/phpmd": "^2.13",
-        "phpstan/phpstan": "^1.10",
+        "ergebnis/composer-normalize": "^2.45",
+        "phpstan/phpstan": "^2",
         "phpunit/phpunit": "^11",
-        "rector/rector": "^1.0.0"
+        "rector/rector": "^2"
     },
     "autoload": {
         "psr-4": {
@@ -38,16 +38,18 @@
         }
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
     },
     "scripts": {
+        "docs": "php docs.php",
+        "docs-lint": "php docs.php --fail-on-change",
         "lint": [
             "phpcs",
-            "phpmd --exclude vendor,vendor-bin,node_modules . text phpmd.xml",
             "phpstan",
             "rector --clear-cache --dry-run"
         ],
@@ -55,10 +57,8 @@
             "rector --clear-cache",
             "phpcbf"
         ],
+        "reset": "rm -Rf vendor composer.lock",
         "test": "phpunit --no-coverage",
-        "test-coverage": "phpunit",
-        "docs": "php docs.php",
-        "docs-lint": "php docs.php --fail-on-change",
-        "reset": "rm -Rf vendor composer.lock"
+        "test-coverage": "phpunit"
     }
 }
