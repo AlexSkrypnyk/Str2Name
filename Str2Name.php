@@ -7,10 +7,6 @@ namespace AlexSkrypnyk\Str2Name;
 /**
  * Convert strings to named formats.
  *
- * @SuppressWarnings(PHPMD.TooManyMethods)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * phpcs:disable Drupal.Commenting.DocComment.MissingShort
  */
 class Str2Name {
@@ -729,7 +725,7 @@ class Str2Name {
    * Remove multibyte characters.
    */
   protected static function mbRemove(string $string): string {
-    return str_replace(array_keys(static::MB_MAP), array_values(static::MB_MAP), $string);
+    return str_replace(array_map('strval', array_keys(static::MB_MAP)), array_values(static::MB_MAP), $string);
   }
 
   /**
