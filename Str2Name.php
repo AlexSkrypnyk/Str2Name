@@ -33,7 +33,19 @@ class Str2Name {
    * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function camel(string $string): string {
-    return static::mbLcfirst(static::pascal($string));
+    $string = str_replace(['-', '_'], ' ', $string);
+
+    $result = '';
+    $upper = '';
+    for ($i = 0; $i < mb_strlen($string); $i++) {
+      $letter = mb_substr($string, $i, 1);
+      $result .= $upper || $i == 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
+      $upper = ($i + 1) < mb_strlen($string) && mb_strpos(" \t\r\n\f\v", $letter) !== FALSE ? 1 : 0;
+    }
+
+    $string = str_replace(' ', '', $result);
+
+    return mb_convert_case(mb_substr($string, 0, 1), MB_CASE_LOWER) . mb_substr($string, 1);
   }
 
   /**
@@ -42,9 +54,16 @@ class Str2Name {
    */
   public static function pascal(string $string): string {
     $string = str_replace(['-', '_'], ' ', $string);
-    $string = static::mbUcwords($string);
 
-    return str_replace(' ', '', $string);
+    $result = '';
+    $upper = '';
+    for ($i = 0; $i < mb_strlen($string); $i++) {
+      $letter = mb_substr($string, $i, 1);
+      $result .= $upper || $i == 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
+      $upper = ($i + 1) < mb_strlen($string) && mb_strpos(" \t\r\n\f\v", $letter) !== FALSE ? 1 : 0;
+    }
+
+    return str_replace(' ', '', $result);
   }
 
   /**
@@ -60,7 +79,17 @@ class Str2Name {
    * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
    */
   public static function train(string $string): string {
-    return static::mbUcwords(static::kebab($string), '-');
+    $string = mb_strtolower(str_replace([' ', '_'], '-', $string));
+
+    $result = '';
+    $upper = '';
+    for ($i = 0; $i < mb_strlen($string); $i++) {
+      $letter = mb_substr($string, $i, 1);
+      $result .= $upper || $i == 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
+      $upper = ($i + 1) < mb_strlen($string) && mb_strpos('-', $letter) !== FALSE ? 1 : 0;
+    }
+
+    return $result;
   }
 
   /**
@@ -68,7 +97,15 @@ class Str2Name {
    * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function flat(string $string): string {
-    return str_replace('_', '', mb_strtolower(static::snake($string)));
+    return mb_strtolower(str_replace([' ', '-', '_'], '', $string));
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
+   */
+  public static function cobol(string $string): string {
+    return mb_strtoupper(str_replace([' ', '_'], '-', $string));
   }
 
   /**
@@ -76,10 +113,9 @@ class Str2Name {
    * @to I am a string-with sp@ce¥s 14 and 😀 unicode élève
    */
   public static function sentence(string $string): string {
-    $string = str_replace(['_'], ' ', $string);
-    $string = (string) preg_replace('/[\s]{2,}/', ' ', $string);
+    $string = (string) preg_replace('/[\s]{2,}/', ' ', str_replace(['_'], ' ', mb_strtolower($string)));
 
-    return static::mbUcfirst(mb_strtolower($string));
+    return mb_convert_case(mb_substr($string, 0, 1), MB_CASE_TITLE) . mb_substr($string, 1);
   }
 
   /**
@@ -124,14 +160,6 @@ class Str2Name {
    */
   public static function constantRaw(string $string): string {
     return mb_strtoupper(static::snake($string));
-  }
-
-  /**
-   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
-   */
-  public static function cobol(string $string): string {
-    return mb_strtoupper(static::kebab($string));
   }
 
   /**
@@ -690,20 +718,20 @@ class Str2Name {
    * Multibyte ucfirst.
    */
   protected static function mbUcfirst(string $string, ?string $encoding = NULL): string {
-    $firstChar = mb_substr($string, 0, 1, $encoding);
-    $firstChar = mb_convert_case($firstChar, MB_CASE_TITLE, $encoding);
+    $first_char = mb_substr($string, 0, 1, $encoding);
+    $first_char = mb_convert_case($first_char, MB_CASE_TITLE, $encoding);
 
-    return $firstChar . mb_substr($string, 1, NULL, $encoding);
+    return $first_char . mb_substr($string, 1, NULL, $encoding);
   }
 
   /**
    * Multibyte lcfirst.
    */
   protected static function mbLcfirst(string $string, ?string $encoding = NULL): string {
-    $firstChar = mb_substr($string, 0, 1, $encoding);
-    $firstChar = mb_convert_case($firstChar, MB_CASE_LOWER, $encoding);
+    $first_char = mb_substr($string, 0, 1, $encoding);
+    $first_char = mb_convert_case($first_char, MB_CASE_LOWER, $encoding);
 
-    return $firstChar . mb_substr($string, 1, NULL, $encoding);
+    return $first_char . mb_substr($string, 1, NULL, $encoding);
   }
 
   /**
@@ -748,8 +776,8 @@ class Str2Name {
    * Add separator before an upper case char in string.
    */
   protected static function mbAddSeparatorBeforeUpperCaseChar(string $string, string $separator = '_'): string {
-    $string = preg_replace_callback('/([^0-9])(\d+)/', static function (array $matches) use ($separator) : string {
-        return $matches[1] . $separator . $matches[2];
+    $string = preg_replace_callback('/([^0-9])(\d+)/', static function (array $matches) use ($separator): string {
+      return $matches[1] . $separator . $matches[2];
     }, $string);
     $replacements = [];
     foreach (mb_str_split((string) $string) as $key => $char) {
