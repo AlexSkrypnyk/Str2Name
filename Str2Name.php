@@ -13,7 +13,7 @@ class Str2Name {
 
   // @formatter:off
   // @phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
-  const MB_MAP = ['*' => ' ', '?' => ' ', '’' => "'", '.' => ' ', ',' => ', ', '“' => '', '”' => '', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'AE', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ð' => 'D', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'ß' => 's', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'ae', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ÿ' => 'y', 'Ā' => 'A', 'ā' => 'a', 'Ă' => 'A', 'ă' => 'a', 'Ą' => 'A', 'ą' => 'a', 'Ć' => 'C', 'ć' => 'c', 'Ĉ' => 'C', 'ĉ' => 'c', 'Ċ' => 'C', 'ċ' => 'c', 'Č' => 'C', 'č' => 'c', 'Ď' => 'D', 'ď' => 'd', 'Đ' => 'D', 'đ' => 'd', 'Ē' => 'E', 'ē' => 'e', 'Ĕ' => 'E', 'ĕ' => 'e', 'Ė' => 'E', 'ė' => 'e', 'Ę' => 'E', 'ę' => 'e', 'Ě' => 'E', 'ě' => 'e', 'Ĝ' => 'G', 'ĝ' => 'g', 'Ğ' => 'G', 'ğ' => 'g', 'Ġ' => 'G', 'ġ' => 'g', 'Ģ' => 'G', 'ģ' => 'g', 'Ĥ' => 'H', 'ĥ' => 'h', 'Ħ' => 'H', 'ħ' => 'h', 'Ĩ' => 'I', 'ĩ' => 'i', 'Ī' => 'I', 'ī' => 'i', 'Ĭ' => 'I', 'ĭ' => 'i', 'Į' => 'I', 'į' => 'i', 'İ' => 'I', 'ı' => 'i', 'Ĳ' => 'IJ', 'ĳ' => 'ij', 'Ĵ' => 'J', 'ĵ' => 'j', 'Ķ' => 'K', 'ķ' => 'k', 'Ĺ' => 'L', 'ĺ' => 'l', 'Ļ' => 'L', 'ļ' => 'l', 'Ľ' => 'L', 'ľ' => 'l', 'Ŀ' => 'L', 'ŀ' => 'l', 'Ł' => 'L', 'ł' => 'l', 'Ń' => 'N', 'ń' => 'n', 'Ņ' => 'N', 'ņ' => 'n', 'Ň' => 'N', 'ň' => 'n', 'ŉ' => 'n', 'Ō' => 'O', 'ō' => 'o', 'Ŏ' => 'O', 'ŏ' => 'o', 'Ő' => 'O', 'ő' => 'o', 'Œ' => 'OE', 'œ' => 'oe', 'Ŕ' => 'R', 'ŕ' => 'r', 'Ŗ' => 'R', 'ŗ' => 'r', 'Ř' => 'R', 'ř' => 'r', 'Ś' => 'S', 'ś' => 's', 'Ŝ' => 'S', 'ŝ' => 's', 'Ş' => 'S', 'ş' => 's', 'Š' => 'S', 'š' => 's', 'Ţ' => 'T', 'ţ' => 't', 'Ť' => 'T', 'ť' => 't', 'Ŧ' => 'T', 'ŧ' => 't', 'Ũ' => 'U', 'ũ' => 'u', 'Ū' => 'U', 'ū' => 'u', 'Ŭ' => 'U', 'ŭ' => 'u', 'Ů' => 'U', 'ů' => 'u', 'Ű' => 'U', 'ű' => 'u', 'Ų' => 'U', 'ų' => 'u', 'Ŵ' => 'W', 'ŵ' => 'w', 'Ŷ' => 'Y', 'ŷ' => 'y', 'Ÿ' => 'Y', 'Ź' => 'Z', 'ź' => 'z', 'Ż' => 'Z', 'ż' => 'z', 'Ž' => 'Z', 'ž' => 'z', 'ſ' => 's', 'ƒ' => 'f', 'Ơ' => 'O', 'ơ' => 'o', 'Ư' => 'U', 'ư' => 'u', 'Ǎ' => 'A', 'ǎ' => 'a', 'Ǐ' => 'I', 'ǐ' => 'i', 'Ǒ' => 'O', 'ǒ' => 'o', 'Ǔ' => 'U', 'ǔ' => 'u', 'Ǖ' => 'U', 'ǖ' => 'u', 'Ǘ' => 'U', 'ǘ' => 'u', 'Ǚ' => 'U', 'ǚ' => 'u', 'Ǜ' => 'U', 'ǜ' => 'u', 'Ǻ' => 'A', 'ǻ' => 'a', 'Ǽ' => 'AE', 'ǽ' => 'ae', 'Ǿ' => 'O', 'ǿ' => 'o', 'Ά' => 'Α', 'ά' => 'α', 'Έ' => 'Ε', 'έ' => 'ε', 'Ό' => 'Ο', 'ό' => 'ο', 'Ώ' => 'Ω', 'ώ' => 'ω', 'Ί' => 'Ι', 'ί' => 'ι', 'ϊ' => 'ι', 'ΐ' => 'ι', 'Ύ' => 'Υ', 'ύ' => 'υ', 'ϋ' => 'υ', 'ΰ' => 'υ', 'Ή' => 'Η', 'ή' => 'η'];
+  const MB_MAP = ['’' => "'", '“' => '', '”' => '', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'AE', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ð' => 'D', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'ß' => 's', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'ae', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ÿ' => 'y', 'Ā' => 'A', 'ā' => 'a', 'Ă' => 'A', 'ă' => 'a', 'Ą' => 'A', 'ą' => 'a', 'Ć' => 'C', 'ć' => 'c', 'Ĉ' => 'C', 'ĉ' => 'c', 'Ċ' => 'C', 'ċ' => 'c', 'Č' => 'C', 'č' => 'c', 'Ď' => 'D', 'ď' => 'd', 'Đ' => 'D', 'đ' => 'd', 'Ē' => 'E', 'ē' => 'e', 'Ĕ' => 'E', 'ĕ' => 'e', 'Ė' => 'E', 'ė' => 'e', 'Ę' => 'E', 'ę' => 'e', 'Ě' => 'E', 'ě' => 'e', 'Ĝ' => 'G', 'ĝ' => 'g', 'Ğ' => 'G', 'ğ' => 'g', 'Ġ' => 'G', 'ġ' => 'g', 'Ģ' => 'G', 'ģ' => 'g', 'Ĥ' => 'H', 'ĥ' => 'h', 'Ħ' => 'H', 'ħ' => 'h', 'Ĩ' => 'I', 'ĩ' => 'i', 'Ī' => 'I', 'ī' => 'i', 'Ĭ' => 'I', 'ĭ' => 'i', 'Į' => 'I', 'į' => 'i', 'İ' => 'I', 'ı' => 'i', 'Ĳ' => 'IJ', 'ĳ' => 'ij', 'Ĵ' => 'J', 'ĵ' => 'j', 'Ķ' => 'K', 'ķ' => 'k', 'Ĺ' => 'L', 'ĺ' => 'l', 'Ļ' => 'L', 'ļ' => 'l', 'Ľ' => 'L', 'ľ' => 'l', 'Ŀ' => 'L', 'ŀ' => 'l', 'Ł' => 'L', 'ł' => 'l', 'Ń' => 'N', 'ń' => 'n', 'Ņ' => 'N', 'ņ' => 'n', 'Ň' => 'N', 'ň' => 'n', 'ŉ' => 'n', 'Ō' => 'O', 'ō' => 'o', 'Ŏ' => 'O', 'ŏ' => 'o', 'Ő' => 'O', 'ő' => 'o', 'Œ' => 'OE', 'œ' => 'oe', 'Ŕ' => 'R', 'ŕ' => 'r', 'Ŗ' => 'R', 'ŗ' => 'r', 'Ř' => 'R', 'ř' => 'r', 'Ś' => 'S', 'ś' => 's', 'Ŝ' => 'S', 'ŝ' => 's', 'Ş' => 'S', 'ş' => 's', 'Š' => 'S', 'š' => 's', 'Ţ' => 'T', 'ţ' => 't', 'Ť' => 'T', 'ť' => 't', 'Ŧ' => 'T', 'ŧ' => 't', 'Ũ' => 'U', 'ũ' => 'u', 'Ū' => 'U', 'ū' => 'u', 'Ŭ' => 'U', 'ŭ' => 'u', 'Ů' => 'U', 'ů' => 'u', 'Ű' => 'U', 'ű' => 'u', 'Ų' => 'U', 'ų' => 'u', 'Ŵ' => 'W', 'ŵ' => 'w', 'Ŷ' => 'Y', 'ŷ' => 'y', 'Ÿ' => 'Y', 'Ź' => 'Z', 'ź' => 'z', 'Ż' => 'Z', 'ż' => 'z', 'Ž' => 'Z', 'ž' => 'z', 'ſ' => 's', 'ƒ' => 'f', 'Ơ' => 'O', 'ơ' => 'o', 'Ư' => 'U', 'ư' => 'u', 'Ǎ' => 'A', 'ǎ' => 'a', 'Ǐ' => 'I', 'ǐ' => 'i', 'Ǒ' => 'O', 'ǒ' => 'o', 'Ǔ' => 'U', 'ǔ' => 'u', 'Ǖ' => 'U', 'ǖ' => 'u', 'Ǘ' => 'U', 'ǘ' => 'u', 'Ǚ' => 'U', 'ǚ' => 'u', 'Ǜ' => 'U', 'ǜ' => 'u', 'Ǻ' => 'A', 'ǻ' => 'a', 'Ǽ' => 'AE', 'ǽ' => 'ae', 'Ǿ' => 'O', 'ǿ' => 'o', 'Ά' => 'Α', 'ά' => 'α', 'Έ' => 'Ε', 'έ' => 'ε', 'Ό' => 'Ο', 'ό' => 'ο', 'Ώ' => 'Ω', 'ώ' => 'ω', 'Ί' => 'Ι', 'ί' => 'ι', 'ϊ' => 'ι', 'ΐ' => 'ι', 'Ύ' => 'Υ', 'ύ' => 'υ', 'ϋ' => 'υ', 'ΰ' => 'υ', 'Ή' => 'Η', 'ή' => 'η'];
   // @formatter:on
   //
   // ===========================================================================
@@ -145,6 +145,57 @@ class Str2Name {
   }
 
   /**
+   * @from yes
+   * @to Yes
+   *
+   * @from false
+   * @to No
+   */
+  public static function bool(string|bool|int $value, string $true = 'Yes', string $false = 'No', ?array $trues = NULL): string {
+    $trues = $trues ?? ['yes', 'true', '1', 1, TRUE, 'on', 'ok', 'y', 'Y'];
+    return in_array($value, $trues, TRUE) ? $true : $false;
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to Ia
+   */
+  public static function abbreviation(string $string, int $length = 2, array $word_delims = [' ']): string {
+    $string = trim($string);
+
+    if (empty($string)) {
+      return '';
+    }
+
+    $parts = preg_split('/[' . implode('', array_map('preg_quote', $word_delims)) . ']/', $string);
+
+    if ($parts === FALSE) {
+      // @codeCoverageIgnoreStart
+      throw new \RuntimeException('Failed to split string.');
+      // @codeCoverageIgnoreEnd
+    }
+
+    if (count($parts) == 1) {
+      return mb_strlen($parts[0]) > $length ? mb_substr($parts[0], 0, $length) : $string;
+    }
+
+    // Filter out empty parts.
+    $parts = array_filter($parts, static function (string $part): bool {
+      return !empty($part);
+    });
+
+    // Get the first letter of each word.
+    $letters = array_map(static function (string $word): string {
+      return mb_substr($word, 0, 1);
+    }, $parts);
+
+    // Join the letters and return the result with the requested length.
+    $result = implode('', $letters);
+
+    return mb_substr($result, 0, $length);
+  }
+
+  /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE
    */
@@ -196,6 +247,14 @@ class Str2Name {
    */
   public static function phpNamespaceRaw(string $string): string {
     return static::pascal($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i_am_a__string_with_spces_14_and__unicode_eleve
+   */
+  public static function filepath(string $string): string {
+    return static::machine(trim($string));
   }
 
   /**
@@ -286,11 +345,26 @@ class Str2Name {
   }
 
   /**
-   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
-   * @to i_am_a__stringwith_sp@ce¥s_14_and_😀_unicode_élève
+   * @from https://www.I am a__string-With sp@ce¥s 14.and 😀 un/icode élève
+   * @to i-am-a--string-with-sp-ce--s-14.and--un
    */
   public static function domain(string $string): string {
-    return static::snake(str_replace('-', '', $string));
+    $string = trim($string);
+    $string = rtrim($string, '/');
+    $string = str_replace([' ', '_'], '-', $string);
+    $string = preg_replace('/^https?:\/\//', '', $string);
+
+    $string = (string) preg_replace('/^www\./', '', (string) $string);
+
+    if (str_contains($string, '/')) {
+      $string = explode('/', $string)[0];
+    }
+
+    $string = static::mbRemove($string);
+    $string = static::emojiRemove($string);
+    $string = strtolower($string);
+
+    return (string) preg_replace('/[^a-z\-.0-9]/', '-', $string);
   }
 
   /**
@@ -789,6 +863,38 @@ class Str2Name {
     $string = str_replace(array_keys($replacements), array_values($replacements), (string) $string);
 
     return trim($string, $separator);
+  }
+
+  /**
+   * Convert a string to an array using a delimiter.
+   *
+   * @param string $value
+   *   The string to convert to an array.
+   * @param string $delimiter
+   *   The delimiter to use for splitting. Defaults to comma.
+   *
+   * @return array
+   *   The array of values.
+   */
+  public static function fromList(string $value, string $delimiter = ','): array {
+    return array_values(array_filter(array_map('trim', explode($delimiter !== '' ? $delimiter : ',', $value))));
+  }
+
+  /**
+   * Convert an array to a delimited string.
+   *
+   * @param array $value
+   *   The array to convert to a string.
+   * @param string $delimiter
+   *   The delimiter to use for joining. Defaults to comma.
+   * @param bool $append_end
+   *   Whether to append the delimiter at the end. Defaults to FALSE.
+   *
+   * @return string
+   *   The delimited string.
+   */
+  public static function toList(array $value, string $delimiter = ',', bool $append_end = FALSE): string {
+    return implode($delimiter, $value) . ($append_end ? $delimiter : '');
   }
 
 }
