@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1",
+        "drevops/phpcs-standard": "^0.",
         "drupal/coder": "^8.3",
         "ergebnis/composer-normalize": "^2.45",
         "phpstan/phpstan": "^2",

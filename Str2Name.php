@@ -39,7 +39,7 @@ class Str2Name {
     $upper = '';
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i == 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
+      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
       $upper = ($i + 1) < mb_strlen($string) && mb_strpos(" \t\r\n\f\v", $letter) !== FALSE ? 1 : 0;
     }
 
@@ -59,7 +59,7 @@ class Str2Name {
     $upper = '';
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i == 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
+      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
       $upper = ($i + 1) < mb_strlen($string) && mb_strpos(" \t\r\n\f\v", $letter) !== FALSE ? 1 : 0;
     }
 
@@ -85,7 +85,7 @@ class Str2Name {
     $upper = '';
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i == 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
+      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
       $upper = ($i + 1) < mb_strlen($string) && mb_strpos('-', $letter) !== FALSE ? 1 : 0;
     }
 
@@ -175,7 +175,7 @@ class Str2Name {
       // @codeCoverageIgnoreEnd
     }
 
-    if (count($parts) == 1) {
+    if (count($parts) === 1) {
       return mb_strlen($parts[0]) > $length ? mb_substr($parts[0], 0, $length) : $string;
     }
 
@@ -816,7 +816,7 @@ class Str2Name {
     $upper = '';
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i == 0 ? mb_convert_case($letter, MB_CASE_TITLE, $encoding) : $letter;
+      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE, $encoding) : $letter;
       $upper = ($i + 1) < mb_strlen($string) && mb_strpos($separators, $letter) !== FALSE ? 1 : 0;
     }
 
