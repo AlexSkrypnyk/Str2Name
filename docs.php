@@ -102,12 +102,12 @@ function parse_tokens(string $class_name): array {
       $from = '';
       $to = '';
 
-      if (preg_match('/@from (.*)/', $comment, $fromMatch)) {
-        $from = $fromMatch[1];
+      if (preg_match('/@from (.*)/', $comment, $from_match)) {
+        $from = $from_match[1];
       }
 
-      if (preg_match('/@to (.*)/', $comment, $toMatch)) {
-        $to = $toMatch[1];
+      if (preg_match('/@to (.*)/', $comment, $to_match)) {
+        $to = $to_match[1];
       }
 
       if (!empty($from) && !empty($to)) {

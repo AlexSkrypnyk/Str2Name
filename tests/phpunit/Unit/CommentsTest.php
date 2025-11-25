@@ -12,12 +12,12 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Str2Name::class)]
 class CommentsTest extends TestCase {
 
-  #[DataProvider('dataProvider')]
+  #[DataProvider('dataProviderMethod')]
   public function testMethod(string $method, string $input, string $expected): void {
     $this->assertSame($expected, Str2Name::{$method}($input), sprintf('> %s: %s', $method, $input));
   }
 
-  public static function dataProvider(): array {
+  public static function dataProviderMethod(): array {
     $cases = [];
 
     $reflection = new \ReflectionClass(Str2Name::class);

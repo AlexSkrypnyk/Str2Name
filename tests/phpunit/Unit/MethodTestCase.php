@@ -20,32 +20,32 @@ abstract class MethodTestCase extends TestCase {
 
   protected static array $cases = [];
 
-  #[DataProvider('dataProvider')]
+  #[DataProvider('dataProviderMethod')]
   public function testMethod(string $input, string $expected): void {
     // Use the class name to determine the method name.
     $test_class = basename(str_replace('\\', '/', static::class));
     $method_name = lcfirst(str_replace('Test', '', $test_class));
 
-    $refClass = new \ReflectionClass(Str2Name::class);
+    $ref_class = new \ReflectionClass(Str2Name::class);
 
-    if (!$refClass->hasMethod($method_name)) {
+    if (!$ref_class->hasMethod($method_name)) {
       throw new \RuntimeException(sprintf('Method %s does not exist in %s', $method_name, Str2Name::class));
     }
 
-    $refMethod = new \ReflectionMethod(Str2Name::class, $method_name);
-    if (!$refMethod->isStatic()) {
+    $ref_method = new \ReflectionMethod(Str2Name::class, $method_name);
+    if (!$ref_method->isStatic()) {
       throw new \RuntimeException(sprintf('Method %s is not static in %s', $method_name, Str2Name::class));
     }
 
-    if (!$refMethod->isPublic()) {
-      $refMethod->setAccessible(TRUE);
+    if (!$ref_method->isPublic()) {
+      $ref_method->setAccessible(TRUE);
     }
 
-    $result = $refMethod->invoke(NULL, $input);
+    $result = $ref_method->invoke(NULL, $input);
     $this->assertSame($expected, $result, sprintf('> %s: %s', $test_class, $input));
   }
 
-  public static function dataProvider(): array {
+  public static function dataProviderMethod(): array {
     return static::$cases;
   }
 
