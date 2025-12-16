@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Str2Name::class)]
-class CommentsTest extends TestCase {
+final class CommentsTest extends TestCase {
 
   #[DataProvider('dataProviderMethod')]
   public function testMethod(string $method, string $input, string $expected): void {
@@ -21,22 +21,24 @@ class CommentsTest extends TestCase {
     $cases = [];
 
     $reflection = new \ReflectionClass(Str2Name::class);
-    foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-      $method_name = $method->getName();
+    foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflection_method) {
+      $method_name = $reflection_method->getName();
       $comment = $reflection->getMethod($method_name)->getDocComment();
       if ($comment === FALSE) {
         throw new \RuntimeException(sprintf('Method %s does not have a comment', $method_name));
       }
 
-      $tokens = static::extractTokens($comment);
+      $tokens = self::extractTokens($comment);
 
       if (empty($tokens)) {
         continue;
       }
 
-      $method_cases = array_map(static function (array $token) use ($method_name): array {
-        return [$method_name, $token['from'], $token['to']];
-      }, $tokens);
+      $method_cases = array_map(static fn(array $token): array => [
+        $method_name,
+        $token['from'],
+        $token['to'],
+      ], $tokens);
       $cases = array_merge($cases, $method_cases);
     }
 
@@ -57,8 +59,8 @@ class CommentsTest extends TestCase {
       $tos = $matches2[1];
     }
 
-    $froms = array_filter(array_map('trim', $froms));
-    $tos = array_filter(array_map('trim', $tos));
+    $froms = array_filter(array_map(trim(...), $froms));
+    $tos = array_filter(array_map(trim(...), $tos));
 
     if (count($froms) !== count($tos)) {
       throw new \RuntimeException('The number of @from and @to annotations must be equal');

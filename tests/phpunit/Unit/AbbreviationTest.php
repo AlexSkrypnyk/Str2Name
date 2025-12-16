@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 
 #[CoversMethod(Str2Name::class, 'abbreviation')]
-class AbbreviationTest extends TestCase {
+final class AbbreviationTest extends TestCase {
 
   public function testAbbreviation(): void {
     $this->assertSame('Te', Str2Name::abbreviation('Test'));

@@ -8,7 +8,7 @@ use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
 
 #[CoversMethod(Str2Name::class, 'phpPackage')]
-class PhpPackageTest extends MethodTestCase {
+final class PhpPackageTest extends MethodTestCase {
 
   protected static array $cases = [
     ['abc/def', 'abc/def'],
