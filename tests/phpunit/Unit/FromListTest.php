@@ -9,25 +9,25 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 
 #[CoversMethod(Str2Name::class, 'fromList')]
-class FromListTest extends TestCase {
+final class FromListTest extends TestCase {
 
   public function testFromList(): void {
-    $this->assertEquals(['a', 'b', 'c'], Str2Name::fromList('a,b,c'));
-    $this->assertEquals(['a', 'b', 'c'], Str2Name::fromList('a, b, c'));
-    $this->assertEquals(['a', 'b', 'c'], Str2Name::fromList('a,  b,   c'));
-    $this->assertEquals(['a'], Str2Name::fromList('a'));
-    $this->assertEquals([], Str2Name::fromList(''));
-    $this->assertEquals([], Str2Name::fromList(','));
-    $this->assertEquals([], Str2Name::fromList(', ,'));
+    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a,b,c'));
+    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a, b, c'));
+    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a,  b,   c'));
+    $this->assertSame(['a'], Str2Name::fromList('a'));
+    $this->assertSame([], Str2Name::fromList(''));
+    $this->assertSame([], Str2Name::fromList(','));
+    $this->assertSame([], Str2Name::fromList(', ,'));
 
-    $this->assertEquals(['a', 'b', 'c'], Str2Name::fromList('a;b;c', ';'));
-    $this->assertEquals(['a', 'b', 'c'], Str2Name::fromList('a; b; c', ';'));
+    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a;b;c', ';'));
+    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a; b; c', ';'));
 
-    $this->assertEquals(['a;b;c'], Str2Name::fromList('a;b;c', ''));
+    $this->assertSame(['a;b;c'], Str2Name::fromList('a;b;c', ''));
 
-    $this->assertEquals(['a', 'b', 'c'], Str2Name::fromList('a,,b,,,c'));
+    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a,,b,,,c'));
 
-    $this->assertEquals(['ä', 'ö', 'ü'], Str2Name::fromList('ä,ö,ü'));
+    $this->assertSame(['ä', 'ö', 'ü'], Str2Name::fromList('ä,ö,ü'));
   }
 
 }

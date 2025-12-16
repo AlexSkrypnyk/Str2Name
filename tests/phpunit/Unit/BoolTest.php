@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 
 #[CoversMethod(Str2Name::class, 'bool')]
-class BoolTest extends TestCase {
+final class BoolTest extends TestCase {
 
   public function testBoolDefault(): void {
     $this->assertSame('Yes', Str2Name::bool(TRUE));

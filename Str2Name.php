@@ -152,7 +152,7 @@ class Str2Name {
    * @to No
    */
   public static function bool(string|bool|int $value, string $true = 'Yes', string $false = 'No', ?array $trues = NULL): string {
-    $trues = $trues ?? ['yes', 'true', '1', 1, TRUE, 'on', 'ok', 'y', 'Y'];
+    $trues ??= ['yes', 'true', '1', 1, TRUE, 'on', 'ok', 'y', 'Y'];
     return in_array($value, $trues, TRUE) ? $true : $false;
   }
 
@@ -167,7 +167,7 @@ class Str2Name {
       return '';
     }
 
-    $parts = preg_split('/[' . implode('', array_map('preg_quote', $word_delims)) . ']/', $string);
+    $parts = preg_split('/[' . implode('', array_map(preg_quote(...), $word_delims)) . ']/', $string);
 
     if ($parts === FALSE) {
       // @codeCoverageIgnoreStart
@@ -180,14 +180,10 @@ class Str2Name {
     }
 
     // Filter out empty parts.
-    $parts = array_filter($parts, static function (string $part): bool {
-      return !empty($part);
-    });
+    $parts = array_filter($parts, static fn(string $part): bool => !empty($part));
 
     // Get the first letter of each word.
-    $letters = array_map(static function (string $word): string {
-      return mb_substr($word, 0, 1);
-    }, $parts);
+    $letters = array_map(static fn(string $word): string => mb_substr($word, 0, 1), $parts);
 
     // Join the letters and return the result with the requested length.
     $result = implode('', $letters);
@@ -827,7 +823,7 @@ class Str2Name {
    * Remove multibyte characters.
    */
   protected static function mbRemove(string $string): string {
-    return str_replace(array_map('strval', array_keys(static::MB_MAP)), array_values(static::MB_MAP), $string);
+    return str_replace(array_map(strval(...), array_keys(static::MB_MAP)), array_values(static::MB_MAP), $string);
   }
 
   /**
@@ -850,9 +846,7 @@ class Str2Name {
    * Add separator before an upper case char in string.
    */
   protected static function mbAddSeparatorBeforeUpperCaseChar(string $string, string $separator = '_'): string {
-    $string = preg_replace_callback('/([^0-9])(\d+)/', static function (array $matches) use ($separator): string {
-      return $matches[1] . $separator . $matches[2];
-    }, $string);
+    $string = preg_replace_callback('/([^0-9])(\d+)/', static fn(array $matches): string => $matches[1] . $separator . $matches[2], $string);
     $replacements = [];
     foreach (mb_str_split((string) $string) as $key => $char) {
       $lower_case_char = mb_strtolower($char);
@@ -877,7 +871,7 @@ class Str2Name {
    *   The array of values.
    */
   public static function fromList(string $value, string $delimiter = ','): array {
-    return array_values(array_filter(array_map('trim', explode($delimiter !== '' ? $delimiter : ',', $value))));
+    return array_values(array_filter(array_map(trim(...), explode($delimiter !== '' ? $delimiter : ',', $value))));
   }
 
   /**

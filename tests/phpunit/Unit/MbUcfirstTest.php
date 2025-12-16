@@ -8,7 +8,7 @@ use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
 
 #[CoversMethod(Str2Name::class, 'mbUcfirst')]
-class MbUcfirstTest extends MethodTestCase {
+final class MbUcfirstTest extends MethodTestCase {
 
   protected static array $cases = [
     ['', ''],

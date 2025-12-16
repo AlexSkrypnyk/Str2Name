@@ -8,7 +8,7 @@ use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
 
 #[CoversMethod(Str2Name::class, 'mbAddSeparatorBeforeUpperCaseChar')]
-class MbAddSeparatorBeforeUpperCaseCharTest extends MethodTestCase {
+final class MbAddSeparatorBeforeUpperCaseCharTest extends MethodTestCase {
 
   protected static array $cases = [
     ['', ''],

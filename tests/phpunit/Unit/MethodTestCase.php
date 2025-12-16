@@ -38,7 +38,6 @@ abstract class MethodTestCase extends TestCase {
     }
 
     if (!$ref_method->isPublic()) {
-      $ref_method->setAccessible(TRUE);
     }
 
     $result = $ref_method->invoke(NULL, $input);

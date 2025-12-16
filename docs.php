@@ -35,9 +35,7 @@ $markdown .= tokens_to_markdown_table($generic_formatter_tokens);
 $markdown .= "\n";
 
 $generic_converters_tokens = array_diff_key($tokens, array_flip($generic_formatters));
-$generic_converters_tokens = array_filter($generic_converters_tokens, static function (string $token): bool {
-  return str_contains($token, '2');
-}, ARRAY_FILTER_USE_KEY);
+$generic_converters_tokens = array_filter($generic_converters_tokens, static fn(string $token): bool => str_contains($token, '2'), ARRAY_FILTER_USE_KEY);
 
 $markdown .= "\n";
 $markdown .= "## Converters between generic formats\n";
@@ -73,10 +71,8 @@ if ($fail_on_change && $readme_replaced !== $readme) {
   echo "Documentation is outdated. No changes were made.\n";
   exit(1);
 }
-else {
-  file_put_contents(__DIR__ . '/README.md', $readme_replaced);
-  echo "Documentation updated.\n";
-}
+file_put_contents(__DIR__ . '/README.md', $readme_replaced);
+echo "Documentation updated.\n";
 
 /**
  * Parse tokens from the class.
