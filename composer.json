@@ -23,7 +23,7 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^1",
         "drevops/phpcs-standard": "^0.",
         "drupal/coder": "^9.0",
-        "ergebnis/composer-normalize": "^2.45",
+        "ergebnis/composer-normalize": "^2.50.0",
         "phpstan/phpstan": "^2",
         "phpunit/phpunit": "^11",
         "rector/rector": "^2"
