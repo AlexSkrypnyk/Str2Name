@@ -40,7 +40,7 @@ class Str2Name {
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
       $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && mb_strpos(" \t\r\n\f\v", $letter) !== FALSE ? 1 : 0;
+      $upper = ($i + 1) < mb_strlen($string) && str_contains(" \t\r\n\f\v", $letter) ? 1 : 0;
     }
 
     $string = str_replace(' ', '', $result);
@@ -60,7 +60,7 @@ class Str2Name {
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
       $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && mb_strpos(" \t\r\n\f\v", $letter) !== FALSE ? 1 : 0;
+      $upper = ($i + 1) < mb_strlen($string) && str_contains(" \t\r\n\f\v", $letter) ? 1 : 0;
     }
 
     return str_replace(' ', '', $result);
@@ -86,7 +86,7 @@ class Str2Name {
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
       $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && mb_strpos('-', $letter) !== FALSE ? 1 : 0;
+      $upper = ($i + 1) < mb_strlen($string) && str_contains('-', $letter) ? 1 : 0;
     }
 
     return $result;
@@ -813,7 +813,7 @@ class Str2Name {
     for ($i = 0; $i < mb_strlen($string); $i++) {
       $letter = mb_substr($string, $i, 1);
       $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE, $encoding) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && mb_strpos($separators, $letter) !== FALSE ? 1 : 0;
+      $upper = ($i + 1) < mb_strlen($string) && str_contains($separators, $letter) ? 1 : 0;
     }
 
     return $result;
