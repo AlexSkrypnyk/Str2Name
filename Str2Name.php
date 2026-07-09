@@ -209,6 +209,22 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to iaas
+   */
+  public static function initials(string $string): string {
+    $letters = '';
+
+    foreach (explode('_', static::machine($string)) as $part) {
+      if ($part !== '') {
+        $letters .= mb_substr($part, 0, 1);
+      }
+    }
+
+    return mb_substr($letters, 0, 4);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE
    */
   public static function constant(string $string): string {
