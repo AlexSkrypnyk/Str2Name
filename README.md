@@ -94,6 +94,8 @@ class MyClass {
 
 | Method | Conversion|
 | --- | --- |
+| `lower` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i am a__string-with sp@ce¥s 14 and 😀 unicode élève` |
+| `upper` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I AM A__STRING-WITH SP@CE¥S 14 AND 😀 UNICODE ÉLÈVE` |
 | `snake` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève` |
 | `camel` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |
 | `pascal` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAmAStringWithSp@ce¥s14And😀UnicodeÉlève` |

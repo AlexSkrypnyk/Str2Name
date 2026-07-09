@@ -22,6 +22,22 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i am a__string-with sp@ce¥s 14 and 😀 unicode élève
+   */
+  public static function lower(string $string): string {
+    return mb_strtolower($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to I AM A__STRING-WITH SP@CE¥S 14 AND 😀 UNICODE ÉLÈVE
+   */
+  public static function upper(string $string): string {
+    return mb_strtoupper($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function snake(string $string): string {
