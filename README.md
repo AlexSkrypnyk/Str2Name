@@ -34,13 +34,14 @@ There are two ways to include `Str2Name` in your project:
 1. Download the file from
    the [releases page](https://github.com/AlexSkrypnyk/str2name/releases)
 
-2. Register the namespace in `composer.json` of your project:
+2. Place `Str2Name.php` in a directory and register the namespace against
+   that directory in `composer.json` of your project:
 
 ```composer.json
 {
     "autoload": {
         "psr-4": {
-            "AlexSkrypnyk\\Str2Name\\": "path/to/src/Str2Name.php"
+            "AlexSkrypnyk\\Str2Name\\": "path/to/directory/"
         }
     }
 }
@@ -49,7 +50,7 @@ There are two ways to include `Str2Name` in your project:
 3. Use it in your project:
 
 ```php
-<php
+<?php
 
 use AlexSkrypnyk\Str2Name\Str2Name;
 
@@ -75,7 +76,7 @@ class MyClass {
 2. Use it in your project:
 
 ```php
-<php
+<?php
 
 use AlexSkrypnyk\Str2Name\Str2Name;
 
