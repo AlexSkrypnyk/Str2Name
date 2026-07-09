@@ -165,6 +165,7 @@ class MyClass {
 | `idRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithsp@ce¥s14and😀unicodeélève` |
 | `idUpper` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAMASTRINGWITHSPCES14ANDUNICODEELEVE` |
 | `idUpperRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `IAMASTRINGWITHSP@CE¥S14AND😀UNICODEÉLÈVE` |
+| `initials` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iaas` |
 | `label` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I am a string With sp@ce¥s 14 and 😀 unicode élève` |
 | `machine` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_spces_14_and__unicode_eleve` |
 | `machineRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève` |
