@@ -37,9 +37,6 @@ abstract class MethodTestCase extends TestCase {
       throw new \RuntimeException(sprintf('Method %s is not static in %s', $method_name, Str2Name::class));
     }
 
-    if (!$ref_method->isPublic()) {
-    }
-
     $result = $ref_method->invoke(NULL, $input);
     $this->assertSame($expected, $result, sprintf('> %s: %s', $test_class, $input));
   }

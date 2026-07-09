@@ -18,6 +18,14 @@ final class CssClassRawTest extends MethodTestCase {
     ['1css_identifier', '_css-identifier'],
     ['-1css_identifier', '__css-identifier'],
     ['--css_identifier', '__css-identifier'],
+
+    // Literal hashes must not be mistaken for a double-underscore placeholder:
+    // stray '#' is stripped while real '__' pairs are preserved intact.
+    ['##', ''],
+    ['a__b##c', 'a__bc'],
+    ['a##__b', 'a__b'],
+    ['keep__these##and__those', 'keep__theseand__those'],
+    ['__x##__y__', '__x__y__'],
   ];
 
 }
