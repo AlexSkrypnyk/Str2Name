@@ -23,9 +23,11 @@ $generic_formatters = [
   'cobol',
   'flat',
   'kebab',
+  'lower',
   'pascal',
   'snake',
   'train',
+  'upper',
 ];
 
 $generic_formatter_tokens = array_intersect_key($tokens, array_flip($generic_formatters));
