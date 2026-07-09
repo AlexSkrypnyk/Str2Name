@@ -381,6 +381,16 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i-am-a-string-with-sp-ce-s-14-and-unicode-l-ve
+   */
+  public static function host(string $string): string {
+    $string = (string) preg_replace('/[^a-z0-9.]+/', '-', strtolower($string));
+
+    return trim($string, '-.');
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to I-Am-A--String-With-Spces-14-And--Unicode-Eleve
    */
   public static function httpHeader(string $string): string {
