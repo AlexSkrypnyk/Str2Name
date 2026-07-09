@@ -3,6 +3,7 @@
 
 /.build
 /.coverage-html
+/.logs
 /.phpunit.cache
 /cobertura.xml
 /composer.lock
