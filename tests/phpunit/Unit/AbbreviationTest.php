@@ -34,4 +34,14 @@ final class AbbreviationTest extends TestCase {
     $this->assertSame('AB', Str2Name::abbreviation('A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'));
   }
 
+  public function testAbbreviationWithoutDelimiters(): void {
+    // An empty delimiter list - or one that contains only empty strings - means
+    // the string is not split: the whole trimmed value is treated as one word.
+    $this->assertSame('he', Str2Name::abbreviation('hello', 2, []));
+    $this->assertSame('a ', Str2Name::abbreviation('a b', 2, []));
+    $this->assertSame('on', Str2Name::abbreviation('one-two-three', 2, []));
+    $this->assertSame('hel', Str2Name::abbreviation('hello world', 3, ['']));
+    $this->assertSame('ab', Str2Name::abbreviation('ab', 2, ['', '']));
+  }
+
 }

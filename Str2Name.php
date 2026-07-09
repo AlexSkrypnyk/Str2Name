@@ -50,18 +50,9 @@ class Str2Name {
    */
   public static function camel(string $string): string {
     $string = str_replace(['-', '_'], ' ', $string);
+    $string = str_replace(' ', '', static::mbUcwords($string));
 
-    $result = '';
-    $upper = '';
-    for ($i = 0; $i < mb_strlen($string); $i++) {
-      $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && str_contains(" \t\r\n\f\v", $letter) ? 1 : 0;
-    }
-
-    $string = str_replace(' ', '', $result);
-
-    return mb_convert_case(mb_substr($string, 0, 1), MB_CASE_LOWER) . mb_substr($string, 1);
+    return static::mbLcfirst($string);
   }
 
   /**
@@ -71,15 +62,7 @@ class Str2Name {
   public static function pascal(string $string): string {
     $string = str_replace(['-', '_'], ' ', $string);
 
-    $result = '';
-    $upper = '';
-    for ($i = 0; $i < mb_strlen($string); $i++) {
-      $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && str_contains(" \t\r\n\f\v", $letter) ? 1 : 0;
-    }
-
-    return str_replace(' ', '', $result);
+    return str_replace(' ', '', static::mbUcwords($string));
   }
 
   /**
@@ -97,15 +80,7 @@ class Str2Name {
   public static function train(string $string): string {
     $string = mb_strtolower(str_replace([' ', '_'], '-', $string));
 
-    $result = '';
-    $upper = '';
-    for ($i = 0; $i < mb_strlen($string); $i++) {
-      $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && str_contains('-', $letter) ? 1 : 0;
-    }
-
-    return $result;
+    return static::mbUcwords($string, '-');
   }
 
   /**
@@ -183,12 +158,19 @@ class Str2Name {
       return '';
     }
 
-    $parts = preg_split('/[' . implode('', array_map(preg_quote(...), $word_delims)) . ']/', $string);
+    $word_delims = array_filter($word_delims, static fn(string $delim): bool => $delim !== '');
 
-    if ($parts === FALSE) {
-      // @codeCoverageIgnoreStart
-      throw new \RuntimeException('Failed to split string.');
-      // @codeCoverageIgnoreEnd
+    if ($word_delims === []) {
+      $parts = [$string];
+    }
+    else {
+      $parts = preg_split('/[' . implode('', array_map(preg_quote(...), $word_delims)) . ']/', $string);
+
+      if ($parts === FALSE) {
+        // @codeCoverageIgnoreStart
+        throw new \RuntimeException('Failed to split string.');
+        // @codeCoverageIgnoreEnd
+      }
     }
 
     if (count($parts) === 1) {
@@ -390,7 +372,7 @@ class Str2Name {
 
     $string = static::mbRemove($string);
     $string = static::emojiRemove($string);
-    $string = strtolower($string);
+    $string = mb_strtolower($string);
 
     return (string) preg_replace('/[^a-z\-.0-9]/', '-', $string);
   }
@@ -434,10 +416,13 @@ class Str2Name {
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AcleanCssIdentifier/10
    */
   public static function cssClassRaw(string $string): string {
-    $tmp_replacements = 0;
-    $string = str_replace('__', '##', $string, $tmp_replacements);
-    $string = str_replace([' ', '_', '/', '[', ']'], ['-', '-', '', '', ''], $string);
-    $string = $tmp_replacements > 0 ? str_replace('##', '__', $string) : $string;
+    // Preserve BEM-style double underscores while turning single underscores
+    // into hyphens: each adjacent pair of underscores collapses to "__" and a
+    // leftover odd underscore becomes "-". Rewriting each underscore run in a
+    // single pass avoids a placeholder round-trip that could corrupt literal
+    // sentinel characters already present in the input.
+    $string = (string) preg_replace_callback('/_+/', static fn(array $matches): string => str_repeat('__', intdiv(strlen($matches[0]), 2)) . str_repeat('-', strlen($matches[0]) % 2), $string);
+    $string = str_replace([' ', '/', '[', ']'], ['-', '', '', ''], $string);
     $string = (string) preg_replace('/[^\x{002D}\x{0030}-\x{0039}\x{0041}-\x{005A}\x{005F}\x{0061}-\x{007A}\x{00A1}-\x{FFFF}]/u', '', $string);
 
     return (string) preg_replace(['/^\d/', '/^(-\d)|^(--)/'], ['_', '__'], $string);
@@ -613,7 +598,7 @@ class Str2Name {
    * @to iAmAStringWithSp@ce¥s14And😀UnicodeÉlève
    */
   public static function pascal2camel(string $string): string {
-    return self::mbLcfirst($string);
+    return static::mbLcfirst($string);
   }
 
   /**
@@ -850,12 +835,14 @@ class Str2Name {
    * Multibyte ucwords.
    */
   protected static function mbUcwords(string $string, string $separators = " \t\r\n\f\v", ?string $encoding = NULL): string {
+    $chars = mb_str_split($string, 1, $encoding);
+    $count = count($chars);
     $result = '';
-    $upper = '';
-    for ($i = 0; $i < mb_strlen($string); $i++) {
-      $letter = mb_substr($string, $i, 1);
-      $result .= $upper || $i === 0 ? mb_convert_case($letter, MB_CASE_TITLE, $encoding) : $letter;
-      $upper = ($i + 1) < mb_strlen($string) && str_contains($separators, $letter) ? 1 : 0;
+    $upper = TRUE;
+
+    foreach ($chars as $i => $letter) {
+      $result .= $upper ? mb_convert_case($letter, MB_CASE_TITLE, $encoding) : $letter;
+      $upper = ($i + 1) < $count && str_contains($separators, $letter);
     }
 
     return $result;
