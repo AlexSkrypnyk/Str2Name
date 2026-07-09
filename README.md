@@ -159,6 +159,7 @@ class MyClass {
 | `cssIdRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a-string-with-spces-14-and-unicode-lve` |
 | `domain` | `https://www.I am a__string-With sp@ce¥s 14.and 😀 un/icode élève` <br/> `i-am-a--string-with-sp-ce--s-14.and--un` |
 | `filepath` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i_am_a__string_with_spces_14_and__unicode_eleve` |
+| `host` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a-string-with-sp-ce-s-14-and-unicode-l-ve` |
 | `httpHeader` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I-Am-A--String-With-Spces-14-And--Unicode-Eleve` |
 | `id` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithspces14andunicodeeleve` |
 | `idRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `iamastringwithsp@ce¥s14and😀unicodeélève` |
