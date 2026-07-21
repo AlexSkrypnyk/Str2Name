@@ -15,6 +15,11 @@ class Str2Name {
   // @phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
   const MB_MAP = ['’' => "'", '“' => '', '”' => '', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'AE', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ð' => 'D', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'ß' => 's', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'ae', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ÿ' => 'y', 'Ā' => 'A', 'ā' => 'a', 'Ă' => 'A', 'ă' => 'a', 'Ą' => 'A', 'ą' => 'a', 'Ć' => 'C', 'ć' => 'c', 'Ĉ' => 'C', 'ĉ' => 'c', 'Ċ' => 'C', 'ċ' => 'c', 'Č' => 'C', 'č' => 'c', 'Ď' => 'D', 'ď' => 'd', 'Đ' => 'D', 'đ' => 'd', 'Ē' => 'E', 'ē' => 'e', 'Ĕ' => 'E', 'ĕ' => 'e', 'Ė' => 'E', 'ė' => 'e', 'Ę' => 'E', 'ę' => 'e', 'Ě' => 'E', 'ě' => 'e', 'Ĝ' => 'G', 'ĝ' => 'g', 'Ğ' => 'G', 'ğ' => 'g', 'Ġ' => 'G', 'ġ' => 'g', 'Ģ' => 'G', 'ģ' => 'g', 'Ĥ' => 'H', 'ĥ' => 'h', 'Ħ' => 'H', 'ħ' => 'h', 'Ĩ' => 'I', 'ĩ' => 'i', 'Ī' => 'I', 'ī' => 'i', 'Ĭ' => 'I', 'ĭ' => 'i', 'Į' => 'I', 'į' => 'i', 'İ' => 'I', 'ı' => 'i', 'Ĳ' => 'IJ', 'ĳ' => 'ij', 'Ĵ' => 'J', 'ĵ' => 'j', 'Ķ' => 'K', 'ķ' => 'k', 'Ĺ' => 'L', 'ĺ' => 'l', 'Ļ' => 'L', 'ļ' => 'l', 'Ľ' => 'L', 'ľ' => 'l', 'Ŀ' => 'L', 'ŀ' => 'l', 'Ł' => 'L', 'ł' => 'l', 'Ń' => 'N', 'ń' => 'n', 'Ņ' => 'N', 'ņ' => 'n', 'Ň' => 'N', 'ň' => 'n', 'ŉ' => 'n', 'Ō' => 'O', 'ō' => 'o', 'Ŏ' => 'O', 'ŏ' => 'o', 'Ő' => 'O', 'ő' => 'o', 'Œ' => 'OE', 'œ' => 'oe', 'Ŕ' => 'R', 'ŕ' => 'r', 'Ŗ' => 'R', 'ŗ' => 'r', 'Ř' => 'R', 'ř' => 'r', 'Ś' => 'S', 'ś' => 's', 'Ŝ' => 'S', 'ŝ' => 's', 'Ş' => 'S', 'ş' => 's', 'Š' => 'S', 'š' => 's', 'Ţ' => 'T', 'ţ' => 't', 'Ť' => 'T', 'ť' => 't', 'Ŧ' => 'T', 'ŧ' => 't', 'Ũ' => 'U', 'ũ' => 'u', 'Ū' => 'U', 'ū' => 'u', 'Ŭ' => 'U', 'ŭ' => 'u', 'Ů' => 'U', 'ů' => 'u', 'Ű' => 'U', 'ű' => 'u', 'Ų' => 'U', 'ų' => 'u', 'Ŵ' => 'W', 'ŵ' => 'w', 'Ŷ' => 'Y', 'ŷ' => 'y', 'Ÿ' => 'Y', 'Ź' => 'Z', 'ź' => 'z', 'Ż' => 'Z', 'ż' => 'z', 'Ž' => 'Z', 'ž' => 'z', 'ſ' => 's', 'ƒ' => 'f', 'Ơ' => 'O', 'ơ' => 'o', 'Ư' => 'U', 'ư' => 'u', 'Ǎ' => 'A', 'ǎ' => 'a', 'Ǐ' => 'I', 'ǐ' => 'i', 'Ǒ' => 'O', 'ǒ' => 'o', 'Ǔ' => 'U', 'ǔ' => 'u', 'Ǖ' => 'U', 'ǖ' => 'u', 'Ǘ' => 'U', 'ǘ' => 'u', 'Ǚ' => 'U', 'ǚ' => 'u', 'Ǜ' => 'U', 'ǜ' => 'u', 'Ǻ' => 'A', 'ǻ' => 'a', 'Ǽ' => 'AE', 'ǽ' => 'ae', 'Ǿ' => 'O', 'ǿ' => 'o', 'Ά' => 'Α', 'ά' => 'α', 'Έ' => 'Ε', 'έ' => 'ε', 'Ό' => 'Ο', 'ό' => 'ο', 'Ώ' => 'Ω', 'ώ' => 'ω', 'Ί' => 'Ι', 'ί' => 'ι', 'ϊ' => 'ι', 'ΐ' => 'ι', 'Ύ' => 'Υ', 'ύ' => 'υ', 'ϋ' => 'υ', 'ΰ' => 'υ', 'Ή' => 'Η', 'ή' => 'η'];
   // @formatter:on
+  /**
+   * Cached availability of the mbstring functions, or NULL until detected.
+   */
+  protected static ?bool $mbstring = NULL;
+
   //
   // ===========================================================================
   // GENERIC FORMATTERS
@@ -25,7 +30,7 @@ class Str2Name {
    * @to i am a__string-with sp@ce¥s 14 and 😀 unicode élève
    */
   public static function lower(string $string): string {
-    return mb_strtolower($string);
+    return static::mbStrtolower($string);
   }
 
   /**
@@ -33,7 +38,7 @@ class Str2Name {
    * @to I AM A__STRING-WITH SP@CE¥S 14 AND 😀 UNICODE ÉLÈVE
    */
   public static function upper(string $string): string {
-    return mb_strtoupper($string);
+    return static::mbStrtoupper($string);
   }
 
   /**
@@ -41,7 +46,7 @@ class Str2Name {
    * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
    */
   public static function snake(string $string): string {
-    return mb_strtolower(str_replace([' ', '-'], '_', $string));
+    return static::mbStrtolower(str_replace([' ', '-'], '_', $string));
   }
 
   /**
@@ -70,7 +75,7 @@ class Str2Name {
    * @to i-am-a--string-with-sp@ce¥s-14-and-😀-unicode-élève
    */
   public static function kebab(string $string): string {
-    return mb_strtolower(str_replace([' ', '_'], '-', $string));
+    return static::mbStrtolower(str_replace([' ', '_'], '-', $string));
   }
 
   /**
@@ -78,7 +83,7 @@ class Str2Name {
    * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
    */
   public static function train(string $string): string {
-    $string = mb_strtolower(str_replace([' ', '_'], '-', $string));
+    $string = static::mbStrtolower(str_replace([' ', '_'], '-', $string));
 
     return static::mbUcwords($string, '-');
   }
@@ -88,7 +93,7 @@ class Str2Name {
    * @to iamastringwithsp@ce¥s14and😀unicodeélève
    */
   public static function flat(string $string): string {
-    return mb_strtolower(str_replace([' ', '-', '_'], '', $string));
+    return static::mbStrtolower(str_replace([' ', '-', '_'], '', $string));
   }
 
   /**
@@ -96,7 +101,7 @@ class Str2Name {
    * @to I-AM-A--STRING-WITH-SP@CE¥S-14-AND-😀-UNICODE-ÉLÈVE
    */
   public static function cobol(string $string): string {
-    return mb_strtoupper(str_replace([' ', '_'], '-', $string));
+    return static::mbStrtoupper(str_replace([' ', '_'], '-', $string));
   }
 
   /**
@@ -104,9 +109,9 @@ class Str2Name {
    * @to I am a string-with sp@ce¥s 14 and 😀 unicode élève
    */
   public static function sentence(string $string): string {
-    $string = (string) preg_replace('/[\s]{2,}/', ' ', str_replace(['_'], ' ', mb_strtolower($string)));
+    $string = (string) preg_replace('/[\s]{2,}/', ' ', str_replace(['_'], ' ', static::mbStrtolower($string)));
 
-    return mb_convert_case(mb_substr($string, 0, 1), MB_CASE_TITLE) . mb_substr($string, 1);
+    return static::mbUcfirst($string);
   }
 
   /**
@@ -174,19 +179,19 @@ class Str2Name {
     }
 
     if (count($parts) === 1) {
-      return mb_strlen($parts[0]) > $length ? mb_substr($parts[0], 0, $length) : $string;
+      return static::mbStrlen($parts[0]) > $length ? static::mbSubstr($parts[0], 0, $length) : $string;
     }
 
     // Filter out empty parts.
     $parts = array_filter($parts, static fn(string $part): bool => !empty($part));
 
     // Get the first letter of each word.
-    $letters = array_map(static fn(string $word): string => mb_substr($word, 0, 1), $parts);
+    $letters = array_map(static fn(string $word): string => static::mbSubstr($word, 0, 1), $parts);
 
     // Join the letters and return the result with the requested length.
     $result = implode('', $letters);
 
-    return mb_substr($result, 0, $length);
+    return static::mbSubstr($result, 0, $length);
   }
 
   /**
@@ -198,11 +203,11 @@ class Str2Name {
 
     foreach (explode('_', static::machine($string)) as $part) {
       if ($part !== '') {
-        $letters .= mb_substr($part, 0, 1);
+        $letters .= static::mbSubstr($part, 0, 1);
       }
     }
 
-    return mb_substr($letters, 0, 4);
+    return static::mbSubstr($letters, 0, 4);
   }
 
   /**
@@ -212,7 +217,7 @@ class Str2Name {
   public static function constant(string $string): string {
     $string = static::strict($string);
 
-    return mb_strtoupper(static::snake($string));
+    return static::mbStrtoupper(static::snake($string));
   }
 
   /**
@@ -220,7 +225,7 @@ class Str2Name {
    * @to I_AM_A__STRING_WITH_SP@CE¥S_14_AND_😀_UNICODE_ÉLÈVE
    */
   public static function constantRaw(string $string): string {
-    return mb_strtoupper(static::snake($string));
+    return static::mbStrtoupper(static::snake($string));
   }
 
   /**
@@ -281,7 +286,7 @@ class Str2Name {
     $prev = '';
 
     foreach ($words as $word) {
-      $word = strlen($prev) === 1 && ctype_upper($prev) ? static::mbLcfirst(static::mbUcfirst(mb_strtolower($word))) : static::mbUcfirst(mb_strtolower($word));
+      $word = strlen($prev) === 1 && ctype_upper($prev) ? static::mbLcfirst(static::mbUcfirst(static::mbStrtolower($word))) : static::mbUcfirst(static::mbStrtolower($word));
       $result .= $word;
       $prev = $word;
     }
@@ -328,8 +333,8 @@ class Str2Name {
       return '';
     }
 
-    $namespace = (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($parts[0]));
-    $name = (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($parts[1]));
+    $namespace = (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($parts[0]));
+    $name = (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($parts[1]));
 
     if ($namespace === '-' || $name === '-') {
       return '';
@@ -343,7 +348,7 @@ class Str2Name {
    * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
    */
   public static function phpPackageNamespace(string $string): string {
-    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($string));
+    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
   }
 
   /**
@@ -351,7 +356,7 @@ class Str2Name {
    * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
    */
   public static function phpPackageName(string $string): string {
-    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', mb_strtolower($string));
+    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
   }
 
   /**
@@ -372,7 +377,7 @@ class Str2Name {
 
     $string = static::mbRemove($string);
     $string = static::emojiRemove($string);
-    $string = mb_strtolower($string);
+    $string = static::mbStrtolower($string);
 
     return (string) preg_replace('/[^a-z\-.0-9]/', '-', $string);
   }
@@ -382,7 +387,7 @@ class Str2Name {
    * @to i-am-a-string-with-sp-ce-s-14-and-unicode-l-ve
    */
   public static function host(string $string): string {
-    $string = (string) preg_replace('/[^a-z0-9.]+/', '-', mb_strtolower($string));
+    $string = (string) preg_replace('/[^a-z0-9.]+/', '-', static::mbStrtolower($string));
 
     return trim($string, '-.');
   }
@@ -403,7 +408,7 @@ class Str2Name {
    */
   public static function cssClass(string $string): string {
     $string = static::strict($string);
-    $string = mb_strtolower(static::cssClassRaw($string));
+    $string = static::mbStrtolower(static::cssClassRaw($string));
 
     return static::mbRemove($string);
   }
@@ -437,7 +442,7 @@ class Str2Name {
    */
   public static function cssId(string $string): string {
     $string = static::strict($string);
-    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], mb_strtolower($string));
+    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], static::mbStrtolower($string));
     $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
 
     return (string) preg_replace('/-+/', '-', $string);
@@ -451,7 +456,7 @@ class Str2Name {
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AgetId/10
    */
   public static function cssIdRaw(string $string): string {
-    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], mb_strtolower($string));
+    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], static::mbStrtolower($string));
     $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
 
     return (string) preg_replace('/-+/', '-', $string);
@@ -534,7 +539,7 @@ class Str2Name {
   public static function camel2snake(string $string): string {
     $string = static::mbAddSeparatorBeforeUpperCaseChar($string);
 
-    return mb_strtolower($string);
+    return static::mbStrtolower($string);
   }
 
   /**
@@ -552,7 +557,7 @@ class Str2Name {
   public static function camel2kebab(string $string): string {
     $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
 
-    return mb_strtolower($string);
+    return static::mbStrtolower($string);
   }
 
   /**
@@ -580,7 +585,7 @@ class Str2Name {
   public static function camel2cobol(string $string): string {
     $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
 
-    return mb_strtoupper($string);
+    return static::mbStrtoupper($string);
   }
 
   /**
@@ -590,7 +595,7 @@ class Str2Name {
   public static function pascal2snake(string $string): string {
     $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '_');
 
-    return mb_strtolower($string);
+    return static::mbStrtolower($string);
   }
 
   /**
@@ -608,7 +613,7 @@ class Str2Name {
   public static function pascal2kebab(string $string): string {
     $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
 
-    return mb_strtolower($string);
+    return static::mbStrtolower($string);
   }
 
   /**
@@ -634,7 +639,7 @@ class Str2Name {
   public static function pascal2cobol(string $string): string {
     $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '-');
 
-    return mb_strtoupper($string);
+    return static::mbStrtoupper($string);
   }
 
   /**
@@ -796,7 +801,7 @@ class Str2Name {
   public static function idUpper(string $string): string {
     $string = static::strict($string);
 
-    return mb_strtoupper(static::flat($string));
+    return static::mbStrtoupper(static::flat($string));
   }
 
   /**
@@ -804,7 +809,64 @@ class Str2Name {
    * @to IAMASTRINGWITHSP@CE¥S14AND😀UNICODEÉLÈVE
    */
   public static function idUpperRaw(string $string): string {
-    return mb_strtoupper(static::flat($string));
+    return static::mbStrtoupper(static::flat($string));
+  }
+
+  // ===========================================================================
+  // MULTIBYTE STRING PROXIES
+  // ===========================================================================
+
+  /**
+   * Multibyte-aware strtolower with an extension-free fallback.
+   */
+  public static function mbStrtolower(string $string): string {
+    return static::hasMbstring() ? mb_strtolower($string) : strtolower($string);
+  }
+
+  /**
+   * Multibyte-aware strtoupper with an extension-free fallback.
+   */
+  public static function mbStrtoupper(string $string): string {
+    return static::hasMbstring() ? mb_strtoupper($string) : strtoupper($string);
+  }
+
+  /**
+   * Multibyte-aware strlen with an extension-free fallback.
+   */
+  public static function mbStrlen(string $string): int {
+    return static::hasMbstring() ? mb_strlen($string) : count(static::mbStrSplit($string));
+  }
+
+  /**
+   * Multibyte-aware substr with an extension-free fallback.
+   */
+  public static function mbSubstr(string $string, int $start, ?int $length = NULL): string {
+    if (static::hasMbstring()) {
+      return mb_substr($string, $start, $length);
+    }
+
+    return implode('', array_slice(static::mbStrSplit($string), $start, $length));
+  }
+
+  /**
+   * Multibyte-aware str_split into single characters with a fallback.
+   *
+   * @return array<int, string>
+   *   The string split into individual characters.
+   */
+  public static function mbStrSplit(string $string): array {
+    if (static::hasMbstring()) {
+      return mb_str_split($string);
+    }
+
+    $chars = preg_split('//u', $string, -1, PREG_SPLIT_NO_EMPTY);
+
+    // @codeCoverageIgnoreStart
+    if ($chars === FALSE) {
+      return [];
+    }
+    // @codeCoverageIgnoreEnd
+    return $chars;
   }
 
   // ===========================================================================
@@ -812,36 +874,47 @@ class Str2Name {
   // ===========================================================================
 
   /**
+   * Detect once whether the mbstring functions are available.
+   *
+   * Uses function_exists() rather than extension_loaded() so a userland
+   * mbstring polyfill is honoured when the extension itself is absent.
+   */
+  protected static function hasMbstring(): bool {
+    return static::$mbstring ??= function_exists('mb_strtolower');
+  }
+
+  /**
+   * Titlecase a string with an extension-free fallback.
+   */
+  protected static function mbUcfirstChar(string $string): string {
+    return static::hasMbstring() ? mb_convert_case($string, MB_CASE_TITLE) : ucfirst($string);
+  }
+
+  /**
    * Multibyte ucfirst.
    */
-  protected static function mbUcfirst(string $string, ?string $encoding = NULL): string {
-    $first_char = mb_substr($string, 0, 1, $encoding);
-    $first_char = mb_convert_case($first_char, MB_CASE_TITLE, $encoding);
-
-    return $first_char . mb_substr($string, 1, NULL, $encoding);
+  protected static function mbUcfirst(string $string): string {
+    return static::mbUcfirstChar(static::mbSubstr($string, 0, 1)) . static::mbSubstr($string, 1);
   }
 
   /**
    * Multibyte lcfirst.
    */
-  protected static function mbLcfirst(string $string, ?string $encoding = NULL): string {
-    $first_char = mb_substr($string, 0, 1, $encoding);
-    $first_char = mb_convert_case($first_char, MB_CASE_LOWER, $encoding);
-
-    return $first_char . mb_substr($string, 1, NULL, $encoding);
+  protected static function mbLcfirst(string $string): string {
+    return static::mbStrtolower(static::mbSubstr($string, 0, 1)) . static::mbSubstr($string, 1);
   }
 
   /**
    * Multibyte ucwords.
    */
-  protected static function mbUcwords(string $string, string $separators = " \t\r\n\f\v", ?string $encoding = NULL): string {
-    $chars = mb_str_split($string, 1, $encoding);
+  protected static function mbUcwords(string $string, string $separators = " \t\r\n\f\v"): string {
+    $chars = static::mbStrSplit($string);
     $count = count($chars);
     $result = '';
     $upper = TRUE;
 
     foreach ($chars as $i => $letter) {
-      $result .= $upper ? mb_convert_case($letter, MB_CASE_TITLE, $encoding) : $letter;
+      $result .= $upper ? static::mbUcfirstChar($letter) : $letter;
       $upper = ($i + 1) < $count && str_contains($separators, $letter);
     }
 
@@ -877,12 +950,15 @@ class Str2Name {
   protected static function mbAddSeparatorBeforeUpperCaseChar(string $string, string $separator = '_'): string {
     $string = preg_replace_callback('/([^0-9])(\d+)/', static fn(array $matches): string => $matches[1] . $separator . $matches[2], $string);
     $replacements = [];
-    foreach (mb_str_split((string) $string) as $key => $char) {
-      $lower_case_char = mb_strtolower($char);
+
+    foreach (static::mbStrSplit((string) $string) as $key => $char) {
+      $lower_case_char = static::mbStrtolower($char);
+
       if ($lower_case_char !== $char && $key !== 0) {
         $replacements[$char] = $separator . $char;
       }
     }
+
     $string = str_replace(array_keys($replacements), array_values($replacements), (string) $string);
 
     return trim($string, $separator);

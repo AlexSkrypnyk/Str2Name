@@ -65,6 +65,8 @@ return RectorConfig::configure()
     RenameVariableToMatchMethodCallReturnTypeRector::class,
     RenameVariableToMatchNewTypeRector::class,
     SimplifyEmptyCheckOnEmptyArrayRector::class,
+    // Standalone e2e script runs outside the linted source tree.
+    __DIR__ . '/tests/e2e',
     // Dependencies.
     '*/vendor/*',
     '*/node_modules/*',
