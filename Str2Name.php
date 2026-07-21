@@ -182,13 +182,8 @@ class Str2Name {
       return static::mbStrlen($parts[0]) > $length ? static::mbSubstr($parts[0], 0, $length) : $string;
     }
 
-    // Filter out empty parts.
     $parts = array_filter($parts, static fn(string $part): bool => !empty($part));
-
-    // Get the first letter of each word.
     $letters = array_map(static fn(string $word): string => static::mbSubstr($word, 0, 1), $parts);
-
-    // Join the letters and return the result with the requested length.
     $result = implode('', $letters);
 
     return static::mbSubstr($result, 0, $length);
