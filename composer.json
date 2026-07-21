@@ -29,6 +29,9 @@
         "phpunit/phpunit": "^11",
         "rector/rector": "^2"
     },
+    "suggest": {
+        "ext-mbstring": "Full Unicode case folding. Without it, non-ASCII case conversion in the generic formatters and *Raw methods degrades to ASCII; strict/named formatters are unaffected."
+    },
     "autoload": {
         "psr-4": {
             "AlexSkrypnyk\\Str2Name\\": ""

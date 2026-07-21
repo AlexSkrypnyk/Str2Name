@@ -24,6 +24,13 @@
 `Str2Name` is a self-contained class that can be included in any PHP
 project directly or via Composer. It does not have any dependencies.
 
+The `mbstring` extension is recommended but not required: `Str2Name`
+uses it when it is available and transparently falls back to
+extension-free implementations when it is not. Without `mbstring`,
+non-ASCII case conversion in the generic formatters and `*Raw` methods
+degrades to ASCII; the strict named formatters (`machine`, `cssClass`,
+`constant`, ...) are unaffected.
+
 There are two ways to include `Str2Name` in your project:
 
 - [Direct download](#direct-download)
