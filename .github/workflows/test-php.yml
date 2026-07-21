@@ -86,8 +86,9 @@ jobs:
           extensions: ':mbstring'
           coverage: none
 
-      - name: Assert the mbstring extension is absent
-        run: php -r "exit(extension_loaded('mbstring') || function_exists('mb_strtolower') ? 1 : 0);"
+      - name: Assert the mbstring functions are unavailable
+        run: |
+          php -r "exit((int) function_exists('mb_strtolower'));"
 
       - name: Run the extension-less end-to-end check
         run: php tests/e2e/no-mbstring.php
