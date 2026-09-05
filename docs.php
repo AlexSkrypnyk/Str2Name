@@ -30,14 +30,14 @@ $generic_formatters = [
   'upper',
 ];
 
-$generic_formatter_tokens = array_intersect_key($tokens, array_flip($generic_formatters));
+$generic_formatters_tokens = array_intersect_key($tokens, array_flip($generic_formatters));
 
 $markdown = "\n";
-$markdown .= tokens_to_markdown_table($generic_formatter_tokens);
+$markdown .= tokens_to_markdown_table($generic_formatters_tokens);
 $markdown .= "\n";
 
 $generic_converters_tokens = array_diff_key($tokens, array_flip($generic_formatters));
-$generic_converters_tokens = array_filter($generic_converters_tokens, static fn(string $token): bool => str_contains($token, '2'), ARRAY_FILTER_USE_KEY);
+$generic_converters_tokens = array_filter($generic_converters_tokens, static fn(string $method_name): bool => str_contains($method_name, '2'), ARRAY_FILTER_USE_KEY);
 
 $markdown .= "\n";
 $markdown .= "## Converters between generic formats\n";
@@ -69,12 +69,13 @@ if ($readme_replaced === $readme) {
 }
 
 $fail_on_change = ($argv[1] ?? '') === '--fail-on-change';
-if ($fail_on_change && $readme_replaced !== $readme) {
+if ($fail_on_change) {
   echo "Documentation is outdated. No changes were made.\n";
   exit(1);
 }
 file_put_contents(__DIR__ . '/README.md', $readme_replaced);
 echo "Documentation updated.\n";
+exit(0);
 
 /**
  * Parse tokens from the class.
@@ -96,26 +97,30 @@ function parse_tokens(string $class_name): array {
   foreach ($methods as $method) {
     $comment = $method->getDocComment();
 
-    if ($comment) {
-      $from = '';
-      $to = '';
-
-      if (preg_match('/@from (.*)/', $comment, $from_match)) {
-        $from = $from_match[1];
-      }
-
-      if (preg_match('/@to (.*)/', $comment, $to_match)) {
-        $to = $to_match[1];
-      }
-
-      if (!empty($from) && !empty($to)) {
-        $result[$method->getName()] = [
-          'method' => $method->getName(),
-          'from' => $from,
-          'to' => $to,
-        ];
-      }
+    if (!$comment) {
+      continue;
     }
+
+    $from = '';
+    $to = '';
+
+    if (preg_match('/@from (.*)/', $comment, $from_match)) {
+      $from = $from_match[1];
+    }
+
+    if (preg_match('/@to (.*)/', $comment, $to_match)) {
+      $to = $to_match[1];
+    }
+
+    if (empty($from) || empty($to)) {
+      continue;
+    }
+
+    $result[$method->getName()] = [
+      'method' => $method->getName(),
+      'from' => $from,
+      'to' => $to,
+    ];
   }
 
   return $result;
@@ -135,7 +140,7 @@ function tokens_to_markdown_table(array $tokens): string {
   $markdown .= "| --- | --- |\n";
 
   foreach ($tokens as $token) {
-    $markdown .= "| `" . $token['method'] . "` | `" . $token['from'] . "` <br/> `" . $token['to'] . "` |\n";
+    $markdown .= '| `' . $token['method'] . '` | `' . $token['from'] . '` <br/> `' . $token['to'] . "` |\n";
   }
 
   return trim($markdown);
@@ -152,6 +157,9 @@ function tokens_to_markdown_table(array $tokens): string {
  *   The end of the content to replace.
  * @param string $replacement
  *   The replacement content.
+ *
+ * @return string
+ *   The replaced content.
  */
 function replace_content(string $haystack, string $start, string $end, string $replacement): string {
   $pattern = '/' . preg_quote($start, '/') . '.*?' . preg_quote($end, '/') . '/s';

@@ -13,14 +13,13 @@ class Str2Name {
 
   // @formatter:off
   // @phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
-  const MB_MAP = ['’' => "'", '“' => '', '”' => '', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'AE', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ð' => 'D', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'ß' => 's', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'ae', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ÿ' => 'y', 'Ā' => 'A', 'ā' => 'a', 'Ă' => 'A', 'ă' => 'a', 'Ą' => 'A', 'ą' => 'a', 'Ć' => 'C', 'ć' => 'c', 'Ĉ' => 'C', 'ĉ' => 'c', 'Ċ' => 'C', 'ċ' => 'c', 'Č' => 'C', 'č' => 'c', 'Ď' => 'D', 'ď' => 'd', 'Đ' => 'D', 'đ' => 'd', 'Ē' => 'E', 'ē' => 'e', 'Ĕ' => 'E', 'ĕ' => 'e', 'Ė' => 'E', 'ė' => 'e', 'Ę' => 'E', 'ę' => 'e', 'Ě' => 'E', 'ě' => 'e', 'Ĝ' => 'G', 'ĝ' => 'g', 'Ğ' => 'G', 'ğ' => 'g', 'Ġ' => 'G', 'ġ' => 'g', 'Ģ' => 'G', 'ģ' => 'g', 'Ĥ' => 'H', 'ĥ' => 'h', 'Ħ' => 'H', 'ħ' => 'h', 'Ĩ' => 'I', 'ĩ' => 'i', 'Ī' => 'I', 'ī' => 'i', 'Ĭ' => 'I', 'ĭ' => 'i', 'Į' => 'I', 'į' => 'i', 'İ' => 'I', 'ı' => 'i', 'Ĳ' => 'IJ', 'ĳ' => 'ij', 'Ĵ' => 'J', 'ĵ' => 'j', 'Ķ' => 'K', 'ķ' => 'k', 'Ĺ' => 'L', 'ĺ' => 'l', 'Ļ' => 'L', 'ļ' => 'l', 'Ľ' => 'L', 'ľ' => 'l', 'Ŀ' => 'L', 'ŀ' => 'l', 'Ł' => 'L', 'ł' => 'l', 'Ń' => 'N', 'ń' => 'n', 'Ņ' => 'N', 'ņ' => 'n', 'Ň' => 'N', 'ň' => 'n', 'ŉ' => 'n', 'Ō' => 'O', 'ō' => 'o', 'Ŏ' => 'O', 'ŏ' => 'o', 'Ő' => 'O', 'ő' => 'o', 'Œ' => 'OE', 'œ' => 'oe', 'Ŕ' => 'R', 'ŕ' => 'r', 'Ŗ' => 'R', 'ŗ' => 'r', 'Ř' => 'R', 'ř' => 'r', 'Ś' => 'S', 'ś' => 's', 'Ŝ' => 'S', 'ŝ' => 's', 'Ş' => 'S', 'ş' => 's', 'Š' => 'S', 'š' => 's', 'Ţ' => 'T', 'ţ' => 't', 'Ť' => 'T', 'ť' => 't', 'Ŧ' => 'T', 'ŧ' => 't', 'Ũ' => 'U', 'ũ' => 'u', 'Ū' => 'U', 'ū' => 'u', 'Ŭ' => 'U', 'ŭ' => 'u', 'Ů' => 'U', 'ů' => 'u', 'Ű' => 'U', 'ű' => 'u', 'Ų' => 'U', 'ų' => 'u', 'Ŵ' => 'W', 'ŵ' => 'w', 'Ŷ' => 'Y', 'ŷ' => 'y', 'Ÿ' => 'Y', 'Ź' => 'Z', 'ź' => 'z', 'Ż' => 'Z', 'ż' => 'z', 'Ž' => 'Z', 'ž' => 'z', 'ſ' => 's', 'ƒ' => 'f', 'Ơ' => 'O', 'ơ' => 'o', 'Ư' => 'U', 'ư' => 'u', 'Ǎ' => 'A', 'ǎ' => 'a', 'Ǐ' => 'I', 'ǐ' => 'i', 'Ǒ' => 'O', 'ǒ' => 'o', 'Ǔ' => 'U', 'ǔ' => 'u', 'Ǖ' => 'U', 'ǖ' => 'u', 'Ǘ' => 'U', 'ǘ' => 'u', 'Ǚ' => 'U', 'ǚ' => 'u', 'Ǜ' => 'U', 'ǜ' => 'u', 'Ǻ' => 'A', 'ǻ' => 'a', 'Ǽ' => 'AE', 'ǽ' => 'ae', 'Ǿ' => 'O', 'ǿ' => 'o', 'Ά' => 'Α', 'ά' => 'α', 'Έ' => 'Ε', 'έ' => 'ε', 'Ό' => 'Ο', 'ό' => 'ο', 'Ώ' => 'Ω', 'ώ' => 'ω', 'Ί' => 'Ι', 'ί' => 'ι', 'ϊ' => 'ι', 'ΐ' => 'ι', 'Ύ' => 'Υ', 'ύ' => 'υ', 'ϋ' => 'υ', 'ΰ' => 'υ', 'Ή' => 'Η', 'ή' => 'η'];
+  public const array MB_MAP = ['’' => "'", '“' => '', '”' => '', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'AE', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ð' => 'D', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'ß' => 's', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'ae', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ÿ' => 'y', 'Ā' => 'A', 'ā' => 'a', 'Ă' => 'A', 'ă' => 'a', 'Ą' => 'A', 'ą' => 'a', 'Ć' => 'C', 'ć' => 'c', 'Ĉ' => 'C', 'ĉ' => 'c', 'Ċ' => 'C', 'ċ' => 'c', 'Č' => 'C', 'č' => 'c', 'Ď' => 'D', 'ď' => 'd', 'Đ' => 'D', 'đ' => 'd', 'Ē' => 'E', 'ē' => 'e', 'Ĕ' => 'E', 'ĕ' => 'e', 'Ė' => 'E', 'ė' => 'e', 'Ę' => 'E', 'ę' => 'e', 'Ě' => 'E', 'ě' => 'e', 'Ĝ' => 'G', 'ĝ' => 'g', 'Ğ' => 'G', 'ğ' => 'g', 'Ġ' => 'G', 'ġ' => 'g', 'Ģ' => 'G', 'ģ' => 'g', 'Ĥ' => 'H', 'ĥ' => 'h', 'Ħ' => 'H', 'ħ' => 'h', 'Ĩ' => 'I', 'ĩ' => 'i', 'Ī' => 'I', 'ī' => 'i', 'Ĭ' => 'I', 'ĭ' => 'i', 'Į' => 'I', 'į' => 'i', 'İ' => 'I', 'ı' => 'i', 'Ĳ' => 'IJ', 'ĳ' => 'ij', 'Ĵ' => 'J', 'ĵ' => 'j', 'Ķ' => 'K', 'ķ' => 'k', 'Ĺ' => 'L', 'ĺ' => 'l', 'Ļ' => 'L', 'ļ' => 'l', 'Ľ' => 'L', 'ľ' => 'l', 'Ŀ' => 'L', 'ŀ' => 'l', 'Ł' => 'L', 'ł' => 'l', 'Ń' => 'N', 'ń' => 'n', 'Ņ' => 'N', 'ņ' => 'n', 'Ň' => 'N', 'ň' => 'n', 'ŉ' => 'n', 'Ō' => 'O', 'ō' => 'o', 'Ŏ' => 'O', 'ŏ' => 'o', 'Ő' => 'O', 'ő' => 'o', 'Œ' => 'OE', 'œ' => 'oe', 'Ŕ' => 'R', 'ŕ' => 'r', 'Ŗ' => 'R', 'ŗ' => 'r', 'Ř' => 'R', 'ř' => 'r', 'Ś' => 'S', 'ś' => 's', 'Ŝ' => 'S', 'ŝ' => 's', 'Ş' => 'S', 'ş' => 's', 'Š' => 'S', 'š' => 's', 'Ţ' => 'T', 'ţ' => 't', 'Ť' => 'T', 'ť' => 't', 'Ŧ' => 'T', 'ŧ' => 't', 'Ũ' => 'U', 'ũ' => 'u', 'Ū' => 'U', 'ū' => 'u', 'Ŭ' => 'U', 'ŭ' => 'u', 'Ů' => 'U', 'ů' => 'u', 'Ű' => 'U', 'ű' => 'u', 'Ų' => 'U', 'ų' => 'u', 'Ŵ' => 'W', 'ŵ' => 'w', 'Ŷ' => 'Y', 'ŷ' => 'y', 'Ÿ' => 'Y', 'Ź' => 'Z', 'ź' => 'z', 'Ż' => 'Z', 'ż' => 'z', 'Ž' => 'Z', 'ž' => 'z', 'ſ' => 's', 'ƒ' => 'f', 'Ơ' => 'O', 'ơ' => 'o', 'Ư' => 'U', 'ư' => 'u', 'Ǎ' => 'A', 'ǎ' => 'a', 'Ǐ' => 'I', 'ǐ' => 'i', 'Ǒ' => 'O', 'ǒ' => 'o', 'Ǔ' => 'U', 'ǔ' => 'u', 'Ǖ' => 'U', 'ǖ' => 'u', 'Ǘ' => 'U', 'ǘ' => 'u', 'Ǚ' => 'U', 'ǚ' => 'u', 'Ǜ' => 'U', 'ǜ' => 'u', 'Ǻ' => 'A', 'ǻ' => 'a', 'Ǽ' => 'AE', 'ǽ' => 'ae', 'Ǿ' => 'O', 'ǿ' => 'o', 'Ά' => 'Α', 'ά' => 'α', 'Έ' => 'Ε', 'έ' => 'ε', 'Ό' => 'Ο', 'ό' => 'ο', 'Ώ' => 'Ω', 'ώ' => 'ω', 'Ί' => 'Ι', 'ί' => 'ι', 'ϊ' => 'ι', 'ΐ' => 'ι', 'Ύ' => 'Υ', 'ύ' => 'υ', 'ϋ' => 'υ', 'ΰ' => 'υ', 'Ή' => 'Η', 'ή' => 'η'];
   // @formatter:on
   /**
    * Cached availability of the mbstring functions, or NULL until detected.
    */
   protected static ?bool $mbstring = NULL;
 
-  //
   // ===========================================================================
   // GENERIC FORMATTERS
   // ===========================================================================
@@ -194,15 +193,15 @@ class Str2Name {
    * @to iaas
    */
   public static function initials(string $string): string {
-    $letters = '';
+    $result = '';
 
     foreach (explode('_', static::machine($string)) as $part) {
       if ($part !== '') {
-        $letters .= static::mbSubstr($part, 0, 1);
+        $result .= static::mbSubstr($part, 0, 1);
       }
     }
 
-    return static::mbSubstr($letters, 0, 4);
+    return static::mbSubstr($result, 0, 4);
   }
 
   /**
@@ -328,8 +327,8 @@ class Str2Name {
       return '';
     }
 
-    $namespace = (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($parts[0]));
-    $name = (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($parts[1]));
+    $namespace = static::phpPackageNamespace($parts[0]);
+    $name = static::phpPackageName($parts[1]);
 
     if ($namespace === '-' || $name === '-') {
       return '';
@@ -362,9 +361,9 @@ class Str2Name {
     $string = trim($string);
     $string = rtrim($string, '/');
     $string = str_replace([' ', '_'], '-', $string);
-    $string = preg_replace('/^https?:\/\//', '', $string);
+    $string = (string) preg_replace('/^https?:\/\//', '', $string);
 
-    $string = (string) preg_replace('/^www\./', '', (string) $string);
+    $string = (string) preg_replace('/^www\./', '', $string);
 
     if (str_contains($string, '/')) {
       $string = explode('/', $string)[0];
@@ -416,11 +415,10 @@ class Str2Name {
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AcleanCssIdentifier/10
    */
   public static function cssClassRaw(string $string): string {
-    // Preserve BEM-style double underscores while turning single underscores
-    // into hyphens: each adjacent pair of underscores collapses to "__" and a
-    // leftover odd underscore becomes "-". Rewriting each underscore run in a
-    // single pass avoids a placeholder round-trip that could corrupt literal
-    // sentinel characters already present in the input.
+    // A BEM-style "__" stays intact while a single "_" becomes "-". Each
+    // underscore run is rewritten as "__" per pair plus "-" for a leftover
+    // odd underscore. A single pass avoids a placeholder round-trip, which
+    // would corrupt sentinel characters already present in the input.
     $string = (string) preg_replace_callback('/_+/', static fn(array $matches): string => str_repeat('__', intdiv(strlen($matches[0]), 2)) . str_repeat('-', strlen($matches[0]) % 2), $string);
     $string = str_replace([' ', '/', '[', ']'], ['-', '', '', ''], $string);
     $string = (string) preg_replace('/[^\x{002D}\x{0030}-\x{0039}\x{0041}-\x{005A}\x{005F}\x{0061}-\x{007A}\x{00A1}-\x{FFFF}]/u', '', $string);
@@ -437,10 +435,8 @@ class Str2Name {
    */
   public static function cssId(string $string): string {
     $string = static::strict($string);
-    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], static::mbStrtolower($string));
-    $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
 
-    return (string) preg_replace('/-+/', '-', $string);
+    return static::cssIdRaw($string);
   }
 
   /**
@@ -532,7 +528,7 @@ class Str2Name {
    * @to i_am_a_string_with_sp@ce¥s_14_and😀_unicode_élève
    */
   public static function camel2snake(string $string): string {
-    $string = static::mbAddSeparatorBeforeUpperCaseChar($string);
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '_');
 
     return static::mbStrtolower($string);
   }
@@ -836,11 +832,7 @@ class Str2Name {
    * Multibyte-aware substr with an extension-free fallback.
    */
   public static function mbSubstr(string $string, int $start, ?int $length = NULL): string {
-    if (static::hasMbstring()) {
-      return mb_substr($string, $start, $length);
-    }
-
-    return implode('', array_slice(static::mbStrSplit($string), $start, $length));
+    return static::hasMbstring() ? mb_substr($string, $start, $length) : implode('', array_slice(static::mbStrSplit($string), $start, $length));
   }
 
   /**
@@ -908,9 +900,9 @@ class Str2Name {
     $result = '';
     $upper = TRUE;
 
-    foreach ($chars as $i => $letter) {
-      $result .= $upper ? static::mbUcfirstChar($letter) : $letter;
-      $upper = ($i + 1) < $count && str_contains($separators, $letter);
+    foreach ($chars as $i => $char) {
+      $result .= $upper ? static::mbUcfirstChar($char) : $char;
+      $upper = ($i + 1) < $count && str_contains($separators, $char);
     }
 
     return $result;
@@ -931,7 +923,7 @@ class Str2Name {
   }
 
   /**
-   * Restrict a string to a specific set of characters used in Strict methods.
+   * Restrict a string to the strict character set.
    */
   protected static function strict(string $string): string {
     $string = static::mbRemove($string);
@@ -943,18 +935,18 @@ class Str2Name {
    * Add separator before an upper case char in string.
    */
   protected static function mbAddSeparatorBeforeUpperCaseChar(string $string, string $separator = '_'): string {
-    $string = preg_replace_callback('/([^0-9])(\d+)/', static fn(array $matches): string => $matches[1] . $separator . $matches[2], $string);
+    $string = (string) preg_replace_callback('/([^0-9])(\d+)/', static fn(array $matches): string => $matches[1] . $separator . $matches[2], $string);
     $replacements = [];
 
-    foreach (static::mbStrSplit((string) $string) as $key => $char) {
+    foreach (static::mbStrSplit($string) as $i => $char) {
       $lower_case_char = static::mbStrtolower($char);
 
-      if ($lower_case_char !== $char && $key !== 0) {
+      if ($lower_case_char !== $char && $i !== 0) {
         $replacements[$char] = $separator . $char;
       }
     }
 
-    $string = str_replace(array_keys($replacements), array_values($replacements), (string) $string);
+    $string = str_replace(array_keys($replacements), array_values($replacements), $string);
 
     return trim($string, $separator);
   }

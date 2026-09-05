@@ -15,7 +15,6 @@ final class CssIdRawTest extends MethodTestCase {
     ['invalid,./:@\\^`{Üidentifier', 'invalididentifier'],
     ['ID NAME_[1]', 'id-name-1'],
     ['test-unique-id', 'test-unique-id'],
-    ['test-unique-id', 'test-unique-id'],
   ];
 
 }

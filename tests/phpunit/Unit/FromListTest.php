@@ -6,28 +6,38 @@ namespace AlexSkrypnyk\Str2Name\Tests\Unit;
 
 use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 #[CoversMethod(Str2Name::class, 'fromList')]
 final class FromListTest extends TestCase {
 
-  public function testFromList(): void {
-    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a,b,c'));
-    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a, b, c'));
-    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a,  b,   c'));
-    $this->assertSame(['a'], Str2Name::fromList('a'));
-    $this->assertSame([], Str2Name::fromList(''));
-    $this->assertSame([], Str2Name::fromList(','));
-    $this->assertSame([], Str2Name::fromList(', ,'));
+  #[DataProvider('dataProviderFromList')]
+  public function testFromList(string $input, array $expected): void {
+    $this->assertSame($expected, Str2Name::fromList($input));
+  }
 
-    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a;b;c', ';'));
-    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a; b; c', ';'));
+  public static function dataProviderFromList(): \Iterator {
+    yield ['a,b,c', ['a', 'b', 'c']];
+    yield ['a, b, c', ['a', 'b', 'c']];
+    yield ['a,  b,   c', ['a', 'b', 'c']];
+    yield ['a', ['a']];
+    yield ['', []];
+    yield [',', []];
+    yield [', ,', []];
+    yield ['a,,b,,,c', ['a', 'b', 'c']];
+    yield ['ä,ö,ü', ['ä', 'ö', 'ü']];
+  }
 
-    $this->assertSame(['a;b;c'], Str2Name::fromList('a;b;c', ''));
+  #[DataProvider('dataProviderFromListCustom')]
+  public function testFromListCustom(string $input, string $delimiter, array $expected): void {
+    $this->assertSame($expected, Str2Name::fromList($input, $delimiter));
+  }
 
-    $this->assertSame(['a', 'b', 'c'], Str2Name::fromList('a,,b,,,c'));
-
-    $this->assertSame(['ä', 'ö', 'ü'], Str2Name::fromList('ä,ö,ü'));
+  public static function dataProviderFromListCustom(): \Iterator {
+    yield ['a;b;c', ';', ['a', 'b', 'c']];
+    yield ['a; b; c', ';', ['a', 'b', 'c']];
+    yield ['a;b;c', '', ['a;b;c']];
   }
 
 }

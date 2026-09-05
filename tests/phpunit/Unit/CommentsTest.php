@@ -23,7 +23,7 @@ final class CommentsTest extends TestCase {
     $reflection = new \ReflectionClass(Str2Name::class);
     foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflection_method) {
       $method_name = $reflection_method->getName();
-      $comment = $reflection->getMethod($method_name)->getDocComment();
+      $comment = $reflection_method->getDocComment();
       if ($comment === FALSE) {
         throw new \RuntimeException(sprintf('Method %s does not have a comment', $method_name));
       }
@@ -51,12 +51,12 @@ final class CommentsTest extends TestCase {
     $froms = [];
     $tos = [];
 
-    if (preg_match_all('/@from (.*)/', $comment, $matches1)) {
-      $froms = $matches1[1];
+    if (preg_match_all('/@from (.*)/', $comment, $from_matches)) {
+      $froms = $from_matches[1];
     }
 
-    if (preg_match_all('/@to (.*)/', $comment, $matches2)) {
-      $tos = $matches2[1];
+    if (preg_match_all('/@to (.*)/', $comment, $to_matches)) {
+      $tos = $to_matches[1];
     }
 
     $froms = array_filter(array_map(trim(...), $froms));

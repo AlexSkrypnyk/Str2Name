@@ -6,27 +6,35 @@ namespace AlexSkrypnyk\Str2Name\Tests\Unit;
 
 use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Tests for toList() method.
- */
 #[CoversMethod(Str2Name::class, 'toList')]
 final class ToListTest extends TestCase {
 
-  public function testToList(): void {
-    $this->assertSame('a,b,c', Str2Name::toList(['a', 'b', 'c']));
-    $this->assertSame('a', Str2Name::toList(['a']));
-    $this->assertSame('', Str2Name::toList([]));
+  #[DataProvider('dataProviderToList')]
+  public function testToList(array $input, string $expected): void {
+    $this->assertSame($expected, Str2Name::toList($input));
+  }
 
-    $this->assertSame('a,b,c,', Str2Name::toList(['a', 'b', 'c'], ',', TRUE));
-    $this->assertSame('a,', Str2Name::toList(['a'], ',', TRUE));
-    $this->assertSame(',', Str2Name::toList([], ',', TRUE));
+  public static function dataProviderToList(): \Iterator {
+    yield [['a', 'b', 'c'], 'a,b,c'];
+    yield [['a'], 'a'];
+    yield [[], ''];
+    yield [['ä', 'ö', 'ü'], 'ä,ö,ü'];
+  }
 
-    $this->assertSame('a;b;c', Str2Name::toList(['a', 'b', 'c'], ';'));
-    $this->assertSame('a;b;c;', Str2Name::toList(['a', 'b', 'c'], ';', TRUE));
+  #[DataProvider('dataProviderToListCustom')]
+  public function testToListCustom(array $input, string $delimiter, bool $append_end, string $expected): void {
+    $this->assertSame($expected, Str2Name::toList($input, $delimiter, $append_end));
+  }
 
-    $this->assertSame('ä,ö,ü', Str2Name::toList(['ä', 'ö', 'ü']));
+  public static function dataProviderToListCustom(): \Iterator {
+    yield [['a', 'b', 'c'], ',', TRUE, 'a,b,c,'];
+    yield [['a'], ',', TRUE, 'a,'];
+    yield [[], ',', TRUE, ','];
+    yield [['a', 'b', 'c'], ';', FALSE, 'a;b;c'];
+    yield [['a', 'b', 'c'], ';', TRUE, 'a;b;c;'];
   }
 
 }
