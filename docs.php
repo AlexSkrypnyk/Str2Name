@@ -75,6 +75,7 @@ if ($fail_on_change && $readme_replaced !== $readme) {
 }
 file_put_contents(__DIR__ . '/README.md', $readme_replaced);
 echo "Documentation updated.\n";
+exit(0);
 
 /**
  * Parse tokens from the class.
