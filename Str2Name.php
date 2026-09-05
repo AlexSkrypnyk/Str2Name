@@ -160,6 +160,9 @@ class Str2Name {
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to Ia
+   *
+   * @throws \RuntimeException
+   *   When the delimiter pattern fails to split the string.
    */
   public static function abbreviation(string $string, int $length = 2, array $word_delims = [' ']): string {
     $string = trim($string);
@@ -195,6 +198,8 @@ class Str2Name {
   }
 
   /**
+   * The result is capped at the first four initials.
+   *
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to iaas
    */
@@ -323,6 +328,9 @@ class Str2Name {
   }
 
   /**
+   * Returns an empty string when the input does not split into exactly two
+   * parts or when either part sanitises to a bare '-'.
+   *
    * @from I am a__string-W/ith sp@ce¥s 14 and 😀 unicode élève
    * @to i-am-a__string-w/ith-sp-ce-s-14-and-unicode-l-ve
    */
@@ -845,7 +853,8 @@ class Str2Name {
    * Multibyte-aware str_split into single characters with a fallback.
    *
    * @return array<int, string>
-   *   The string split into individual characters.
+   *   The string split into individual characters, or an empty array when
+   *   splitting fails.
    */
   public static function mbStrSplit(string $string): array {
     if (static::hasMbstring()) {
@@ -967,12 +976,14 @@ class Str2Name {
    * @param string $value
    *   The string to convert to an array.
    * @param string $delimiter
-   *   The delimiter to use for splitting. Defaults to comma.
+   *   The delimiter to use for splitting. Defaults to comma; an empty string
+   *   also splits on comma.
    *
    * @return array
    *   The array of values.
    */
   public static function fromList(string $value, string $delimiter = ','): array {
+    // explode() rejects an empty delimiter, so an empty string means comma.
     return array_values(array_filter(array_map(trim(...), explode($delimiter !== '' ? $delimiter : ',', $value))));
   }
 
