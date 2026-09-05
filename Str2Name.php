@@ -167,7 +167,7 @@ class Str2Name {
   public static function abbreviation(string $string, int $length = 2, array $word_delims = [' ']): string {
     $string = trim($string);
 
-    if (empty($string)) {
+    if ($string === '') {
       return '';
     }
 
@@ -190,7 +190,7 @@ class Str2Name {
       return static::mbStrlen($parts[0]) > $length ? static::mbSubstr($parts[0], 0, $length) : $string;
     }
 
-    $parts = array_filter($parts, static fn(string $part): bool => !empty($part));
+    $parts = array_filter($parts, static fn(string $part): bool => $part !== '');
     $letters = array_map(static fn(string $word): string => static::mbSubstr($word, 0, 1), $parts);
     $result = implode('', $letters);
 
