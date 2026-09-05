@@ -531,7 +531,7 @@ class Str2Name {
    * @to i_am_a_string_with_sp@ce¥s_14_and😀_unicode_élève
    */
   public static function camel2snake(string $string): string {
-    $string = static::mbAddSeparatorBeforeUpperCaseChar($string);
+    $string = static::mbAddSeparatorBeforeUpperCaseChar($string, '_');
 
     return static::mbStrtolower($string);
   }
