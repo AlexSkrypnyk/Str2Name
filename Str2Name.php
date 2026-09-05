@@ -361,9 +361,9 @@ class Str2Name {
     $string = trim($string);
     $string = rtrim($string, '/');
     $string = str_replace([' ', '_'], '-', $string);
-    $string = preg_replace('/^https?:\/\//', '', $string);
+    $string = (string) preg_replace('/^https?:\/\//', '', $string);
 
-    $string = (string) preg_replace('/^www\./', '', (string) $string);
+    $string = (string) preg_replace('/^www\./', '', $string);
 
     if (str_contains($string, '/')) {
       $string = explode('/', $string)[0];
@@ -942,10 +942,10 @@ class Str2Name {
    * Add separator before an upper case char in string.
    */
   protected static function mbAddSeparatorBeforeUpperCaseChar(string $string, string $separator = '_'): string {
-    $string = preg_replace_callback('/([^0-9])(\d+)/', static fn(array $matches): string => $matches[1] . $separator . $matches[2], $string);
+    $string = (string) preg_replace_callback('/([^0-9])(\d+)/', static fn(array $matches): string => $matches[1] . $separator . $matches[2], $string);
     $replacements = [];
 
-    foreach (static::mbStrSplit((string) $string) as $i => $char) {
+    foreach (static::mbStrSplit($string) as $i => $char) {
       $lower_case_char = static::mbStrtolower($char);
 
       if ($lower_case_char !== $char && $i !== 0) {
@@ -953,7 +953,7 @@ class Str2Name {
       }
     }
 
-    $string = str_replace(array_keys($replacements), array_values($replacements), (string) $string);
+    $string = str_replace(array_keys($replacements), array_values($replacements), $string);
 
     return trim($string, $separator);
   }
