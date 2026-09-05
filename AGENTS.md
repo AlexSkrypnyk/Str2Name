@@ -30,11 +30,11 @@ CI (`.github/workflows/test-php.yml`) runs `composer lint`, `composer test-cover
 
 ### The `strict` vs `Raw` distinction
 
-Many named formatters come in two variants. The plain variant (e.g. `machine`, `cssClass`, `phpClass`) runs the input through `strict()` first; the `*Raw` variant (e.g. `machineRaw`, `cssClassRaw`, `phpClassRaw`) skips it and preserves unicode/emoji/special characters. `strict()` = `mbRemove()` (transliterate accented characters to ASCII via the `MB_MAP` table) followed by stripping everything outside `[a-zA-Z0-9_\- ]`.
+Many named formatters come in two variants. The plain variant (e.g. `machine`, `cssClass`, `phpClass`) runs the input through `strict()` first; the `*Raw` variant (e.g. `machineRaw`, `cssClassRaw`, `phpClassRaw`) skips it and preserves unicode/emoji/special characters. `strict()` = `transliterate()` (accented characters to ASCII via the `MB_MAP` table) followed by stripping everything outside `[a-zA-Z0-9_\- ]`.
 
 ### Internal helper pipeline
 
-Below the public API is a block of `protected static` building blocks that the formatters compose: `mbUcfirst`, `mbLcfirst`, `mbUcwords`, `mbAddSeparatorBeforeUpperCaseChar`, `mbRemove` (uses the `MB_MAP` const), `emojiRemove` (a very large generated emoji-matching regex - do not hand-edit it), and `strict`. The whole library is deliberately multibyte-safe: use the multibyte-aware helpers (for example `Str2Name::mbStrtolower()`) or `mb_*` functions, never the plain `str*` / `substr` equivalents, when adding or changing code. The `mbstring` extension is optional; the helpers fall back to ASCII behaviour when it is absent, and `tests/e2e/no-mbstring.php` guards that path.
+Below the public API is a block of `protected static` building blocks that the formatters compose: `mbUcfirst`, `mbLcfirst`, `mbUcwords`, `mbAddSeparatorBeforeUpperCaseChar`, `transliterate` (uses the `MB_MAP` const), `phpPackageSegment`, `emojiRemove` (a very large generated emoji-matching regex - do not hand-edit it), and `strict`. The whole library is deliberately multibyte-safe: use the multibyte-aware helpers (for example `Str2Name::mbStrtolower()`) or `mb_*` functions, never the plain `str*` / `substr` equivalents, when adding or changing code. The `mbstring` extension is optional; the helpers fall back to ASCII behaviour when it is absent, and `tests/e2e/no-mbstring.php` guards that path.
 
 ### Docblock-driven docs AND tests (most important convention)
 

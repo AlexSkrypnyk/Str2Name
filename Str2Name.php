@@ -296,9 +296,7 @@ class Str2Name {
       $prev = $word;
     }
 
-    $string = str_replace(' ', '', $result);
-
-    return static::emojiRemove($string);
+    return str_replace(' ', '', $result);
   }
 
   /**
@@ -358,7 +356,7 @@ class Str2Name {
    * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
    */
   public static function phpPackageNamespace(string $string): string {
-    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
+    return static::phpPackageSegment($string);
   }
 
   /**
@@ -366,7 +364,7 @@ class Str2Name {
    * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
    */
   public static function phpPackageName(string $string): string {
-    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
+    return static::phpPackageSegment($string);
   }
 
   /**
@@ -385,7 +383,7 @@ class Str2Name {
       $string = explode('/', $string)[0];
     }
 
-    $string = static::mbRemove($string);
+    $string = static::transliterate($string);
     $string = static::emojiRemove($string);
     $string = static::mbStrtolower($string);
 
@@ -418,9 +416,8 @@ class Str2Name {
    */
   public static function cssClass(string $string): string {
     $string = static::strict($string);
-    $string = static::mbStrtolower(static::cssClassRaw($string));
 
-    return static::mbRemove($string);
+    return static::mbStrtolower(static::cssClassRaw($string));
   }
 
   /**
@@ -926,9 +923,11 @@ class Str2Name {
   }
 
   /**
-   * Remove multibyte characters.
+   * Transliterate mapped multibyte characters to their ASCII equivalents.
+   *
+   * Characters absent from 'MB_MAP' pass through unchanged.
    */
-  protected static function mbRemove(string $string): string {
+  protected static function transliterate(string $string): string {
     return str_replace(array_map(strval(...), array_keys(static::MB_MAP)), array_values(static::MB_MAP), $string);
   }
 
@@ -943,7 +942,7 @@ class Str2Name {
    * Restrict a string to the strict character set.
    */
   protected static function strict(string $string): string {
-    $string = static::mbRemove($string);
+    $string = static::transliterate($string);
 
     return (string) preg_replace('/[^a-zA-Z0-9_\- ]/', '', $string);
   }
@@ -970,6 +969,13 @@ class Str2Name {
     $string = str_replace(array_keys($replacements), array_values($replacements), $string);
 
     return trim($string, $separator);
+  }
+
+  /**
+   * Sanitise one segment of a Composer package identifier.
+   */
+  protected static function phpPackageSegment(string $string): string {
+    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
   }
 
   /**
