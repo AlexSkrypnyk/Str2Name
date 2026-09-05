@@ -152,6 +152,9 @@ function tokens_to_markdown_table(array $tokens): string {
  *   The end of the content to replace.
  * @param string $replacement
  *   The replacement content.
+ *
+ * @return string
+ *   The replaced content.
  */
 function replace_content(string $haystack, string $start, string $end, string $replacement): string {
   $pattern = '/' . preg_quote($start, '/') . '.*?' . preg_quote($end, '/') . '/s';
