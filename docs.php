@@ -135,7 +135,7 @@ function tokens_to_markdown_table(array $tokens): string {
   $markdown .= "| --- | --- |\n";
 
   foreach ($tokens as $token) {
-    $markdown .= "| `" . $token['method'] . "` | `" . $token['from'] . "` <br/> `" . $token['to'] . "` |\n";
+    $markdown .= '| `' . $token['method'] . '` | `' . $token['from'] . '` <br/> `' . $token['to'] . "` |\n";
   }
 
   return trim($markdown);
