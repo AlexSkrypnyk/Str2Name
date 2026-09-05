@@ -2,12 +2,11 @@
 <ruleset name="custom">
     <description>Custom PHPCS standard.</description>
 
-    <!-- Using Drupal coding standard as a base-fix. -->
-    <rule ref="Drupal" />
+    <!-- Using Drupal coding standard as a base. -->
+    <rule ref="Drupal"/>
+    <rule ref="DrevOps"/>
     <!-- Checks that the strict_types has been declared. -->
-    <rule ref="Generic.PHP.RequireStrictTypes" />
-
-    <rule ref="DrevOps" />
+    <rule ref="Generic.PHP.RequireStrictTypes"/>
 
     <!-- Show sniff codes in all reports -->
     <arg value="s"/>
@@ -15,12 +14,6 @@
     <arg value="p"/>
     <arg name="colors"/>
 
-    <!--
-    PHP_CodeSniffer does not support scanning of files without extensions, so
-    we have to use the ugly workaround to copy the file into a file with a 'php'
-    extension, scan that file, and then delete it.
-    @see https://github.com/squizlabs/PHP_CodeSniffer/issues/2916
-    -->
     <file>Str2Name.php</file>
     <file>docs.php</file>
     <file>tests/phpunit</file>
@@ -32,15 +25,15 @@
         <exclude-pattern>*.test</exclude-pattern>
     </rule>
 
-    <!-- Allow missing class names in tests. -->
-    <rule ref="Drupal.Commenting.ClassComment.Missing">
+    <!-- Allow missing function names in tests. -->
+    <rule ref="Drupal.Commenting.FunctionComment.Missing">
         <exclude-pattern>*.Test\.php</exclude-pattern>
         <exclude-pattern>*.TestCase\.php</exclude-pattern>
         <exclude-pattern>*.test</exclude-pattern>
     </rule>
 
-    <!-- Allow missing function names in tests. -->
-    <rule ref="Drupal.Commenting.FunctionComment.Missing">
+    <!-- Allow missing class names in tests. -->
+    <rule ref="Drupal.Commenting.ClassComment.Missing">
         <exclude-pattern>*.Test\.php</exclude-pattern>
         <exclude-pattern>*.TestCase\.php</exclude-pattern>
         <exclude-pattern>*.test</exclude-pattern>

@@ -4,7 +4,7 @@ Thanks for considering a contribution to `Str2Name`. It is a small, single-file,
 
 ## Getting started
 
-Requires PHP >= 8.2. The `mbstring` extension is recommended but not required.
+Requires PHP >= 8.3. The `mbstring` extension is recommended but not required.
 
 ```bash
 composer install

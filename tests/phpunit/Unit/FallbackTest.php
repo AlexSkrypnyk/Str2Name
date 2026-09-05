@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Str2Name::class)]
 final class FallbackTest extends TestCase {
 
-  protected const STANDARD = 'I am a__string-With sp@ce¥s 14 and 😀 unicode élève';
+  protected const string STANDARD = 'I am a__string-With sp@ce¥s 14 and 😀 unicode élève';
 
   protected function tearDown(): void {
     $this->forceMbstring(NULL);
