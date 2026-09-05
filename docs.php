@@ -37,7 +37,7 @@ $markdown .= tokens_to_markdown_table($generic_formatters_tokens);
 $markdown .= "\n";
 
 $generic_converters_tokens = array_diff_key($tokens, array_flip($generic_formatters));
-$generic_converters_tokens = array_filter($generic_converters_tokens, static fn(string $token): bool => str_contains($token, '2'), ARRAY_FILTER_USE_KEY);
+$generic_converters_tokens = array_filter($generic_converters_tokens, static fn(string $method_name): bool => str_contains($method_name, '2'), ARRAY_FILTER_USE_KEY);
 
 $markdown .= "\n";
 $markdown .= "## Converters between generic formats\n";
