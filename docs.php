@@ -69,7 +69,7 @@ if ($readme_replaced === $readme) {
 }
 
 $fail_on_change = ($argv[1] ?? '') === '--fail-on-change';
-if ($fail_on_change && $readme_replaced !== $readme) {
+if ($fail_on_change) {
   echo "Documentation is outdated. No changes were made.\n";
   exit(1);
 }
