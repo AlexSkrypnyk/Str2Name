@@ -30,10 +30,10 @@ $generic_formatters = [
   'upper',
 ];
 
-$generic_formatter_tokens = array_intersect_key($tokens, array_flip($generic_formatters));
+$generic_formatters_tokens = array_intersect_key($tokens, array_flip($generic_formatters));
 
 $markdown = "\n";
-$markdown .= tokens_to_markdown_table($generic_formatter_tokens);
+$markdown .= tokens_to_markdown_table($generic_formatters_tokens);
 $markdown .= "\n";
 
 $generic_converters_tokens = array_diff_key($tokens, array_flip($generic_formatters));
