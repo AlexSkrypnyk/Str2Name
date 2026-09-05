@@ -28,7 +28,7 @@ final class CommentsTest extends TestCase {
         throw new \RuntimeException(sprintf('Method %s does not have a comment', $method_name));
       }
 
-      $tokens = self::extractTokens($comment);
+      $tokens = self::extractTokens($comment, $method_name);
 
       if (empty($tokens)) {
         continue;
@@ -45,7 +45,7 @@ final class CommentsTest extends TestCase {
     return $cases;
   }
 
-  protected static function extractTokens(string $comment): array {
+  protected static function extractTokens(string $comment, string $method_name): array {
     $result = [];
 
     $froms = [];
@@ -59,11 +59,11 @@ final class CommentsTest extends TestCase {
       $tos = $to_matches[1];
     }
 
-    $froms = array_filter(array_map(trim(...), $froms));
-    $tos = array_filter(array_map(trim(...), $tos));
+    $froms = array_values(array_filter(array_map(trim(...), $froms), static fn(string $v): bool => $v !== ''));
+    $tos = array_values(array_filter(array_map(trim(...), $tos), static fn(string $v): bool => $v !== ''));
 
     if (count($froms) !== count($tos)) {
-      throw new \RuntimeException('The number of @from and @to annotations must be equal');
+      throw new \RuntimeException(sprintf('The number of @from and @to annotations must be equal for method %s', $method_name));
     }
 
     foreach ($froms as $i => $from) {

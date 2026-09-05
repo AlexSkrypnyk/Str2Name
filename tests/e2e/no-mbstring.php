@@ -24,7 +24,7 @@ $standard = 'I am a__string-With sp@ce¥s 14 and 😀 unicode élève';
 
 $failures = [];
 
-$check = static function (string $label, string $actual, string $expected) use (&$failures): void {
+$check = static function (string $label, string $expected, string $actual) use (&$failures): void {
   if ($actual !== $expected) {
     $failures[] = sprintf("%s\n  expected: %s\n  actual:   %s", $label, $expected, $actual);
   }
@@ -32,33 +32,35 @@ $check = static function (string $label, string $actual, string $expected) use (
 
 // Strict and length-only formatters must be identical with or without
 // mbstring, because strict() transliterates to ASCII before any case folding.
-$check('machine', Str2Name::machine($standard), 'i_am_a__string_with_spces_14_and__unicode_eleve');
-$check('constant', Str2Name::constant($standard), 'I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE');
-$check('phpClass', Str2Name::phpClass($standard), 'IamAStringWithSpces14AndUnicodeEleve');
-$check('phpMethod', Str2Name::phpMethod($standard), 'iAmAStringWithSpces14AndUnicodeEleve');
-$check('phpNamespace', Str2Name::phpNamespace($standard), 'IAmAStringWithSpces14AndUnicodeEleve');
-$check('httpHeader', Str2Name::httpHeader($standard), 'I-Am-A--String-With-Spces-14-And--Unicode-Eleve');
-$check('cssClass', Str2Name::cssClass($standard), 'i-am-a__string-with-spces-14-and--unicode-eleve');
-$check('cssId', Str2Name::cssId($standard), 'i-am-a-string-with-spces-14-and-unicode-eleve');
-$check('id', Str2Name::id($standard), 'iamastringwithspces14andunicodeeleve');
-$check('idUpper', Str2Name::idUpper($standard), 'IAMASTRINGWITHSPCES14ANDUNICODEELEVE');
-$check('initials', Str2Name::initials($standard), 'iaas');
-$check('abbreviation', Str2Name::abbreviation($standard), 'Ia');
+$check('machine', 'i_am_a__string_with_spces_14_and__unicode_eleve', Str2Name::machine($standard));
+$check('constant', 'I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE', Str2Name::constant($standard));
+$check('phpFunction', 'i_am_a__string_with_spces_14_and__unicode_eleve', Str2Name::phpFunction($standard));
+$check('phpClass', 'IamAStringWithSpces14AndUnicodeEleve', Str2Name::phpClass($standard));
+$check('phpMethod', 'iAmAStringWithSpces14AndUnicodeEleve', Str2Name::phpMethod($standard));
+$check('phpNamespace', 'IAmAStringWithSpces14AndUnicodeEleve', Str2Name::phpNamespace($standard));
+$check('filepath', 'i_am_a__string_with_spces_14_and__unicode_eleve', Str2Name::filepath($standard));
+$check('httpHeader', 'I-Am-A--String-With-Spces-14-And--Unicode-Eleve', Str2Name::httpHeader($standard));
+$check('cssClass', 'i-am-a__string-with-spces-14-and--unicode-eleve', Str2Name::cssClass($standard));
+$check('cssId', 'i-am-a-string-with-spces-14-and-unicode-eleve', Str2Name::cssId($standard));
+$check('id', 'iamastringwithspces14andunicodeeleve', Str2Name::id($standard));
+$check('idUpper', 'IAMASTRINGWITHSPCES14ANDUNICODEELEVE', Str2Name::idUpper($standard));
+$check('initials', 'iaas', Str2Name::initials($standard));
+$check('abbreviation', 'Ia', Str2Name::abbreviation($standard));
 
 // Case folding is a deliberate trade-off: full Unicode with mbstring, ASCII
 // without it. Assert the exact output for the detected mode so the fallback
 // is verified.
 if ($mbstring) {
-  $check('lower', Str2Name::lower('ÉLÈVE'), 'élève');
-  $check('upper', Str2Name::upper('élève'), 'ÉLÈVE');
-  $check('cobol', Str2Name::cobol('élève café'), 'ÉLÈVE-CAFÉ');
-  $check('sentence', Str2Name::sentence('ÉLÈVE café'), 'Élève café');
+  $check('lower', 'élève', Str2Name::lower('ÉLÈVE'));
+  $check('upper', 'ÉLÈVE', Str2Name::upper('élève'));
+  $check('cobol', 'ÉLÈVE-CAFÉ', Str2Name::cobol('élève café'));
+  $check('sentence', 'Élève café', Str2Name::sentence('ÉLÈVE café'));
 }
 else {
-  $check('lower', Str2Name::lower('ÉLÈVE'), 'ÉlÈve');
-  $check('upper', Str2Name::upper('élève'), 'éLèVE');
-  $check('cobol', Str2Name::cobol('élève café'), 'éLèVE-CAFé');
-  $check('sentence', Str2Name::sentence('ÉLÈVE café'), 'ÉlÈve café');
+  $check('lower', 'ÉlÈve', Str2Name::lower('ÉLÈVE'));
+  $check('upper', 'éLèVE', Str2Name::upper('élève'));
+  $check('cobol', 'éLèVE-CAFé', Str2Name::cobol('élève café'));
+  $check('sentence', 'ÉlÈve café', Str2Name::sentence('ÉLÈVE café'));
 }
 
 fwrite(STDOUT, 'mbstring extension: ' . ($mbstring ? 'present' : 'absent') . "\n");

@@ -159,6 +159,7 @@ class MyClass {
 | --- | --- |
 | `abbreviation` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `Ia` |
 | `bool` | `yes` <br/> `Yes` |
+| `bool` | `false` <br/> `No` |
 | `constant` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE` |
 | `constantRaw` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `I_AM_A__STRING_WITH_SP@CE¥S_14_AND_😀_UNICODE_ÉLÈVE` |
 | `cssClass` | `I am a__string-With sp@ce¥s 14 and 😀 unicode élève` <br/> `i-am-a__string-with-spces-14-and--unicode-eleve` |
