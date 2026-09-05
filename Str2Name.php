@@ -415,11 +415,10 @@ class Str2Name {
    * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Component%21Utility%21Html.php/function/Html%3A%3AcleanCssIdentifier/10
    */
   public static function cssClassRaw(string $string): string {
-    // Preserve BEM-style double underscores while turning single underscores
-    // into hyphens: each adjacent pair of underscores collapses to "__" and a
-    // leftover odd underscore becomes "-". Rewriting each underscore run in a
-    // single pass avoids a placeholder round-trip that could corrupt literal
-    // sentinel characters already present in the input.
+    // A BEM-style "__" stays intact while a single "_" becomes "-". Each
+    // underscore run is rewritten as "__" per pair plus "-" for a leftover
+    // odd underscore. A single pass avoids a placeholder round-trip, which
+    // would corrupt sentinel characters already present in the input.
     $string = (string) preg_replace_callback('/_+/', static fn(array $matches): string => str_repeat('__', intdiv(strlen($matches[0]), 2)) . str_repeat('-', strlen($matches[0]) % 2), $string);
     $string = str_replace([' ', '/', '[', ']'], ['-', '', '', ''], $string);
     $string = (string) preg_replace('/[^\x{002D}\x{0030}-\x{0039}\x{0041}-\x{005A}\x{005F}\x{0061}-\x{007A}\x{00A1}-\x{FFFF}]/u', '', $string);
@@ -924,7 +923,7 @@ class Str2Name {
   }
 
   /**
-   * Restrict a string to a specific set of characters used in Strict methods.
+   * Restrict a string to the strict character set.
    */
   protected static function strict(string $string): string {
     $string = static::mbRemove($string);

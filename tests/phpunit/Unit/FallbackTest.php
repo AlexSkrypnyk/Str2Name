@@ -13,8 +13,8 @@ use PHPUnit\Framework\TestCase;
  * Tests the extension-free fallback taken when mbstring is absent.
  *
  * PHPUnit itself requires mbstring, so the fallback branch never runs during a
- * normal CI run. These tests force it by flipping the cached detection flag on
- * the class via reflection - no production seam is exposed. The genuine
+ * normal CI run. These tests force it by overriding the cached detection flag
+ * through reflection, so the library exposes no test-only seam. The genuine
  * no-extension environment is covered separately by tests/e2e/no-mbstring.php.
  */
 #[CoversClass(Str2Name::class)]

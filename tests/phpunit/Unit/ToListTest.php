@@ -9,9 +9,6 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Tests for toList() method.
- */
 #[CoversMethod(Str2Name::class, 'toList')]
 final class ToListTest extends TestCase {
 

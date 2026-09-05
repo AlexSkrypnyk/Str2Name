@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace AlexSkrypnyk\Str2Name\Benchmarks;
 
-/**
- * Base class for Str2Name benchmarks.
- */
 abstract class AbstractBenchmark {
 
   /**
@@ -18,12 +15,6 @@ abstract class AbstractBenchmark {
    */
   protected const INPUT = 'A Sample Field Label 42 with Ünïcode';
 
-  /**
-   * Build a multi-word input of a given repetition count.
-   *
-   * Used by the scaling benchmark to measure how conversion time grows with
-   * input length, guarding against a super-linear regression.
-   */
   protected static function repeated(int $times): string {
     return trim(str_repeat('Sample Words Here ', $times));
   }
