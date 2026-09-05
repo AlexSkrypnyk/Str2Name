@@ -356,7 +356,7 @@ class Str2Name {
    * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
    */
   public static function phpPackageNamespace(string $string): string {
-    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
+    return static::phpPackageSegment($string);
   }
 
   /**
@@ -364,7 +364,7 @@ class Str2Name {
    * @to i-am-a__string-with-sp-ce-s-14-and-unicode-l-ve
    */
   public static function phpPackageName(string $string): string {
-    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
+    return static::phpPackageSegment($string);
   }
 
   /**
@@ -967,6 +967,13 @@ class Str2Name {
     $string = str_replace(array_keys($replacements), array_values($replacements), $string);
 
     return trim($string, $separator);
+  }
+
+  /**
+   * Sanitise one segment of a Composer package identifier.
+   */
+  protected static function phpPackageSegment(string $string): string {
+    return (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($string));
   }
 
   /**
