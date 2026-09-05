@@ -296,9 +296,7 @@ class Str2Name {
       $prev = $word;
     }
 
-    $string = str_replace(' ', '', $result);
-
-    return static::emojiRemove($string);
+    return str_replace(' ', '', $result);
   }
 
   /**
@@ -418,9 +416,8 @@ class Str2Name {
    */
   public static function cssClass(string $string): string {
     $string = static::strict($string);
-    $string = static::mbStrtolower(static::cssClassRaw($string));
 
-    return static::mbRemove($string);
+    return static::mbStrtolower(static::cssClassRaw($string));
   }
 
   /**
