@@ -327,8 +327,8 @@ class Str2Name {
       return '';
     }
 
-    $namespace = (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($parts[0]));
-    $name = (string) preg_replace('/[^a-z0-9_.-]+/', '-', static::mbStrtolower($parts[1]));
+    $namespace = static::phpPackageNamespace($parts[0]);
+    $name = static::phpPackageName($parts[1]);
 
     if ($namespace === '-' || $name === '-') {
       return '';
