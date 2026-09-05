@@ -26,18 +26,18 @@ abstract class MethodTestCase extends TestCase {
     $test_class = basename(str_replace('\\', '/', static::class));
     $method_name = lcfirst(str_replace('Test', '', $test_class));
 
-    $ref_class = new \ReflectionClass(Str2Name::class);
+    $reflection = new \ReflectionClass(Str2Name::class);
 
-    if (!$ref_class->hasMethod($method_name)) {
+    if (!$reflection->hasMethod($method_name)) {
       throw new \RuntimeException(sprintf('Method %s does not exist in %s', $method_name, Str2Name::class));
     }
 
-    $ref_method = new \ReflectionMethod(Str2Name::class, $method_name);
-    if (!$ref_method->isStatic()) {
+    $reflection_method = new \ReflectionMethod(Str2Name::class, $method_name);
+    if (!$reflection_method->isStatic()) {
       throw new \RuntimeException(sprintf('Method %s is not static in %s', $method_name, Str2Name::class));
     }
 
-    $result = $ref_method->invoke(NULL, $input);
+    $result = $reflection_method->invoke(NULL, $input);
     $this->assertSame($expected, $result, sprintf('> %s: %s', $test_class, $input));
   }
 
