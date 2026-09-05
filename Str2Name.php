@@ -328,6 +328,8 @@ class Str2Name {
   }
 
   /**
+   * Format a 'vendor/name' Composer package identifier.
+   *
    * Returns an empty string when the input does not split into exactly two
    * parts or when either part sanitises to a bare '-'.
    *
