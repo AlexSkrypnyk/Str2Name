@@ -164,20 +164,20 @@ class Str2Name {
    * @throws \RuntimeException
    *   When the delimiter pattern fails to split the string.
    */
-  public static function abbreviation(string $string, int $length = 2, array $word_delims = [' ']): string {
+  public static function abbreviation(string $string, int $length = 2, array $delimiters = [' ']): string {
     $string = trim($string);
 
     if ($string === '') {
       return '';
     }
 
-    $word_delims = array_filter($word_delims, static fn(string $delim): bool => $delim !== '');
+    $delimiters = array_filter($delimiters, static fn(string $delim): bool => $delim !== '');
 
-    if ($word_delims === []) {
+    if ($delimiters === []) {
       $parts = [$string];
     }
     else {
-      $parts = preg_split('/[' . implode('', array_map(preg_quote(...), $word_delims)) . ']/', $string);
+      $parts = preg_split('/[' . implode('', array_map(preg_quote(...), $delimiters)) . ']/', $string);
 
       if ($parts === FALSE) {
         // @codeCoverageIgnoreStart
@@ -275,6 +275,14 @@ class Str2Name {
    */
   public static function filepath(string $string): string {
     return static::machine(trim($string));
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   */
+  public static function filepathRaw(string $string): string {
+    return static::machineRaw(trim($string));
   }
 
   /**
@@ -407,6 +415,14 @@ class Str2Name {
   public static function httpHeader(string $string): string {
     $string = static::strict($string);
 
+    return static::train($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   */
+  public static function httpHeaderRaw(string $string): string {
     return static::train($string);
   }
 
@@ -981,7 +997,7 @@ class Str2Name {
   /**
    * Convert a string to an array using a delimiter.
    *
-   * @param string $value
+   * @param string $string
    *   The string to convert to an array.
    * @param string $delimiter
    *   The delimiter to use for splitting. Defaults to comma; an empty string
@@ -990,9 +1006,9 @@ class Str2Name {
    * @return array
    *   The array of values.
    */
-  public static function fromList(string $value, string $delimiter = ','): array {
+  public static function fromList(string $string, string $delimiter = ','): array {
     // explode() rejects an empty delimiter, so an empty string means comma.
-    return array_values(array_filter(array_map(trim(...), explode($delimiter !== '' ? $delimiter : ',', $value))));
+    return array_values(array_filter(array_map(trim(...), explode($delimiter !== '' ? $delimiter : ',', $string))));
   }
 
   /**

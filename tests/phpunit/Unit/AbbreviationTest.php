@@ -34,8 +34,8 @@ final class AbbreviationTest extends TestCase {
   }
 
   #[DataProvider('dataProviderAbbreviationCustom')]
-  public function testAbbreviationCustom(string $input, int $length, array $word_delims, string $expected): void {
-    $this->assertSame($expected, Str2Name::abbreviation($input, $length, $word_delims));
+  public function testAbbreviationCustom(string $input, int $length, array $delimiters, string $expected): void {
+    $this->assertSame($expected, Str2Name::abbreviation($input, $length, $delimiters));
   }
 
   public static function dataProviderAbbreviationCustom(): \Iterator {
@@ -48,8 +48,8 @@ final class AbbreviationTest extends TestCase {
   }
 
   #[DataProvider('dataProviderAbbreviationWithoutDelimiters')]
-  public function testAbbreviationWithoutDelimiters(string $input, int $length, array $word_delims, string $expected): void {
-    $this->assertSame($expected, Str2Name::abbreviation($input, $length, $word_delims));
+  public function testAbbreviationWithoutDelimiters(string $input, int $length, array $delimiters, string $expected): void {
+    $this->assertSame($expected, Str2Name::abbreviation($input, $length, $delimiters));
   }
 
   public static function dataProviderAbbreviationWithoutDelimiters(): \Iterator {
