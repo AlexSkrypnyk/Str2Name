@@ -908,9 +908,9 @@ class Str2Name {
     $result = '';
     $upper = TRUE;
 
-    foreach ($chars as $i => $letter) {
-      $result .= $upper ? static::mbUcfirstChar($letter) : $letter;
-      $upper = ($i + 1) < $count && str_contains($separators, $letter);
+    foreach ($chars as $i => $char) {
+      $result .= $upper ? static::mbUcfirstChar($char) : $char;
+      $upper = ($i + 1) < $count && str_contains($separators, $char);
     }
 
     return $result;
