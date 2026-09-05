@@ -34,9 +34,11 @@ $check = static function (string $label, string $expected, string $actual) use (
 // mbstring, because strict() transliterates to ASCII before any case folding.
 $check('machine', 'i_am_a__string_with_spces_14_and__unicode_eleve', Str2Name::machine($standard));
 $check('constant', 'I_AM_A__STRING_WITH_SPCES_14_AND__UNICODE_ELEVE', Str2Name::constant($standard));
+$check('phpFunction', 'i_am_a__string_with_spces_14_and__unicode_eleve', Str2Name::phpFunction($standard));
 $check('phpClass', 'IamAStringWithSpces14AndUnicodeEleve', Str2Name::phpClass($standard));
 $check('phpMethod', 'iAmAStringWithSpces14AndUnicodeEleve', Str2Name::phpMethod($standard));
 $check('phpNamespace', 'IAmAStringWithSpces14AndUnicodeEleve', Str2Name::phpNamespace($standard));
+$check('filepath', 'i_am_a__string_with_spces_14_and__unicode_eleve', Str2Name::filepath($standard));
 $check('httpHeader', 'I-Am-A--String-With-Spces-14-And--Unicode-Eleve', Str2Name::httpHeader($standard));
 $check('cssClass', 'i-am-a__string-with-spces-14-and--unicode-eleve', Str2Name::cssClass($standard));
 $check('cssId', 'i-am-a-string-with-spces-14-and-unicode-eleve', Str2Name::cssId($standard));
