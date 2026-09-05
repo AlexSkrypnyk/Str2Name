@@ -28,6 +28,9 @@ final class AbbreviationTest extends TestCase {
     yield ['TWO WORDS', 'TW'];
     yield ['Äpfel Öl', 'ÄÖ'];
     yield ['A B C D E F G H I J K L M N O P Q R S T U V W X Y Z', 'AB'];
+    yield ['0', '0'];
+    yield ['0 0', '00'];
+    yield ['alpha 0 beta', 'a0'];
   }
 
   #[DataProvider('dataProviderAbbreviationCustom')]
@@ -41,6 +44,7 @@ final class AbbreviationTest extends TestCase {
     yield ['word-Word', 2, ['-'], 'wW'];
     yield ['word_Word', 2, ['_'], 'wW'];
     yield ['word-Word_proper.Test', 4, ['-', '_', '.'], 'wWpT'];
+    yield ['alpha 0 beta', 3, [' '], 'a0b'];
   }
 
   #[DataProvider('dataProviderAbbreviationWithoutDelimiters')]
