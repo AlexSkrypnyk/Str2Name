@@ -11,7 +11,13 @@ use AlexSkrypnyk\Str2Name\Str2Name;
 
 require_once __DIR__ . '/Str2Name.php';
 
-$tokens = parse_tokens(Str2Name::class);
+try {
+  $tokens = parse_tokens(Str2Name::class);
+}
+catch (\RuntimeException $exception) {
+  fwrite(STDERR, $exception->getMessage() . "\n");
+  exit(1);
+}
 
 if (empty($tokens)) {
   fwrite(STDERR, "No PHPDoc comments found in the file.\n");
@@ -83,10 +89,12 @@ exit(0);
  * @param class-string $class_name
  *   The class name.
  *
- * @return array<string, array<string, string>>
- *   Array of tokens with 'method', 'from', and 'to' keys.
+ * @return array<string, array{method: string, pairs: array<int, array{from: string, to: string}>}>
+ *   Array of tokens keyed by method name, each with a 'method' key and a
+ *   'pairs' list of 'from'/'to' annotation values.
  *
  * @throws \ReflectionException
+ * @throws \RuntimeException
  */
 function parse_tokens(string $class_name): array {
   $reflection = new ReflectionClass($class_name);
@@ -95,31 +103,36 @@ function parse_tokens(string $class_name): array {
   $result = [];
 
   foreach ($methods as $method) {
+    $method_name = $method->getName();
     $comment = $method->getDocComment();
 
-    if (!$comment) {
+    if ($comment === FALSE) {
+      throw new \RuntimeException(sprintf('Method %s does not have a comment', $method_name));
+    }
+
+    preg_match_all('/@from (.*)/', $comment, $from_matches);
+    preg_match_all('/@to (.*)/', $comment, $to_matches);
+
+    $froms = array_values(array_filter(array_map(trim(...), $from_matches[1]), static fn(string $v): bool => $v !== ''));
+    $tos = array_values(array_filter(array_map(trim(...), $to_matches[1]), static fn(string $v): bool => $v !== ''));
+
+    if (count($froms) !== count($tos)) {
+      throw new \RuntimeException(sprintf('The number of @from and @to annotations must be equal for method %s', $method_name));
+    }
+
+    if ($froms === []) {
       continue;
     }
 
-    $from = '';
-    $to = '';
+    $pairs = [];
 
-    if (preg_match('/@from (.*)/', $comment, $from_match)) {
-      $from = $from_match[1];
+    foreach ($froms as $i => $from) {
+      $pairs[] = ['from' => $from, 'to' => $tos[$i]];
     }
 
-    if (preg_match('/@to (.*)/', $comment, $to_match)) {
-      $to = $to_match[1];
-    }
-
-    if (empty($from) || empty($to)) {
-      continue;
-    }
-
-    $result[$method->getName()] = [
-      'method' => $method->getName(),
-      'from' => $from,
-      'to' => $to,
+    $result[$method_name] = [
+      'method' => $method_name,
+      'pairs' => $pairs,
     ];
   }
 
@@ -129,8 +142,9 @@ function parse_tokens(string $class_name): array {
 /**
  * Convert tokens to markdown table.
  *
- * @param array<string, array<string, string>> $tokens
- *   Array of tokens with 'method', 'from', and 'to' keys.
+ * @param array<string, array{method: string, pairs: array<int, array{from: string, to: string}>}> $tokens
+ *   Array of tokens keyed by method name, each with a 'method' key and a
+ *   'pairs' list of 'from'/'to' annotation values.
  *
  * @return string
  *   Markdown table.
@@ -140,7 +154,9 @@ function tokens_to_markdown_table(array $tokens): string {
   $markdown .= "| --- | --- |\n";
 
   foreach ($tokens as $token) {
-    $markdown .= '| `' . $token['method'] . '` | `' . $token['from'] . '` <br/> `' . $token['to'] . "` |\n";
+    foreach ($token['pairs'] as $pair) {
+      $markdown .= '| `' . $token['method'] . '` | `' . $pair['from'] . '` <br/> `' . $pair['to'] . "` |\n";
+    }
   }
 
   return trim($markdown);
