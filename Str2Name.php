@@ -835,11 +835,7 @@ class Str2Name {
    * Multibyte-aware substr with an extension-free fallback.
    */
   public static function mbSubstr(string $string, int $start, ?int $length = NULL): string {
-    if (static::hasMbstring()) {
-      return mb_substr($string, $start, $length);
-    }
-
-    return implode('', array_slice(static::mbStrSplit($string), $start, $length));
+    return static::hasMbstring() ? mb_substr($string, $start, $length) : implode('', array_slice(static::mbStrSplit($string), $start, $length));
   }
 
   /**
