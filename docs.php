@@ -14,7 +14,7 @@ require_once __DIR__ . '/Str2Name.php';
 $tokens = parse_tokens(Str2Name::class);
 
 if (empty($tokens)) {
-  echo "No PHPDoc comments found in the file.\n";
+  fwrite(STDERR, "No PHPDoc comments found in the file.\n");
   exit(1);
 }
 
@@ -57,7 +57,7 @@ $markdown .= "\n";
 $readme = file_get_contents(__DIR__ . '/README.md');
 
 if ($readme === FALSE) {
-  echo "Failed to read README.md.\n";
+  fwrite(STDERR, "Failed to read README.md.\n");
   exit(1);
 }
 
@@ -70,7 +70,7 @@ if ($readme_replaced === $readme) {
 
 $fail_on_change = ($argv[1] ?? '') === '--fail-on-change';
 if ($fail_on_change) {
-  echo "Documentation is outdated. No changes were made.\n";
+  fwrite(STDERR, "Documentation is outdated. No changes were made.\n");
   exit(1);
 }
 file_put_contents(__DIR__ . '/README.md', $readme_replaced);
