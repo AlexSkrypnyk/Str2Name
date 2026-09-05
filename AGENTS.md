@@ -24,9 +24,9 @@ CI (`.github/workflows/test-php.yml`) runs `composer lint`, `composer test-cover
 
 `Str2Name` is a single class of stateless `public static` methods. Call them directly: `Str2Name::machine($input)`. Methods fall into three groups (mirrored by the README sections and the `docs.php` grouping logic):
 
-1. **Generic formatters**: `snake`, `camel`, `pascal`, `kebab`, `train`, `flat`, `cobol`, plus `sentence` and `label`.
+1. **Generic formatters**: `lower`, `upper`, `snake`, `camel`, `pascal`, `kebab`, `train`, `flat`, `cobol`.
 2. **Generic converters**: a full `<from>2<to>` matrix (`snake2camel`, `camel2kebab`, `cobol2pascal`, ...). Most are thin wrappers that delegate to a generic formatter, because the formatters are already input-agnostic.
-3. **Named formatters**: real-world identifiers - `machine`, `constant`, `cssClass`, `cssId`, `phpClass`, `phpMethod`, `phpNamespace`, `phpFunction`, `phpPackage`, `domain`, `httpHeader`, `id`, `idUpper`, `filepath`, `abbreviation`, `bool`, etc.
+3. **Named formatters**: the text formatters `sentence` and `label`, plus real-world identifiers - `machine`, `constant`, `cssClass`, `cssId`, `phpClass`, `phpMethod`, `phpNamespace`, `phpFunction`, `phpPackage`, `domain`, `httpHeader`, `id`, `idUpper`, `filepath`, `abbreviation`, `bool`, etc.
 
 ### The `strict` vs `Raw` distinction
 
