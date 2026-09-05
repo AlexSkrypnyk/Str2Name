@@ -871,7 +871,7 @@ class Str2Name {
   }
 
   /**
-   * Titlecase a string with an extension-free fallback.
+   * Titlecase a single character with an extension-free fallback.
    */
   protected static function mbUcfirstChar(string $string): string {
     return static::hasMbstring() ? mb_convert_case($string, MB_CASE_TITLE) : ucfirst($string);
