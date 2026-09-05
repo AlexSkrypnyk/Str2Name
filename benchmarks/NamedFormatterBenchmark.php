@@ -10,8 +10,9 @@ use PhpBench\Attributes as Bench;
 /**
  * Benchmarks the named formatters - the real-world identifier producers.
  *
- * These run the strict pipeline (transliteration, character stripping) on top
- * of the generic formatters, so they exercise the heaviest paths in the class.
+ * Most subjects sanitise the input before formatting; domain() and
+ * abbreviation() take their own paths. The suite covers the heaviest
+ * pipelines in the class.
  */
 #[Bench\Revs(2000)]
 #[Bench\Iterations(10)]
