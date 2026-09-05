@@ -383,7 +383,7 @@ class Str2Name {
       $string = explode('/', $string)[0];
     }
 
-    $string = static::mbRemove($string);
+    $string = static::transliterate($string);
     $string = static::emojiRemove($string);
     $string = static::mbStrtolower($string);
 
@@ -923,9 +923,11 @@ class Str2Name {
   }
 
   /**
-   * Remove multibyte characters.
+   * Transliterate mapped multibyte characters to their ASCII equivalents.
+   *
+   * Characters absent from 'MB_MAP' pass through unchanged.
    */
-  protected static function mbRemove(string $string): string {
+  protected static function transliterate(string $string): string {
     return str_replace(array_map(strval(...), array_keys(static::MB_MAP)), array_values(static::MB_MAP), $string);
   }
 
@@ -940,7 +942,7 @@ class Str2Name {
    * Restrict a string to the strict character set.
    */
   protected static function strict(string $string): string {
-    $string = static::mbRemove($string);
+    $string = static::transliterate($string);
 
     return (string) preg_replace('/[^a-zA-Z0-9_\- ]/', '', $string);
   }
