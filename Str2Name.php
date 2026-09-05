@@ -279,6 +279,14 @@ class Str2Name {
 
   /**
    * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to i_am_a__string_with_sp@ce¥s_14_and_😀_unicode_élève
+   */
+  public static function filepathRaw(string $string): string {
+    return static::machineRaw(trim($string));
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
    * @to IamAStringWithSpces14AndUnicodeEleve
    */
   public static function phpClass(string $string): string {
@@ -407,6 +415,14 @@ class Str2Name {
   public static function httpHeader(string $string): string {
     $string = static::strict($string);
 
+    return static::train($string);
+  }
+
+  /**
+   * @from I am a__string-With sp@ce¥s 14 and 😀 unicode élève
+   * @to I-Am-A--String-With-Sp@ce¥s-14-And-😀-Unicode-Élève
+   */
+  public static function httpHeaderRaw(string $string): string {
     return static::train($string);
   }
 
