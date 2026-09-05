@@ -164,20 +164,20 @@ class Str2Name {
    * @throws \RuntimeException
    *   When the delimiter pattern fails to split the string.
    */
-  public static function abbreviation(string $string, int $length = 2, array $word_delims = [' ']): string {
+  public static function abbreviation(string $string, int $length = 2, array $delimiters = [' ']): string {
     $string = trim($string);
 
     if ($string === '') {
       return '';
     }
 
-    $word_delims = array_filter($word_delims, static fn(string $delim): bool => $delim !== '');
+    $delimiters = array_filter($delimiters, static fn(string $delim): bool => $delim !== '');
 
-    if ($word_delims === []) {
+    if ($delimiters === []) {
       $parts = [$string];
     }
     else {
-      $parts = preg_split('/[' . implode('', array_map(preg_quote(...), $word_delims)) . ']/', $string);
+      $parts = preg_split('/[' . implode('', array_map(preg_quote(...), $delimiters)) . ']/', $string);
 
       if ($parts === FALSE) {
         // @codeCoverageIgnoreStart
@@ -997,7 +997,7 @@ class Str2Name {
   /**
    * Convert a string to an array using a delimiter.
    *
-   * @param string $value
+   * @param string $string
    *   The string to convert to an array.
    * @param string $delimiter
    *   The delimiter to use for splitting. Defaults to comma; an empty string
@@ -1006,9 +1006,9 @@ class Str2Name {
    * @return array
    *   The array of values.
    */
-  public static function fromList(string $value, string $delimiter = ','): array {
+  public static function fromList(string $string, string $delimiter = ','): array {
     // explode() rejects an empty delimiter, so an empty string means comma.
-    return array_values(array_filter(array_map(trim(...), explode($delimiter !== '' ? $delimiter : ',', $value))));
+    return array_values(array_filter(array_map(trim(...), explode($delimiter !== '' ? $delimiter : ',', $string))));
   }
 
   /**
