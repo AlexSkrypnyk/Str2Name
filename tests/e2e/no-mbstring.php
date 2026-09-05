@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 use AlexSkrypnyk\Str2Name\Str2Name;
 
-require __DIR__ . '/../../Str2Name.php';
+require_once __DIR__ . '/../../Str2Name.php';
 
 $mbstring = function_exists('mb_strtolower');
 $standard = 'I am a__string-With sp@ce¥s 14 and 😀 unicode élève';
