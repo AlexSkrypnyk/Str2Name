@@ -133,8 +133,10 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Setup tmate session
-        if: ${{ !cancelled() && github.event.inputs.enable_terminal }}
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.enable_terminal }}
         uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3
+        with:
+          limit-access-to-actor: true
         timeout-minutes: 30
 
   e2e-no-mbstring:
