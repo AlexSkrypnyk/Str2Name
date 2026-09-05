@@ -436,10 +436,8 @@ class Str2Name {
    */
   public static function cssId(string $string): string {
     $string = static::strict($string);
-    $string = str_replace([' ', '_', '[', ']'], ['-', '-', '-', ''], static::mbStrtolower($string));
-    $string = (string) preg_replace('/[^A-Za-z0-9\-_]/', '', $string);
 
-    return (string) preg_replace('/-+/', '-', $string);
+    return static::cssIdRaw($string);
   }
 
   /**
