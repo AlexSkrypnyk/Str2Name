@@ -6,42 +6,47 @@ namespace AlexSkrypnyk\Str2Name\Tests\Unit;
 
 use AlexSkrypnyk\Str2Name\Str2Name;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 #[CoversMethod(Str2Name::class, 'bool')]
 final class BoolTest extends TestCase {
 
-  public function testBoolDefault(): void {
-    $this->assertSame('Yes', Str2Name::bool(TRUE));
-    $this->assertSame('Yes', Str2Name::bool(1));
-    $this->assertSame('Yes', Str2Name::bool('1'));
-
-    $this->assertSame('No', Str2Name::bool(FALSE));
-    $this->assertSame('No', Str2Name::bool(0));
-    $this->assertSame('No', Str2Name::bool('0'));
-    $this->assertSame('No', Str2Name::bool(''));
-    $this->assertSame('No', Str2Name::bool('anything else'));
+  #[DataProvider('dataProviderBoolDefault')]
+  public function testBoolDefault(string|bool|int $input, string $expected): void {
+    $this->assertSame($expected, Str2Name::bool($input));
   }
 
-  public function testBoolCustom(): void {
-    $this->assertSame('True', Str2Name::bool(TRUE, 'True', 'False'));
-    $this->assertSame('True', Str2Name::bool(1, 'True', 'False'));
-    $this->assertSame('False', Str2Name::bool(0, 'True', 'False'));
+  public static function dataProviderBoolDefault(): \Iterator {
+    yield [TRUE, 'Yes'];
+    yield [1, 'Yes'];
+    yield ['1', 'Yes'];
+    yield ['true', 'Yes'];
+    yield ['yes', 'Yes'];
+    yield [FALSE, 'No'];
+    yield [0, 'No'];
+    yield ['0', 'No'];
+    yield ['', 'No'];
+    yield ['anything else', 'No'];
+    yield [42, 'No'];
+    yield [-1, 'No'];
+  }
 
-    $this->assertSame('On', Str2Name::bool(TRUE, 'On', 'Off'));
-    $this->assertSame('Off', Str2Name::bool(FALSE, 'On', 'Off'));
+  #[DataProvider('dataProviderBoolCustom')]
+  public function testBoolCustom(string|bool|int $input, string $true, string $false, string $expected): void {
+    $this->assertSame($expected, Str2Name::bool($input, $true, $false));
+  }
 
-    $this->assertSame('Oui', Str2Name::bool('1', 'Oui', 'Non'));
-    $this->assertSame('Non', Str2Name::bool('0', 'Oui', 'Non'));
-
-    $this->assertSame('✅', Str2Name::bool(TRUE, '✅', '❌'));
-    $this->assertSame('❌', Str2Name::bool(FALSE, '✅', '❌'));
-
-    $this->assertSame('No', Str2Name::bool(42));
-    $this->assertSame('No', Str2Name::bool(-1));
-
-    $this->assertSame('Yes', Str2Name::bool('true'));
-    $this->assertSame('Yes', Str2Name::bool('yes'));
+  public static function dataProviderBoolCustom(): \Iterator {
+    yield [TRUE, 'True', 'False', 'True'];
+    yield [1, 'True', 'False', 'True'];
+    yield [0, 'True', 'False', 'False'];
+    yield [TRUE, 'On', 'Off', 'On'];
+    yield [FALSE, 'On', 'Off', 'Off'];
+    yield ['1', 'Oui', 'Non', 'Oui'];
+    yield ['0', 'Oui', 'Non', 'Non'];
+    yield [TRUE, '✅', '❌', '✅'];
+    yield [FALSE, '✅', '❌', '❌'];
   }
 
 }
