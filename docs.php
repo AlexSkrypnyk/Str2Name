@@ -97,26 +97,30 @@ function parse_tokens(string $class_name): array {
   foreach ($methods as $method) {
     $comment = $method->getDocComment();
 
-    if ($comment) {
-      $from = '';
-      $to = '';
-
-      if (preg_match('/@from (.*)/', $comment, $from_match)) {
-        $from = $from_match[1];
-      }
-
-      if (preg_match('/@to (.*)/', $comment, $to_match)) {
-        $to = $to_match[1];
-      }
-
-      if (!empty($from) && !empty($to)) {
-        $result[$method->getName()] = [
-          'method' => $method->getName(),
-          'from' => $from,
-          'to' => $to,
-        ];
-      }
+    if (!$comment) {
+      continue;
     }
+
+    $from = '';
+    $to = '';
+
+    if (preg_match('/@from (.*)/', $comment, $from_match)) {
+      $from = $from_match[1];
+    }
+
+    if (preg_match('/@to (.*)/', $comment, $to_match)) {
+      $to = $to_match[1];
+    }
+
+    if (empty($from) || empty($to)) {
+      continue;
+    }
+
+    $result[$method->getName()] = [
+      'method' => $method->getName(),
+      'from' => $from,
+      'to' => $to,
+    ];
   }
 
   return $result;
