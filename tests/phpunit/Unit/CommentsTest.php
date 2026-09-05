@@ -23,7 +23,7 @@ final class CommentsTest extends TestCase {
     $reflection = new \ReflectionClass(Str2Name::class);
     foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflection_method) {
       $method_name = $reflection_method->getName();
-      $comment = $reflection->getMethod($method_name)->getDocComment();
+      $comment = $reflection_method->getDocComment();
       if ($comment === FALSE) {
         throw new \RuntimeException(sprintf('Method %s does not have a comment', $method_name));
       }
