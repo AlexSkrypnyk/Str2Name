@@ -938,7 +938,11 @@ class Str2Name {
   }
 
   /**
-   * Add separator before an upper case char in string.
+   * Add the separator before upper case characters and digit runs.
+   *
+   * The separator is inserted before each upper case character except the
+   * first, and between a non-digit and a following run of digits. The
+   * separator is trimmed from both ends of the result.
    */
   protected static function mbAddSeparatorBeforeUpperCaseChar(string $string, string $separator = '_'): string {
     $string = (string) preg_replace_callback('/([^0-9])(\d+)/', static fn(array $matches): string => $matches[1] . $separator . $matches[2], $string);
