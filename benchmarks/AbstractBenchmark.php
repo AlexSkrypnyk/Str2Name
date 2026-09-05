@@ -6,8 +6,6 @@ namespace AlexSkrypnyk\Str2Name\Benchmarks;
 
 /**
  * Base class for Str2Name benchmarks.
- *
- * @package AlexSkrypnyk\Str2Name\Benchmarks
  */
 abstract class AbstractBenchmark {
 

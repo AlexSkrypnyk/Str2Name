@@ -12,8 +12,6 @@ use PhpBench\Attributes as Bench;
  *
  * These run the strict pipeline (transliteration, character stripping) on top
  * of the generic formatters, so they exercise the heaviest paths in the class.
- *
- * @package AlexSkrypnyk\Str2Name\Benchmarks
  */
 #[Bench\Revs(2000)]
 #[Bench\Iterations(10)]

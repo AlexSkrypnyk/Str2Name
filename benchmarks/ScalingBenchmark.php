@@ -14,8 +14,6 @@ use PhpBench\Attributes as Bench;
  * machine name must stay linear in the input length. Running each over inputs
  * that grow by an order of magnitude turns a super-linear regression into an
  * obvious jump in the per-size timings rather than a silent slowdown.
- *
- * @package AlexSkrypnyk\Str2Name\Benchmarks
  */
 #[Bench\Revs(50)]
 #[Bench\Iterations(5)]

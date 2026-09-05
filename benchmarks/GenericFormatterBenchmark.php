@@ -9,8 +9,6 @@ use PhpBench\Attributes as Bench;
 
 /**
  * Benchmarks the generic case formatters on a single representative input.
- *
- * @package AlexSkrypnyk\Str2Name\Benchmarks
  */
 #[Bench\Revs(2000)]
 #[Bench\Iterations(10)]

@@ -12,8 +12,6 @@ use PhpBench\Attributes as Bench;
  *
  * The camel/pascal -> other conversions run mbAddSeparatorBeforeUpperCaseChar,
  * a distinct hot path from the formatters, so it is measured on its own input.
- *
- * @package AlexSkrypnyk\Str2Name\Benchmarks
  */
 #[Bench\Revs(2000)]
 #[Bench\Iterations(10)]
