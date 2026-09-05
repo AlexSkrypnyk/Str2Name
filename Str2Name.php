@@ -194,15 +194,15 @@ class Str2Name {
    * @to iaas
    */
   public static function initials(string $string): string {
-    $letters = '';
+    $result = '';
 
     foreach (explode('_', static::machine($string)) as $part) {
       if ($part !== '') {
-        $letters .= static::mbSubstr($part, 0, 1);
+        $result .= static::mbSubstr($part, 0, 1);
       }
     }
 
-    return static::mbSubstr($letters, 0, 4);
+    return static::mbSubstr($result, 0, 4);
   }
 
   /**
