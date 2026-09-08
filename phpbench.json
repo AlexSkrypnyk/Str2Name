@@ -4,6 +4,7 @@
     "runner.php_config": {
         "memory_limit": "1G"
     },
+    "runner.retry_threshold": 5,
     "report.outputs": {
         "html": {
             "renderer": "html",
