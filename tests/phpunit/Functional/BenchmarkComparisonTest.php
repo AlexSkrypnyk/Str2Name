@@ -89,6 +89,16 @@ final class BenchmarkComparisonTest extends TestCase {
     $this->assertStringContainsString('length', $output, 'The run must warn that the two paths differ in length.');
   }
 
+  public function testRejectsNonNumericThreshold(): void {
+    $base = $this->createCheckout('base', 1000);
+    $head = $this->createCheckout('head', 1000);
+
+    [$exit_code, $output] = $this->compare(['--base=' . $base, '--head=' . $head, '--threshold=invalid']);
+
+    $this->assertSame(self::EXIT_USAGE, $exit_code, 'A non-numeric threshold must be a usage error. Output: ' . $output);
+    $this->assertStringNotContainsString('benchSleep', $output, 'A non-numeric threshold must be rejected before anything is measured.');
+  }
+
   public function testRejectsMissingBaseDirectory(): void {
     $head = $this->createCheckout('head', 1000);
 

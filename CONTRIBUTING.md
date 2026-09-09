@@ -38,7 +38,7 @@ Add or update tests under `tests/phpunit/Unit/` for any change:
 
 - Extend a `MethodTestCase` subclass named `<Method>Test` for input/output cases on a single method.
 - Use a plain `TestCase` subclass for methods with optional arguments or edge cases a single `@from` / `@to` cannot express.
-- Every test class needs a `#[CoversClass(...)]` or `#[CoversMethod(...)]` attribute; coverage metadata is required.
+- Coverage metadata is required on every test class: `#[CoversClass(...)]` or `#[CoversMethod(...)]` for a test of the library, `#[CoversNothing]` for a test of the repository's own tooling under `tests/phpunit/Functional/`.
 
 The library is deliberately multibyte-safe: use the multibyte-aware helpers (for example `Str2Name::mbStrtolower()`) or `mb_*` functions, never the plain `str*` / `substr` equivalents, when adding or changing code.
 
@@ -62,7 +62,7 @@ cp -R vendor .artifacts/bench/head/vendor
 composer benchmark-compare -- --base=.artifacts/bench/base --head=.artifacts/bench/head
 ```
 
-Reports are written to `.logs/performance-report.*` as JSON, CSV and HTML.
+`composer benchmark` writes `.logs/performance-report.*` as JSON, CSV and HTML. `composer benchmark-compare` prints the aggregate table to the console and writes no files, unless an `--output` is passed through to it after the `--`.
 
 ## Pull requests
 

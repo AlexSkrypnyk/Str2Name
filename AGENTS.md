@@ -54,9 +54,9 @@ Three distinct styles - pick the one that fits:
 - **`MethodTestCase` subclasses** - for extensive input/output cases on a single method. Name the class `<Method>Test` (e.g. `CssIdRawTest` -> `cssIdRaw`); the base maps class name to method name by reflection and runs a `protected static array $cases` of `[input, expected]` pairs. This also works for `protected` helpers (`MbUcfirstTest`, `MbAddSeparatorBeforeUpperCaseCharTest`, ...).
 - **Plain `TestCase` subclasses** - for methods with optional arguments or edge cases a single `@from`/`@to` can't express (`AbbreviationTest`, `BoolTest`, `FromListTest`, `ToListTest`).
 
-PHPUnit is configured with `requireCoverageMetadata="true"`, so every test class needs a `#[CoversClass(Str2Name::class)]` or `#[CoversMethod(Str2Name::class, '<method>')]` attribute or the suite errors.
+PHPUnit is configured with `requireCoverageMetadata="true"`, so every test class needs a coverage attribute or the suite errors: `#[CoversClass(Str2Name::class)]` or `#[CoversMethod(Str2Name::class, '<method>')]` for a test of the library.
 
-`tests/phpunit/Functional/` holds tests that drive the repository's own tooling rather than the library. They carry `#[CoversNothing]` and run under the same `composer test` suite.
+`tests/phpunit/Functional/` holds tests that drive the repository's own tooling rather than the library, so they carry `#[CoversNothing]` - attributing them to `Str2Name` would credit coverage to code they never execute. They run under the same `composer test` suite.
 
 ## Benchmarks (`benchmarks/`)
 

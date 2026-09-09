@@ -51,6 +51,13 @@ done
 
 passthrough=("$@")
 
+# PHPBench reports a malformed tolerance as a benchmark error, exit 1, which is
+# the code a broken subject also produces.
+if ! [[ "${threshold}" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+  echo "Threshold must be a non-negative percentage: ${threshold}" >&2
+  exit "${EXIT_USAGE}"
+fi
+
 phpbench="${root_dir}/vendor/bin/phpbench"
 [ -x "${phpbench}" ] || { echo "PHPBench is not installed at ${phpbench}." >&2; exit "${EXIT_USAGE}"; }
 
