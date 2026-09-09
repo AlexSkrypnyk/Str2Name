@@ -16,7 +16,8 @@ A zero-dependency, single-file PHP library (`Str2Name.php`) that converts string
 - `composer lint-fix` - auto-fix: runs `rector` then `phpcbf`.
 - `composer docs` - regenerate the README method tables from source docblocks (see below).
 - `composer docs-lint` - fail if the README is out of date with the docblocks (`php docs.php --fail-on-change`); this is a CI gate.
-- `composer benchmark` - run PHPBench against the stored baseline.
+- `composer benchmark` - run PHPBench once and report the timings.
+- `composer benchmark-compare -- --base=<dir> --head=<dir>` - measure two checkouts back to back and assert the head against the base (used by CI).
 
 CI (`.github/workflows/test-php.yml`) runs `composer lint`, `composer test-coverage`, and `composer docs-lint` across a PHP 8.3 / 8.4 / 8.5 matrix, with both `normal` and `lowest` dependency resolutions. A second job re-runs `tests/e2e/no-mbstring.php` on a PHP build with `mbstring` disabled.
 
@@ -53,11 +54,15 @@ Three distinct styles - pick the one that fits:
 - **`MethodTestCase` subclasses** - for extensive input/output cases on a single method. Name the class `<Method>Test` (e.g. `CssIdRawTest` -> `cssIdRaw`); the base maps class name to method name by reflection and runs a `protected static array $cases` of `[input, expected]` pairs. This also works for `protected` helpers (`MbUcfirstTest`, `MbAddSeparatorBeforeUpperCaseCharTest`, ...).
 - **Plain `TestCase` subclasses** - for methods with optional arguments or edge cases a single `@from`/`@to` can't express (`AbbreviationTest`, `BoolTest`, `FromListTest`, `ToListTest`).
 
-PHPUnit is configured with `requireCoverageMetadata="true"`, so every test class needs a `#[CoversClass(Str2Name::class)]` or `#[CoversMethod(Str2Name::class, '<method>')]` attribute or the suite errors.
+PHPUnit is configured with `requireCoverageMetadata="true"`, so every test class needs a coverage attribute or the suite errors: `#[CoversClass(Str2Name::class)]` or `#[CoversMethod(Str2Name::class, '<method>')]` for a test of the library.
+
+`tests/phpunit/Functional/` holds tests that drive the repository's own tooling rather than the library, so they carry `#[CoversNothing]` - attributing them to `Str2Name` would credit coverage to code they never execute. They run under the same `composer test` suite.
 
 ## Benchmarks (`benchmarks/`)
 
-PHPBench suites cover the generic formatters, the converters, the named formatters, and input scaling. `composer benchmark-baseline` stores a new baseline under `.phpbench/`; `composer benchmark` compares against it. `.github/workflows/benchmark-php.yml` runs them in CI.
+PHPBench suites cover the generic formatters, the converters, the named formatters, and input scaling. `composer benchmark` runs them once and reports the timings; nothing is stored between runs.
+
+`.github/workflows/benchmark-php.yml` gates them in CI. On a pull request it checks out the base and head revisions into `base/` and `head/`, hands both to `.github/scripts/benchmark-compare.sh`, and fails when a subject gets slower by more than 15%. On a push to `main` the same script measures the merged revision alone and replaces the table on the `Performance benchmarks` issue. Both revisions are measured back to back on one runner with one toolchain, because the spread between two hosts is several times larger than the change most subjects are meant to detect. `tests/phpunit/Functional/BenchmarkComparisonTest.php` drives the script against throwaway checkouts to cover that behaviour.
 
 ## Coding standards
 

@@ -1,6 +1,6 @@
 # Performance benchmarks
 
-PHPBench suite measuring the `Str2Name` formatters and converters. Run `composer benchmark` to compare against the committed baseline locally; the committed baseline itself is regenerated on CI (see Comparison and baseline).
+PHPBench suite measuring the `Str2Name` formatters and converters. Run `composer benchmark` to measure the working tree, or `composer benchmark-compare` to measure two checkouts against each other (see Comparison).
 
 ## What is measured
 
@@ -11,18 +11,18 @@ PHPBench suite measuring the `Str2Name` formatters and converters. Run `composer
 
 ## Reading the results
 
-These formatters run on identifiers, so a typical input is a handful of words and a typical cost is a few microseconds. The value of the suite is the committed baseline: run `composer benchmark` on a change to see how each number moves against it, and watch the `ScalingBenchmark` for any subject whose cost grows faster than its input.
+These formatters run on identifiers, so a typical input is a handful of words and a typical cost is a few microseconds. The value of the suite is the comparison: measure the change against the revision it branched from to see how each number moves, and watch the `ScalingBenchmark` for any subject whose cost grows faster than its input.
 
-Absolute times are environment-specific - each CI run lands on a different shared runner - so use the numbers to spot large shifts, not exact values.
+Absolute times are environment-specific - each CI run lands on a different shared runner - so use the numbers to spot large shifts, not exact values. A percentage is only meaningful between two runs on one host.
 
 ## Cost in context
 
 These formatters run on identifiers - field labels, machine names, CSS classes - not on large documents, so the realistic input is a handful of words and the realistic cost is a few microseconds. A microsecond is a thousandth of a millisecond: against a page aiming for a ~200 ms response (200,000 μs), formatting a label is on the order of 0.001% of the budget. The `ScalingBenchmark` deliberately pushes past realistic input to expose an algorithmic regression, not because few-hundred-word identifiers occur in practice.
 
-## Comparison and baseline
+## Comparison
 
-The benchmark runs on every pull request and every push to `main`, posting its comparison against the committed baseline as a PR comment and as the running trend on the "Performance benchmarks" issue. It is a **tracking signal, not a pass/fail gate** - it never fails CI.
+There is no committed baseline. A benchmark comparison measures both revisions on the machine it runs on: each CI run lands on a different shared GitHub runner, and the spread between two hosts reaches several times the change these subjects are meant to detect, so a percentage against a baseline measured elsewhere carries no signal.
 
-A hard gate is deliberately not used: each CI run lands on a different shared GitHub runner, and runner speed varies run-to-run, so a fresh candidate compared against a committed baseline shifts that much regardless of the code.
+On a pull request, `.github/workflows/benchmark-php.yml` checks out the base and head revisions into `base/` and `head/`, installs one toolchain and shares it between them, and hands both to `.github/scripts/benchmark-compare.sh`. The run fails when a subject gets slower by more than 15%. On a push to `main` the same script measures the merged revision alone and replaces the table on the "Performance benchmarks" issue.
 
-The committed baseline in `.phpbench/storage/` is the comparison reference. Refresh it by running the "Benchmark PHP" workflow manually (Run workflow / `workflow_dispatch`) on the target branch: the job regenerates the baseline on the runner, removes the previous one, and commits the single replacement back. Because a pull request runs the workflow file from its own branch, dispatching it on a feature branch refreshes that branch's baseline directly - no merge to the default branch is needed first.
+Run the same comparison locally with `composer benchmark-compare`; see [CONTRIBUTING.md](../CONTRIBUTING.md) for the checkout commands.
