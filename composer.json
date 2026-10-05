@@ -26,7 +26,7 @@
         "ergebnis/composer-normalize": "^2.54.0",
         "phpbench/phpbench": "^1.7.0",
         "phpstan/phpstan": "^2.2.17",
-        "phpunit/phpunit": "^11.5.56",
+        "phpunit/phpunit": "^11.5.57",
         "rector/rector": "^2.6.7"
     },
     "suggest": {
