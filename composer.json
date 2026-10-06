@@ -25,9 +25,9 @@
         "drupal/coder": "^9.0.1",
         "ergebnis/composer-normalize": "^2.54.0",
         "phpbench/phpbench": "^1.7.0",
-        "phpstan/phpstan": "^2.2.17",
+        "phpstan/phpstan": "^2.3.0",
         "phpunit/phpunit": "^11.5.57",
-        "rector/rector": "^2.6.7"
+        "rector/rector": "^2.7.0"
     },
     "suggest": {
         "ext-mbstring": "Full Unicode case folding. Without it, non-ASCII case conversion in the generic formatters and *Raw methods degrades to ASCII; strict/named formatters are unaffected."
