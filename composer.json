@@ -27,7 +27,7 @@
         "phpbench/phpbench": "^1.7.0",
         "phpstan/phpstan": "^2.3.3",
         "phpunit/phpunit": "^11.5.57",
-        "rector/rector": "^2.8.1"
+        "rector/rector": "^2.8.2"
     },
     "suggest": {
         "ext-mbstring": "Full Unicode case folding. Without it, non-ASCII case conversion in the generic formatters and *Raw methods degrades to ASCII; strict/named formatters are unaffected."
