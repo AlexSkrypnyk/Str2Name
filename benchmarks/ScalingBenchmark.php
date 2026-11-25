@@ -13,10 +13,10 @@ use PhpBench\Attributes as Bench;
  * order of magnitude make a super-linear regression visible as a jump in the
  * per-size timings.
  */
-#[Bench\Revs(50)]
-#[Bench\Iterations(5)]
-#[Bench\Warmup(1)]
-#[Bench\RetryThreshold(10)]
+#[Bench\Revs(500)]
+#[Bench\Iterations(10)]
+#[Bench\Warmup(2)]
+#[Bench\RetryThreshold(5)]
 class ScalingBenchmark extends AbstractBenchmark {
 
   #[Bench\ParamProviders(['provideSizes'])]

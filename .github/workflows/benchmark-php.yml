@@ -94,7 +94,7 @@ jobs:
       # The pull request already gated this code, so the merged revision is
       # measured on its own and recorded rather than compared again.
       - name: Measure the merged revision
-        run: .github/scripts/benchmark-compare.sh -- --output html
+        run: .github/scripts/benchmark-compare.sh -- --output csv
 
       - name: Find performance benchmarks issue
         id: find-issue
@@ -110,14 +110,26 @@ jobs:
           echo "" >> issue_comment.md
           echo "**Commit:** [\`${{ github.sha }}\`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})" >> issue_comment.md
           echo "**Date:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> issue_comment.md
-          echo "<div>" >> issue_comment.md
-          sed -n '/<table/,/<\/table>/p' .logs/performance-report.html >> issue_comment.md
-          echo "</div>" >> issue_comment.md
+          echo "" >> issue_comment.md
+          echo "| Benchmark | Subject | Set | Revs | Its | Mem peak | Mode | Rstdev |" >> issue_comment.md
+          echo "|---|---|---|---:|---:|---:|---:|---:|" >> issue_comment.md
+          awk -F, 'NR > 1 { printf "| %s | %s | %s | %s | %s | %.3fmb | %.3fμs | ±%.2f%% |\n", $1, $2, $3, $4, $5, $6 / 1000000, $7, $8 }' .logs/performance-report.csv >> issue_comment.md
+
+      - name: Find previous performance results comment
+        id: find-comment
+        if: steps.find-issue.outputs.issue-number != ''
+        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4
+        with:
+          issue-number: ${{ steps.find-issue.outputs.issue-number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Performance Benchmark Results'
+          direction: last
 
       - name: Post performance results to issue
         if: steps.find-issue.outputs.issue-number != ''
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
           issue-number: ${{ steps.find-issue.outputs.issue-number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           body-path: issue_comment.md
           edit-mode: replace
